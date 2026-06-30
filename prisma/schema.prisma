@@ -1,0 +1,94 @@
+generator client {
+  provider = "prisma-client"
+  output   = "../src/generated/prisma"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+model User {
+  id          String      @id @default(cuid())
+  nome        String
+  email       String      @unique
+  avatarUrl   String?
+  firebaseUid String      @unique
+  createdAt   DateTime    @default(now())
+
+  comentarios Comentario[]
+  avaliacoes  Avaliacao[]
+  curtidas    Curtida[]
+}
+
+model Obra {
+  id          String   @id @default(cuid())
+  titulo      String
+  slug        String   @unique
+  tipo        String   @default("Livro")
+  ano         Int
+  sinopse     String?
+  capaUrl     String?
+  nossaResenha String?
+  notaEquipe  Float?
+  createdAt   DateTime @default(now())
+
+  comentarios  Comentario[]
+  avaliacoes   Avaliacao[]
+  relacoesDe   Relacao[]  @relation("De")
+  relacoesPara Relacao[]  @relation("Para")
+}
+
+model Comentario {
+  id        String      @id @default(cuid())
+  texto     String
+  nota      Int?
+  createdAt DateTime    @default(now())
+  curtidasCount Int     @default(0)
+
+  obraId    String
+  obra      Obra     @relation(fields: [obraId], references: [id])
+  usuarioId String
+  usuario   User     @relation(fields: [usuarioId], references: [id])
+
+  parentId  String?
+  parent    Comentario?  @relation("Respostas", fields: [parentId], references: [id])
+  respostas Comentario[] @relation("Respostas")
+
+  curtidas  Curtida[]
+}
+
+model Avaliacao {
+  id        String   @id @default(cuid())
+  nota      Int
+  createdAt DateTime @default(now())
+
+  obraId    String
+  obra      Obra @relation(fields: [obraId], references: [id])
+  usuarioId String
+  usuario   User @relation(fields: [usuarioId], references: [id])
+
+  @@unique([obraId, usuarioId])
+}
+
+model Curtida {
+  id        String   @id @default(cuid())
+  createdAt DateTime @default(now())
+
+  comentarioId String
+  comentario   Comentario @relation(fields: [comentarioId], references: [id])
+  usuarioId    String
+  usuario      User       @relation(fields: [usuarioId], references: [id])
+
+  @@unique([comentarioId, usuarioId])
+}
+
+model Relacao {
+  id        String   @id @default(cuid())
+  tipo      String
+  descricao String?
+
+  obraDeId   String
+  obraDe     Obra @relation("De", fields: [obraDeId], references: [id])
+  obraParaId String
+  obraPara   Obra @relation("Para", fields: [obraParaId], references: [id])
+}
