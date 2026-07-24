@@ -1,12 +1,10 @@
 import "dotenv/config";
 import { PrismaLibSql } from "@prisma/adapter-libsql";
-import { createClient } from "@libsql/client";
 import { PrismaClient } from "../src/generated/prisma/client";
 
 const url = process.env.DATABASE_URL ?? "";
 const authToken = process.env.TURSO_AUTH_TOKEN ?? "";
-const client = createClient({ url, authToken });
-const adapter = new PrismaLibSql(client as any);
+const adapter = new PrismaLibSql({ url, authToken });
 const prisma = new PrismaClient({ adapter });
 
 function slugify(text: string): string {
