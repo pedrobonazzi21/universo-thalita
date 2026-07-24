@@ -1,8 +1,11 @@
 import "dotenv/config";
 import { PrismaClient } from "../src/generated/prisma/client";
 
-const { PrismaBetterSqlite3 } = require("@prisma/adapter-better-sqlite3");
-const adapter = new PrismaBetterSqlite3({ url: process.env.DATABASE_URL ?? "" });
+const url = process.env.DATABASE_URL ?? "";
+const { PrismaLibSQL } = require("@prisma/adapter-libsql");
+const { createClient } = require("@libsql/client");
+const client = createClient({ url, authToken: process.env.TURSO_AUTH_TOKEN ?? "" });
+const adapter = new PrismaLibSQL(client);
 const prisma = new PrismaClient({ adapter });
 
 const comentarios = [
