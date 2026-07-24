@@ -45,3 +45,5 @@ next-env.d.ts
 
 # prisma generated output (committed for Vercel)
 # /src/generated/prisma
+
+.vercel

@@ -5,6 +5,8 @@ import { Reveal } from "@/components/reveal";
 import { BookOpen, Film } from "lucide-react";
 import type { Metadata } from "next";
 
+export const dynamic = "force-dynamic";
+
 export const metadata: Metadata = {
   title: "Obras",
   description: "Todos os livros e filmes de Thalita Rebouças.",

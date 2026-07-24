@@ -6,6 +6,8 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { BookOpen, Calendar } from "lucide-react";
 
+export const dynamic = "force-dynamic";
+
 export const metadata: Metadata = {
   title: "Blog",
   description: "Resenhas e conteúdos escritos sobre as obras de Thalita Rebouças.",

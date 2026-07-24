@@ -5,6 +5,8 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { MessageSquare } from "lucide-react";
 
+export const dynamic = "force-dynamic";
+
 export const metadata: Metadata = {
   title: "Painel",
   description: "Comentários da comunidade sobre as obras de Thalita Rebouças.",

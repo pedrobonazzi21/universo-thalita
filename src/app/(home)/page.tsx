@@ -5,6 +5,8 @@ import { PageTransition } from "@/components/page-transition";
 import Link from "next/link";
 import { BookOpen, Film } from "lucide-react";
 
+export const dynamic = "force-dynamic";
+
 function StarRating({ rating }: { rating: number }) {
   return (
     <div className="flex items-center gap-0.5">
