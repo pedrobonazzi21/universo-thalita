@@ -4,7 +4,7 @@ generator client {
 }
 
 datasource db {
-  provider = "postgresql"
+  provider = "sqlite"
 }
 
 model User {
@@ -28,14 +28,56 @@ model Obra {
   ano         Int
   sinopse     String?
   capaUrl     String?
+  editora     String?
+  genero      String?
   nossaResenha String?
+  dataResenha DateTime?
   notaEquipe  Float?
+  personagens String?
+  curiosidades String?
+  timeline    String?
   createdAt   DateTime @default(now())
 
+  posts       Post[]
   comentarios  Comentario[]
   avaliacoes   Avaliacao[]
   relacoesDe   Relacao[]  @relation("De")
   relacoesPara Relacao[]  @relation("Para")
+}
+
+model Post {
+  id              String   @id @default(cuid())
+  titulo          String
+  slug            String   @unique
+  conteudo        String
+  dataPublicacao  DateTime @default(now())
+  capaUrl         String?
+  parceria        Boolean  @default(false)
+  linkAfiliado    String?
+
+  obraId          String?
+  obra            Obra?    @relation(fields: [obraId], references: [id])
+
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+
+  comentarios     Comentario[]
+  tags            PostTag[]
+}
+
+model Tag {
+  id    String   @id @default(cuid())
+  nome  String   @unique
+  posts PostTag[]
+}
+
+model PostTag {
+  postId String
+  tagId  String
+  post   Post @relation(fields: [postId], references: [id], onDelete: Cascade)
+  tag    Tag  @relation(fields: [tagId], references: [id], onDelete: Cascade)
+
+  @@id([postId, tagId])
 }
 
 model Comentario {
@@ -45,8 +87,10 @@ model Comentario {
   createdAt DateTime    @default(now())
   curtidasCount Int     @default(0)
 
-  obraId    String
-  obra      Obra     @relation(fields: [obraId], references: [id])
+  obraId    String?
+  obra      Obra?     @relation(fields: [obraId], references: [id])
+  postId    String?
+  post      Post?     @relation(fields: [postId], references: [id])
   usuarioId String
   usuario   User     @relation(fields: [usuarioId], references: [id])
 

@@ -1,12 +1,13 @@
 "use client";
 
-import { useCallback, useMemo, useState } from "react";
+import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import {
   ReactFlow,
   Background,
   Controls,
   type Node,
   type Edge,
+  type ReactFlowInstance,
   useNodesState,
   useEdgesState,
   MarkerType,
@@ -34,8 +35,10 @@ const nodeTypes = {
   obra: ObraNode,
 };
 
-export function MentalMap({ obras }: { obras: ObraData[] }) {
+export function MentalMap({ obras, focusSlug }: { obras: ObraData[]; focusSlug?: string }) {
   const [hoveredEdge, setHoveredEdge] = useState<string | null>(null);
+  const reactFlowWrapper = useRef<HTMLDivElement>(null);
+  const [reactFlowInstance, setReactFlowInstance] = useState<ReactFlowInstance | null>(null);
 
   const centerNode: Node = {
     id: "thalita",
@@ -136,6 +139,27 @@ export function MentalMap({ obras }: { obras: ObraData[] }) {
   const [nodes, setNodes, onNodesChange] = useNodesState(initialNodes);
   const [flowEdges, setFlowEdges, onEdgesChange] = useEdgesState(allEdges);
 
+  const onInit = useCallback((instance: ReactFlowInstance) => {
+    setReactFlowInstance(instance);
+  }, []);
+
+  useEffect(() => {
+    if (!reactFlowInstance || !focusSlug) return;
+    const targetNode = obraNodes.find((n) => {
+      const obra = obras.find((o) => o.id === n.id);
+      return obra?.slug === focusSlug;
+    });
+    if (targetNode) {
+      setTimeout(() => {
+        reactFlowInstance.fitView({
+          padding: 0.5,
+          duration: 800,
+          nodes: [targetNode],
+        });
+      }, 100);
+    }
+  }, [focusSlug, reactFlowInstance, obraNodes, obras]);
+
   const onEdgeMouseEnter = useCallback(
     (_: React.MouseEvent, edge: Edge) => {
       setHoveredEdge(edge.id);
@@ -194,6 +218,7 @@ export function MentalMap({ obras }: { obras: ObraData[] }) {
         onEdgesChange={onEdgesChange}
         onEdgeMouseEnter={onEdgeMouseEnter}
         onEdgeMouseLeave={onEdgeMouseLeave}
+        onInit={onInit}
         nodeTypes={nodeTypes}
         fitView
         fitViewOptions={{ padding: 0.3 }}

@@ -7,12 +7,13 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 
 gsap.registerPlugin(ScrollTrigger);
 
-const bookCovers = [
-  "bg-gradient-to-br from-coral/20 to-yellow/20",
-  "bg-gradient-to-br from-blue-deep/20 to-coral/20",
-  "bg-gradient-to-br from-yellow/20 to-blue-deep/20",
-  "bg-gradient-to-br from-coral/30 to-blue-deep/10",
-  "bg-gradient-to-br from-blue-deep/30 to-yellow/10",
+const floatingCovers = [
+  { title: "Fala Sério, Mãe!", type: "Livro", x: "10%", y: "15%", rotate: -8, duration: 25, gradient: "from-coral/25 to-yellow/15", aspect: "aspect-[3/4]" },
+  { title: "Tudo por um Popstar", type: "Livro", x: "75%", y: "10%", rotate: 6, duration: 30, gradient: "from-yellow/25 to-blue-deep/15", aspect: "aspect-[3/4]" },
+  { title: "Fala Sério, Amor", type: "Livro", x: "5%", y: "55%", rotate: 12, duration: 28, gradient: "from-blue-deep/25 to-coral/15", aspect: "aspect-[3/4]" },
+  { title: "Tudo por um Popstar (Filme)", type: "Filme", x: "80%", y: "60%", rotate: -10, duration: 22, gradient: "from-coral/25 to-yellow/15", aspect: "aspect-[16/9]" },
+  { title: "Ela Disse, Ele Disse", type: "Livro", x: "65%", y: "75%", rotate: 4, duration: 35, gradient: "from-yellow/20 to-coral/15", aspect: "aspect-[3/4]" },
+  { title: "Fala Sério, Professor!", type: "Livro", x: "20%", y: "80%", rotate: -6, duration: 26, gradient: "from-blue-deep/25 to-yellow/15", aspect: "aspect-[3/4]" },
 ];
 
 const containerVariants = {
@@ -61,16 +62,13 @@ export function Hero() {
       duration: 1,
       ease: "power2.out",
     });
-    tl.to(
-      bg,
-      {
-        scale: 1.1,
-        filter: "blur(4px)",
-        duration: 1,
-        ease: "power2.out",
-      },
-      0
-    );
+
+    floatingCovers.forEach((_, i) => {
+      const el = document.getElementById(`floating-cover-${i}`);
+      if (el) {
+        tl.to(el, { scale: 1.15, filter: "blur(6px)", duration: 1, ease: "power2.out" }, 0);
+      }
+    });
   }, []);
 
   return (
@@ -78,19 +76,30 @@ export function Hero() {
       ref={heroRef}
       className="relative h-screen flex items-center justify-center overflow-hidden bg-background"
     >
-      <div
-        ref={bgRef}
-        className="absolute inset-0 flex items-center justify-center"
-      >
-        {bookCovers.map((gradient, i) => (
+      <div ref={bgRef} className="absolute inset-0">
+        {floatingCovers.map((cover, i) => (
           <div
             key={i}
-            className={`absolute inset-0 ${gradient} blur-3xl opacity-20`}
+            id={`floating-cover-${i}`}
+            className={`absolute ${cover.aspect} w-28 sm:w-36 md:w-44 rounded-xl bg-gradient-to-br ${cover.gradient} backdrop-blur-sm border border-white/10 shadow-xl`}
             style={{
-              animation: `slide ${15 + i * 3}s ease-in-out infinite alternate`,
+              left: cover.x,
+              top: cover.y,
+              rotate: `${cover.rotate}deg`,
+              opacity: 0.15,
+              animation: `coverFloat ${cover.duration}s ease-in-out infinite alternate`,
               animationDelay: `${i * 2}s`,
             }}
-          />
+          >
+            <div className="w-full h-full flex flex-col items-center justify-center p-3">
+              <span className="text-[8px] sm:text-[10px] font-medium text-foreground/40 uppercase tracking-wider">
+                {cover.type}
+              </span>
+              <span className="text-[10px] sm:text-xs font-heading text-foreground/50 text-center leading-tight mt-1">
+                {cover.title}
+              </span>
+            </div>
+          </div>
         ))}
       </div>
 
@@ -103,12 +112,13 @@ export function Hero() {
       >
         <motion.div
           variants={itemVariants}
-          className="w-40 h-40 sm:w-52 sm:h-52 rounded-full bg-gradient-to-br from-coral to-yellow mb-8 shadow-2xl"
+          className="w-40 h-40 sm:w-52 sm:h-52 rounded-full bg-gradient-to-br from-coral to-yellow mb-8 shadow-2xl ring-4 ring-white/20"
         />
 
         <motion.h1
           variants={itemVariants}
-          className="font-heading text-5xl sm:text-7xl lg:text-8xl tracking-tight text-foreground leading-none"
+          className="font-heading text-5xl sm:text-7xl lg:text-8xl tracking-tight leading-none"
+          style={{ color: "#F25C69" }}
         >
           THALITA
           <br />

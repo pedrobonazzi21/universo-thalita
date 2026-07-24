@@ -53,6 +53,9 @@ export const AnyNull = runtime.AnyNull
 export const ModelName = {
   User: 'User',
   Obra: 'Obra',
+  Post: 'Post',
+  Tag: 'Tag',
+  PostTag: 'PostTag',
   Comentario: 'Comentario',
   Avaliacao: 'Avaliacao',
   Curtida: 'Curtida',
@@ -66,9 +69,6 @@ export type ModelName = (typeof ModelName)[keyof typeof ModelName]
  */
 
 export const TransactionIsolationLevel = runtime.makeStrictEnum({
-  ReadUncommitted: 'ReadUncommitted',
-  ReadCommitted: 'ReadCommitted',
-  RepeatableRead: 'RepeatableRead',
   Serializable: 'Serializable'
 } as const)
 
@@ -95,12 +95,51 @@ export const ObraScalarFieldEnum = {
   ano: 'ano',
   sinopse: 'sinopse',
   capaUrl: 'capaUrl',
+  editora: 'editora',
+  genero: 'genero',
   nossaResenha: 'nossaResenha',
+  dataResenha: 'dataResenha',
   notaEquipe: 'notaEquipe',
+  personagens: 'personagens',
+  curiosidades: 'curiosidades',
+  timeline: 'timeline',
   createdAt: 'createdAt'
 } as const
 
 export type ObraScalarFieldEnum = (typeof ObraScalarFieldEnum)[keyof typeof ObraScalarFieldEnum]
+
+
+export const PostScalarFieldEnum = {
+  id: 'id',
+  titulo: 'titulo',
+  slug: 'slug',
+  conteudo: 'conteudo',
+  dataPublicacao: 'dataPublicacao',
+  capaUrl: 'capaUrl',
+  parceria: 'parceria',
+  linkAfiliado: 'linkAfiliado',
+  obraId: 'obraId',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type PostScalarFieldEnum = (typeof PostScalarFieldEnum)[keyof typeof PostScalarFieldEnum]
+
+
+export const TagScalarFieldEnum = {
+  id: 'id',
+  nome: 'nome'
+} as const
+
+export type TagScalarFieldEnum = (typeof TagScalarFieldEnum)[keyof typeof TagScalarFieldEnum]
+
+
+export const PostTagScalarFieldEnum = {
+  postId: 'postId',
+  tagId: 'tagId'
+} as const
+
+export type PostTagScalarFieldEnum = (typeof PostTagScalarFieldEnum)[keyof typeof PostTagScalarFieldEnum]
 
 
 export const ComentarioScalarFieldEnum = {
@@ -110,6 +149,7 @@ export const ComentarioScalarFieldEnum = {
   createdAt: 'createdAt',
   curtidasCount: 'curtidasCount',
   obraId: 'obraId',
+  postId: 'postId',
   usuarioId: 'usuarioId',
   parentId: 'parentId'
 } as const
@@ -155,14 +195,6 @@ export const SortOrder = {
 } as const
 
 export type SortOrder = (typeof SortOrder)[keyof typeof SortOrder]
-
-
-export const QueryMode = {
-  default: 'default',
-  insensitive: 'insensitive'
-} as const
-
-export type QueryMode = (typeof QueryMode)[keyof typeof QueryMode]
 
 
 export const NullsOrder = {

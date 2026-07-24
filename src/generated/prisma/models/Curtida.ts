@@ -406,7 +406,6 @@ export type CurtidaCreateOrConnectWithoutUsuarioInput = {
 
 export type CurtidaCreateManyUsuarioInputEnvelope = {
   data: Prisma.CurtidaCreateManyUsuarioInput | Prisma.CurtidaCreateManyUsuarioInput[]
-  skipDuplicates?: boolean
 }
 
 export type CurtidaUpsertWithWhereUniqueWithoutUsuarioInput = {
@@ -454,7 +453,6 @@ export type CurtidaCreateOrConnectWithoutComentarioInput = {
 
 export type CurtidaCreateManyComentarioInputEnvelope = {
   data: Prisma.CurtidaCreateManyComentarioInput | Prisma.CurtidaCreateManyComentarioInput[]
-  skipDuplicates?: boolean
 }
 
 export type CurtidaUpsertWithWhereUniqueWithoutComentarioInput = {
@@ -1245,7 +1243,6 @@ export type CurtidaCreateManyArgs<ExtArgs extends runtime.Types.Extensions.Inter
    * The data used to create many Curtidas.
    */
   data: Prisma.CurtidaCreateManyInput | Prisma.CurtidaCreateManyInput[]
-  skipDuplicates?: boolean
 }
 
 /**
@@ -1264,7 +1261,6 @@ export type CurtidaCreateManyAndReturnArgs<ExtArgs extends runtime.Types.Extensi
    * The data used to create many Curtidas.
    */
   data: Prisma.CurtidaCreateManyInput | Prisma.CurtidaCreateManyInput[]
-  skipDuplicates?: boolean
   /**
    * Choose, which related nodes to fetch as well
    */

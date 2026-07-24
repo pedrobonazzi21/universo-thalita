@@ -28,6 +28,21 @@ export type User = Prisma.UserModel
  */
 export type Obra = Prisma.ObraModel
 /**
+ * Model Post
+ * 
+ */
+export type Post = Prisma.PostModel
+/**
+ * Model Tag
+ * 
+ */
+export type Tag = Prisma.TagModel
+/**
+ * Model PostTag
+ * 
+ */
+export type PostTag = Prisma.PostTagModel
+/**
  * Model Comentario
  * 
  */

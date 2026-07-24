@@ -424,7 +424,6 @@ export type RelacaoCreateOrConnectWithoutObraDeInput = {
 
 export type RelacaoCreateManyObraDeInputEnvelope = {
   data: Prisma.RelacaoCreateManyObraDeInput | Prisma.RelacaoCreateManyObraDeInput[]
-  skipDuplicates?: boolean
 }
 
 export type RelacaoCreateWithoutObraParaInput = {
@@ -448,7 +447,6 @@ export type RelacaoCreateOrConnectWithoutObraParaInput = {
 
 export type RelacaoCreateManyObraParaInputEnvelope = {
   data: Prisma.RelacaoCreateManyObraParaInput | Prisma.RelacaoCreateManyObraParaInput[]
-  skipDuplicates?: boolean
 }
 
 export type RelacaoUpsertWithWhereUniqueWithoutObraDeInput = {
@@ -1280,7 +1278,6 @@ export type RelacaoCreateManyArgs<ExtArgs extends runtime.Types.Extensions.Inter
    * The data used to create many Relacaos.
    */
   data: Prisma.RelacaoCreateManyInput | Prisma.RelacaoCreateManyInput[]
-  skipDuplicates?: boolean
 }
 
 /**
@@ -1299,7 +1296,6 @@ export type RelacaoCreateManyAndReturnArgs<ExtArgs extends runtime.Types.Extensi
    * The data used to create many Relacaos.
    */
   data: Prisma.RelacaoCreateManyInput | Prisma.RelacaoCreateManyInput[]
-  skipDuplicates?: boolean
   /**
    * Choose, which related nodes to fetch as well
    */

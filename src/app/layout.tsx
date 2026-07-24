@@ -13,6 +13,18 @@ export const metadata: Metadata = {
   },
   description:
     "Explore o universo de Thalita Rebouças: livros, filmes, adaptações e resenhas.",
+  openGraph: {
+    title: "Universo Thalita Rebouças",
+    description: "Explore o universo de Thalita Rebouças: livros, filmes, adaptações e resenhas.",
+    locale: "pt_BR",
+    type: "website",
+    siteName: "Universo Thalita Rebouças",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Universo Thalita Rebouças",
+    description: "Explore o universo de Thalita Rebouças: livros, filmes, adaptações e resenhas.",
+  },
 };
 
 export default function RootLayout({

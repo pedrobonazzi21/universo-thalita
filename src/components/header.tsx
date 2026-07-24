@@ -4,20 +4,24 @@ import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { Search, Menu, X } from "lucide-react";
+import { Search, Menu, X, User } from "lucide-react";
+import { SearchModal } from "./search-modal";
 
 gsap.registerPlugin(ScrollTrigger);
 
 const navItems = [
   { label: "Início", href: "/" },
   { label: "Obras", href: "/obras" },
-  { label: "Mapa", href: "/mapa" },
-  { label: "Sobre", href: "/sobre" },
+  { label: "Blog", href: "/blog" },
+  { label: "Homenageada", href: "/homenageada" },
+  { label: "Painel", href: "/painel" },
+  { label: "Sobre nós", href: "/sobre" },
 ];
 
 export function Header() {
   const headerRef = useRef<HTMLHeadingElement>(null);
   const [mobileOpen, setMobileOpen] = useState(false);
+  const [searchOpen, setSearchOpen] = useState(false);
 
   useEffect(() => {
     const header = headerRef.current;
@@ -31,13 +35,17 @@ export function Header() {
       onUpdate: (self) => {
         const progress = Math.min(self.progress, 1);
         gsap.to(header, {
-          backgroundColor: `rgba(255, 255, 255, ${0.5 + progress * 0.4})`,
+          backgroundColor: `rgba(255, 250, 250, ${0.5 + progress * 0.4})`,
           borderBottomColor: `rgba(234, 234, 234, ${progress})`,
           duration: 0.1,
         });
       },
     });
   }, []);
+
+  useEffect(() => {
+    if (searchOpen) setMobileOpen(false);
+  }, [searchOpen]);
 
   return (
     <>
@@ -65,8 +73,16 @@ export function Header() {
         </nav>
 
         <div className="flex items-center gap-2">
+          <Link
+            href="/perfil"
+            aria-label="Perfil"
+            className="hidden sm:flex items-center justify-center w-9 h-9 rounded-full hover:bg-gray-light/50 transition-colors duration-200"
+          >
+            <User className="w-4 h-4 text-foreground/60" />
+          </Link>
           <button
             aria-label="Pesquisar"
+            onClick={() => setSearchOpen(true)}
             className="hidden sm:flex items-center justify-center w-9 h-9 rounded-full hover:bg-gray-light/50 transition-colors duration-200"
           >
             <Search className="w-4 h-4 text-foreground/60" />
@@ -101,6 +117,8 @@ export function Header() {
           </div>
         </nav>
       )}
+
+      <SearchModal isOpen={searchOpen} onClose={() => setSearchOpen(false)} />
     </>
   );
 }

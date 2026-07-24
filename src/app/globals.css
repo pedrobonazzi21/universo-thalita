@@ -5,13 +5,13 @@
 @custom-variant dark (&:is(.dark *));
 
 @theme inline {
-  --color-background: #FAFAFA;
+  --color-background: #FFFAFA;
   --color-foreground: #242424;
   --color-card: #FFFFFF;
-  --color-gray-light: #EAEAEA;
-  --color-coral: #FF6F61;
-  --color-yellow: #FFD54F;
-  --color-blue-deep: #294C60;
+  --color-gray-light: #D0DEB8;
+  --color-coral: #FF7F81;
+  --color-yellow: #FFA492;
+  --color-blue-deep: #FF5C71;
 
   --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
   --font-heading: var(--font-poppins), ui-sans-serif, system-ui, sans-serif;
@@ -20,10 +20,19 @@
   --radius: 18px;
 }
 
+html {
+  scroll-behavior: smooth;
+}
+
 body {
   background: var(--color-background);
   color: var(--color-foreground);
   font-family: var(--font-sans);
+}
+
+::selection {
+  background: var(--color-coral);
+  color: white;
 }
 
 @keyframes slide {
@@ -40,6 +49,21 @@ body {
   }
 }
 
+@keyframes coverFloat {
+  0% {
+    translate: 0 0;
+  }
+  33% {
+    translate: 10px -15px;
+  }
+  66% {
+    translate: -8px 10px;
+  }
+  100% {
+    translate: 6px -8px;
+  }
+}
+
 @layer utilities {
   .text-balance {
     text-wrap: balance;
@@ -47,36 +71,36 @@ body {
 }
 
 :root {
-  --background: #FAFAFA;
+  --background: #FFFAFA;
   --foreground: #242424;
   --card: #FFFFFF;
   --card-foreground: #242424;
   --popover: #FFFFFF;
   --popover-foreground: #242424;
-  --primary: #FF6F61;
+  --primary: #FF7F81;
   --primary-foreground: #FFFFFF;
-  --secondary: #FFD54F;
+  --secondary: #FFA492;
   --secondary-foreground: #242424;
-  --muted: #EAEAEA;
-  --muted-foreground: #8A8A8A;
-  --accent: #EAEAEA;
+  --muted: #D0DEB8;
+  --muted-foreground: #6B7F5E;
+  --accent: #D0DEB8;
   --accent-foreground: #242424;
-  --destructive: #E53E3E;
-  --border: #EAEAEA;
-  --input: #EAEAEA;
-  --ring: #FF6F61;
-  --chart-1: #FF6F61;
-  --chart-2: #FFD54F;
-  --chart-3: #294C60;
-  --chart-4: #FF8A7A;
-  --chart-5: #FFE082;
+  --destructive: #FF5C71;
+  --border: #D0DEB8;
+  --input: #D0DEB8;
+  --ring: #FF7F81;
+  --chart-1: #FF7F81;
+  --chart-2: #FFA492;
+  --chart-3: #FF5C71;
+  --chart-4: #D0DEB8;
+  --chart-5: #FFF4CE;
   --radius: 18px;
-  --sidebar: #FAFAFA;
+  --sidebar: #FFFAFA;
   --sidebar-foreground: #242424;
-  --sidebar-primary: #FF6F61;
+  --sidebar-primary: #FF7F81;
   --sidebar-primary-foreground: #FFFFFF;
-  --sidebar-accent: #EAEAEA;
+  --sidebar-accent: #D0DEB8;
   --sidebar-accent-foreground: #242424;
-  --sidebar-border: #EAEAEA;
-  --sidebar-ring: #FF6F61;
+  --sidebar-border: #D0DEB8;
+  --sidebar-ring: #FF7F81;
 }

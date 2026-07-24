@@ -2,7 +2,8 @@
 
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { createClient } from "@/lib/supabase/client";
+import { auth } from "@/lib/firebase";
+import { signInWithPopup, GoogleAuthProvider, sendSignInLinkToEmail, isSignInWithEmailLink, signInWithEmailLink } from "firebase/auth";
 import { X } from "lucide-react";
 
 type AuthModalProps = {
@@ -19,30 +20,31 @@ export function AuthModal({ isOpen, onClose }: AuthModalProps) {
     e.preventDefault();
     setLoading(true);
 
-    const supabase = createClient();
-    const { error } = await supabase.auth.signInWithOtp({
-      email,
-      options: {
-        shouldCreateUser: true,
-      },
-    });
+    try {
+      const actionCodeSettings = {
+        url: `${window.location.origin}/auth/callback`,
+        handleCodeInApp: true,
+      };
+      await sendSignInLinkToEmail(auth, email, actionCodeSettings);
+      window.localStorage.setItem("emailForSignIn", email);
+      setSent(true);
+    } catch (error: unknown) {
+      const msg = error instanceof Error ? error.message : "Erro ao enviar link";
+      alert(msg);
+    }
 
     setLoading(false);
-    if (error) {
-      alert(error.message);
-      return;
-    }
-    setSent(true);
   }
 
   async function handleGoogle() {
-    const supabase = createClient();
-    await supabase.auth.signInWithOAuth({
-      provider: "google",
-      options: {
-        redirectTo: `${window.location.origin}/auth/callback`,
-      },
-    });
+    try {
+      const provider = new GoogleAuthProvider();
+      await signInWithPopup(auth, provider);
+      onClose();
+    } catch (error: unknown) {
+      const msg = error instanceof Error ? error.message : "Erro ao entrar com Google";
+      alert(msg);
+    }
   }
 
   return (
@@ -83,7 +85,7 @@ export function AuthModal({ isOpen, onClose }: AuthModalProps) {
                   </svg>
                 </div>
                 <p className="text-foreground/70">
-                  Link mágico enviado para <strong>{email}</strong>
+                  Link enviado para <strong>{email}</strong>
                 </p>
                 <p className="text-foreground/40 text-sm mt-2">
                   Verifique sua caixa de entrada

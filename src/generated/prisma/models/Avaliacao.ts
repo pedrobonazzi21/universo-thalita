@@ -474,7 +474,6 @@ export type AvaliacaoCreateOrConnectWithoutUsuarioInput = {
 
 export type AvaliacaoCreateManyUsuarioInputEnvelope = {
   data: Prisma.AvaliacaoCreateManyUsuarioInput | Prisma.AvaliacaoCreateManyUsuarioInput[]
-  skipDuplicates?: boolean
 }
 
 export type AvaliacaoUpsertWithWhereUniqueWithoutUsuarioInput = {
@@ -525,7 +524,6 @@ export type AvaliacaoCreateOrConnectWithoutObraInput = {
 
 export type AvaliacaoCreateManyObraInputEnvelope = {
   data: Prisma.AvaliacaoCreateManyObraInput | Prisma.AvaliacaoCreateManyObraInput[]
-  skipDuplicates?: boolean
 }
 
 export type AvaliacaoUpsertWithWhereUniqueWithoutObraInput = {
@@ -1330,7 +1328,6 @@ export type AvaliacaoCreateManyArgs<ExtArgs extends runtime.Types.Extensions.Int
    * The data used to create many Avaliacaos.
    */
   data: Prisma.AvaliacaoCreateManyInput | Prisma.AvaliacaoCreateManyInput[]
-  skipDuplicates?: boolean
 }
 
 /**
@@ -1349,7 +1346,6 @@ export type AvaliacaoCreateManyAndReturnArgs<ExtArgs extends runtime.Types.Exten
    * The data used to create many Avaliacaos.
    */
   data: Prisma.AvaliacaoCreateManyInput | Prisma.AvaliacaoCreateManyInput[]
-  skipDuplicates?: boolean
   /**
    * Choose, which related nodes to fetch as well
    */

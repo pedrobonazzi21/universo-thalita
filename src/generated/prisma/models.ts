@@ -10,6 +10,9 @@
  */
 export type * from './models/User'
 export type * from './models/Obra'
+export type * from './models/Post'
+export type * from './models/Tag'
+export type * from './models/PostTag'
 export type * from './models/Comentario'
 export type * from './models/Avaliacao'
 export type * from './models/Curtida'
