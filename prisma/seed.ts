@@ -27,6 +27,7 @@ interface ObraInput {
 }
 
 const obras: ObraInput[] = [
+  // ── Originais (edições atuais) ──────────────────────────────────────
   {
     titulo: "Diário de uma garota esquisita",
     slug: "diario-de-uma-garota-esquisita",
@@ -158,7 +159,7 @@ const obras: ObraInput[] = [
   },
   {
     titulo: "Fala sério, amiga! Edição revista e ampliada",
-    slug: "fala-serio-amiga",
+    slug: "fala-serio-amiga-edicao-revista",
     tipo: "Livro",
     ano: 2023,
     editora: "Rocco",
@@ -173,7 +174,7 @@ const obras: ObraInput[] = [
   },
   {
     titulo: "Tudo por um namorado: Edição revista e ampliada",
-    slug: "tudo-por-um-namorado",
+    slug: "tudo-por-um-namorado-edicao-revista",
     tipo: "Livro",
     ano: 2022,
     editora: "Rocco",
@@ -188,7 +189,7 @@ const obras: ObraInput[] = [
   },
   {
     titulo: "Fala sério, filha! Edição revista e ampliada",
-    slug: "fala-serio-filha",
+    slug: "fala-serio-filha-edicao-revista",
     tipo: "Livro",
     ano: 2022,
     editora: "Rocco",
@@ -202,7 +203,7 @@ const obras: ObraInput[] = [
   },
   {
     titulo: "Fala sério, mãe! Edição revista e ampliada",
-    slug: "fala-serio-mae",
+    slug: "fala-serio-mae-edicao-revista",
     tipo: "Livro",
     ano: 2022,
     editora: "Rocco",
@@ -399,7 +400,7 @@ const obras: ObraInput[] = [
     ],
   },
   {
-    titulo: "Uma fada me visitou",
+    titulo: "Uma fada veio me visitar",
     slug: "uma-fada-me-visitou",
     tipo: "Livro",
     ano: 2013,
@@ -409,6 +410,197 @@ const obras: ObraInput[] = [
     depoimentos: null,
     capas: [
       { url: "/img/capa-uma-fada-me-visitou.jpg", editora: "Rocco", ano: 2013 },
+    ],
+  },
+  // ── 13 edições originais (adicionadas) ──────────────────────────────
+  {
+    titulo: "Adultos sem filtro: E outras crônicas",
+    slug: "adultos-sem-filtro-outras-cronicas",
+    tipo: "Livro",
+    ano: 2012,
+    editora: "Rocco",
+    genero: "Crônica",
+    sinopse:
+      "Adultos sem filtro marca a transição de Thalita Rebouças para um público mais maduro, reunindo crônicas bem-humoradas originalmente escritas para sua coluna na Veja Rio. A autora debater, com sua habitual cumplicidade e leveza, as dores e delícias do cotidiano adulto.",
+    depoimentos: null,
+    capas: [
+      { url: "/img/capa-adultos-sem-filtro.jpg", editora: "Rocco", ano: 2012 },
+    ],
+  },
+  {
+    titulo: "Fala sério, filha! A vingança dos pais",
+    slug: "fala-serio-filha",
+    tipo: "Livro",
+    ano: 2011,
+    editora: "Rocco",
+    genero: "literatura infantojuvenil",
+    sinopse:
+      'Fala sério, filha! é o sexto volume da famosa série de Thalita e funciona como o aguardado "troco" dos pais contra as reclamações da primogênita, Maria de Lourdes (Malu). Após darem seus depoimentos nos livros anteriores, a superprotetora Ângela Cristina e o paizão Armando assumem os holofotes.',
+    depoimentos: null,
+    capas: [
+      { url: "/img/capa-fala-serio-filha-a-vinganca-dos-pais.jpg", editora: "Rocco", ano: 2011 },
+    ],
+  },
+  {
+    titulo: "Era uma vez minha primeira vez",
+    slug: "era-uma-vez-minha-primeira-vez",
+    tipo: "Livro",
+    ano: 2011,
+    editora: "Rocco",
+    genero: "literatura infantojuvenil",
+    sinopse:
+      "Era uma vez minha primeira vez afasta-se do formato de manual educativo para tratar da iniciação sexual adolescente através do afeto e do humor. Seis amigas de infância reunidas em uma festa começam a recordar o passado.",
+    depoimentos: null,
+    capas: [
+      { url: "/img/capa-era-uma-vez-minha-primeira-vez.jpg", editora: "Rocco", ano: 2011 },
+    ],
+  },
+  {
+    titulo: "Fala sério, amor!",
+    slug: "fala-serio-amor",
+    tipo: "Livro",
+    ano: 2011,
+    editora: "Rocco",
+    genero: "literatura infantojuvenil",
+    sinopse:
+      "Fala sério, amor! foca na movimentada vida amorosa da protagonista Maria de Lourdes, a Malu. Crônicas cronológicas que vão dos seus 8 anos até a maturidade dos 21.",
+    depoimentos: null,
+    capas: [
+      { url: "/img/capa-fala-serio-amor.jpg", editora: "Rocco", ano: 2011 },
+      { url: "/img/capa-fala-serio-amor-capa-2.jpg", editora: "Rocco", ano: 2011 },
+    ],
+  },
+  {
+    titulo: "Ela Disse, Ele Disse",
+    slug: "ela-disse-ele-disse",
+    tipo: "Livro",
+    ano: 2010,
+    editora: "Rocco",
+    genero: "literatura infantojuvenil",
+    sinopse:
+      "Ela Disse, Ele Disse acompanha a rotina de dois adolescentes de 14 anos, Rosa e Leo, que não se conhecem, mas compartilham o mesmo desafio: encarar o primeiro dia de aula em um colégio novo no Rio de Janeiro. A estrutura inovadora do livro apresenta a mesma história sob dois pontos de vista alternados.",
+    depoimentos: null,
+    capas: [
+      { url: "/img/capa-ela-disse-ele-disse.jpg", editora: "Rocco", ano: 2010 },
+    ],
+  },
+  {
+    titulo: "Fala sério, pai!",
+    slug: "fala-serio-pai",
+    tipo: "Livro",
+    ano: 2009,
+    editora: "Rocco",
+    genero: "literatura infantojuvenil",
+    sinopse:
+      "Fala sério, pai! é o terceiro livro da série Fala Sério de Thalita e traz, desta vez, a perspectiva de Armando, o pai da protagonista Maria de Lourdes (Malu). Crônicas que cobrem desde o nascimento de Malu até ela atingir a maioridade.",
+    depoimentos: null,
+    capas: [
+      { url: "/img/capa-fala-serio-pai.jpg", editora: "Rocco", ano: 2009 },
+      { url: "/img/capa-fala-serio-pai-capa-2.jpg", editora: "Rocco", ano: 2009 },
+      { url: "/img/capa-fala-serio-pai-capa-3.jpg", editora: "Rocco", ano: 2009 },
+    ],
+  },
+  {
+    titulo: "Fala sério, amiga!",
+    slug: "fala-serio-amiga",
+    tipo: "Livro",
+    ano: 2008,
+    editora: "Rocco",
+    genero: "literatura infantojuvenil",
+    sinopse:
+      "Fala sério, amiga! coloca os holofotes sobre a intensa vida social de Maria de Lourdes, a Malu. Organizada em crônicas cronológicas desde os 3 aninhos até os 21 anos.",
+    depoimentos: null,
+    capas: [
+      { url: "/img/capa-fala-serio-amiga.jpg", editora: "Rocco", ano: 2008 },
+      { url: "/img/capa-fala-serio-amiga-capa-2.jpg", editora: "Rocco", ano: 2008 },
+    ],
+  },
+  {
+    titulo: "Tudo por um Feriado",
+    slug: "tudo-por-um-feriado",
+    tipo: "Livro",
+    ano: 2007,
+    editora: "Rocco",
+    genero: "literatura infantojuvenil",
+    sinopse:
+      "Tudo por um feriado traz de volta as amigas Manu, Gabi e Ritinha em uma nova aventura. Decididas a aproveitar o feriado de Carnaval para descansar, o trio viaja para Porto das Rosas.",
+    depoimentos: null,
+    capas: [
+      { url: "/img/capa-tudo-por-um-feriado.jpg", editora: "Rocco", ano: 2007 },
+    ],
+  },
+  {
+    titulo: "Uma fada veio me visitar",
+    slug: "uma-fada-veio-me-visitou",
+    tipo: "Livro",
+    ano: 2007,
+    editora: "Rocco",
+    genero: "Literatura infantojuvenil",
+    sinopse:
+      "Uma fada veio me visitar acompanha a história de Luna, uma adolescente de 13 anos que está insatisfaita com sua rotina. Sua vida vira de cabeça para baixo quando ela recebe a visita de Tatu, uma fada tagarela e atrapalhada que passou os últimos quarenta anos congelada.",
+    depoimentos: null,
+    capas: [
+      { url: "/img/capa-uma-fada-me-visitou.jpg", editora: "Rocco", ano: 2007 },
+    ],
+  },
+  {
+    titulo: "Tudo por um namorado",
+    slug: "tudo-por-um-namorado",
+    tipo: "Livro",
+    ano: 2005,
+    editora: "Rocco",
+    genero: "literatura infantojuvenil",
+    sinopse:
+      "Tudo por um namorado traz de volta o trio de amigas Manu, Gabi e Ritinha. Durante as férias de verão em Macaé, as meninas decidem que é a hora certa de desencalhar.",
+    depoimentos: null,
+    capas: [
+      { url: "/img/capa-tudo-por-um-namorado.jpg", editora: "Rocco", ano: 2005 },
+      { url: "/img/capa-tudo-por-um-namorado-capa-2.jpg", editora: "Rocco", ano: 2005 },
+    ],
+  },
+  {
+    titulo: "Fala sério, mãe!",
+    slug: "fala-serio-mae",
+    tipo: "Livro",
+    ano: 2004,
+    editora: "Rocco",
+    genero: "literatura infantojuvenil",
+    sinopse:
+      "Fala sério, mãe! é o livro que deu início à série de maior sucesso de Thalita Rebouças. A obra é dividida em crônicas que acompanham a vida de Malu desde antes de seu nascimento até ela atingir os 21 anos. Primeira metade: ponto de vista de Ângela Cristina. Segunda metade: Malu assume a voz.",
+    depoimentos: null,
+    capas: [
+      { url: "/img/capa-fala-serio-mae.jpg", editora: "Rocco", ano: 2004 },
+      { url: "/img/capa-fala-serio-mae-capa-2.jpg", editora: "Rocco", ano: 2004 },
+    ],
+  },
+  {
+    titulo: "Tudo por um pop star",
+    slug: "tudo-por-um-pop-star-original",
+    tipo: "Livro",
+    ano: 2003,
+    editora: "Rocco",
+    genero: "literatura infantojuvenil",
+    sinopse:
+      'Tudo por um pop star acompanha a jornada de três melhores amigas de Resende — Manu, Gabi e Ritinha — que são completamente obcecadas pela boy band americana "Slava Body Disco Disco Boys".',
+    depoimentos: null,
+    capas: [
+      { url: "/img/capa-tudo-por-um-pop-star.jpg", editora: "Rocco", ano: 2003 },
+      { url: "/img/capa-tudo-por-um-pop-star-capa-2.jpg", editora: "Rocco", ano: 2003 },
+    ],
+  },
+  {
+    titulo: "Traição entre amigas",
+    slug: "traicao-entre-amigas-original",
+    tipo: "Livro",
+    ano: 2000,
+    editora: "Rocco",
+    genero: "Literatura infantojuvenil",
+    sinopse:
+      "Traição entre amigas, primeiro livro de Thalita Rebouças, acompanha Luiza e Penélope, duas jovens com personalidades opostas que se conhecem em um curso de teatro e se tornam inseparáveis.",
+    depoimentos: null,
+    capas: [
+      { url: "/img/capa-traicao-entre-amigas.jpg", editora: "Rocco", ano: 2000 },
+      { url: "/img/capa-traicao-entre-amigas-capa-2.jpg", editora: "Rocco", ano: 2000 },
     ],
   },
 ];

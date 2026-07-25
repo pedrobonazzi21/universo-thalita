@@ -6,7 +6,7 @@ import { ResenhaContent } from "@/components/resenha-content";
 import { notFound } from "next/navigation";
 import { getMediaAvaliacoes } from "@/actions/avaliacoes";
 import Link from "next/link";
-import { BookOpen, Film, Clock } from "lucide-react";
+import { BookOpen, Film } from "lucide-react";
 import type { Metadata } from "next";
 
 export const dynamic = "force-dynamic";
@@ -61,18 +61,6 @@ export default async function ObraPage({ params }: { params: Promise<{ slug: str
   try {
     mediaComunidade = await getMediaAvaliacoes(obra.id);
   } catch {}
-
-  const personagens: { nome: string; descricao: string }[] = obra.personagens
-    ? JSON.parse(obra.personagens)
-    : [];
-
-  const curiosidades: string[] = obra.curiosidades
-    ? JSON.parse(obra.curiosidades)
-    : [];
-
-  const timeline: { ano: number; descricao: string }[] = obra.timeline
-    ? JSON.parse(obra.timeline)
-    : [];
 
   const adaptacao = obra.relacoesDe.find((r) => r.tipo === "adaptacao")?.obraPara
     ?? obra.relacoesPara.find((r) => r.tipo === "adaptacao")?.obraDe;
@@ -155,67 +143,11 @@ export default async function ObraPage({ params }: { params: Promise<{ slug: str
               </Reveal>
             )}
 
-            {personagens.length > 0 && (
-              <Reveal delay={0.2}>
-                <section>
-                  <h2 className="font-heading text-lg text-foreground mb-3">Personagens</h2>
-                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-                    {personagens.map((p, i) => (
-                      <div key={i} className="bg-card rounded-[14px] p-4 border border-gray-light/50">
-                        <h3 className="font-heading text-sm text-foreground">{p.nome}</h3>
-                        {p.descricao && (
-                          <p className="text-xs text-foreground/50 mt-1">{p.descricao}</p>
-                        )}
-                      </div>
-                    ))}
-                  </div>
-                </section>
-              </Reveal>
-            )}
-
-            {curiosidades.length > 0 && (
-              <Reveal delay={0.25}>
-                <section>
-                  <h2 className="font-heading text-lg text-foreground mb-3">Curiosidades</h2>
-                  <div className="bg-card rounded-[18px] p-6 border border-gray-light/50 space-y-3">
-                    {curiosidades.map((c, i) => (
-                      <div key={i} className="flex items-start gap-3">
-                        <span className="w-5 h-5 rounded-full bg-coral/10 flex items-center justify-center text-[10px] text-coral shrink-0 mt-0.5">
-                          {i + 1}
-                        </span>
-                        <p className="text-sm text-foreground/60">{c}</p>
-                      </div>
-                    ))}
-                  </div>
-                </section>
-              </Reveal>
-            )}
-
-            {timeline.length > 0 && (
-              <Reveal delay={0.3}>
-                <section>
-                  <div className="flex items-center gap-2 mb-4">
-                    <Clock className="w-4 h-4 text-foreground/40" />
-                    <h2 className="font-heading text-lg text-foreground">Linha do Tempo</h2>
-                  </div>
-                  <div className="relative pl-6 before:content-[''] before:absolute before:left-[7px] before:top-1 before:bottom-1 before:w-[2px] before:bg-coral/20">
-                    {timeline.map((event, i) => (
-                      <div key={i} className="relative pb-5 last:pb-0">
-                        <div className="absolute left-[-18px] top-1 w-3 h-3 rounded-full bg-coral border-2 border-background" />
-                        <span className="text-xs font-medium text-coral">{event.ano}</span>
-                        <p className="text-sm text-foreground/60 mt-0.5">{event.descricao}</p>
-                      </div>
-                    ))}
-                  </div>
-                </section>
-              </Reveal>
-            )}
-
             <Reveal delay={0.35}>
               <CommentSection obraId={obra.id} />
             </Reveal>
 
-            {obra.nossaResenha && (
+            {obra.depoimentos && (
               <Reveal delay={0.4}>
                 <section className="bg-card rounded-[18px] p-6 border border-coral/20">
                   <div className="flex items-center gap-3 mb-4">
@@ -237,7 +169,7 @@ export default async function ObraPage({ params }: { params: Promise<{ slug: str
                       )}
                     </div>
                   </div>
-                  <ResenhaContent content={obra.nossaResenha} />
+                  <ResenhaContent content={obra.depoimentos} />
                 </section>
               </Reveal>
             )}

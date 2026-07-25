@@ -19,7 +19,7 @@ export const metadata: Metadata = {
 
 export default async function BlogPage() {
   const obras = await prisma.obra.findMany({
-    where: { nossaResenha: { not: null } },
+    where: { dataResenha: { not: null } },
     orderBy: { dataResenha: "desc" },
   });
 
@@ -73,7 +73,7 @@ export default async function BlogPage() {
                   )}
 
                   <div className="line-clamp-6">
-                    <ResenhaContent content={obra.nossaResenha!} />
+                    <ResenhaContent content={obra.depoimentos!} />
                   </div>
 
                   <Link
