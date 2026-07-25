@@ -68,7 +68,7 @@ export async function GET(req: NextRequest) {
       proximoNivel,
     });
   } catch (e) {
-    console.error("[api/perfil]", e);
-    return NextResponse.json(null, { status: 500 });
+    console.error("[api/perfil] unexpected error:", e instanceof Error ? e.message : e);
+    return NextResponse.json({ error: "Internal server error" }, { status: 500 });
   }
 }

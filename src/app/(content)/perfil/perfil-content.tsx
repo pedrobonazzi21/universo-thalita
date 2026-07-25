@@ -8,7 +8,6 @@ import { PageTransition } from "@/components/page-transition";
 import { Reveal } from "@/components/reveal";
 import { User, MessageSquare, Star, Award, Zap, Trophy, TrendingUp } from "lucide-react";
 import Link from "next/link";
-import { getPerfilData } from "@/actions/perfil";
 
 type ProfileData = {
   id: string;
@@ -50,15 +49,24 @@ export function PerfilContent() {
     let cancelled = false;
     user.getIdToken().then((token: string) => {
       if (cancelled) return;
-      return getPerfilData(token);
-    }).then((data: ProfileData | null) => {
-      if (!cancelled) {
-        setProfile(data);
-        setLoadingProfile(false);
-      }
-    }).catch(() => {
-      if (!cancelled) setLoadingProfile(false);
-    });
+      return fetch("/api/perfil", {
+        headers: { Authorization: `Bearer ${token}` },
+        credentials: "include",
+      });
+    })
+      .then((r?: Response) => {
+        if (!r || !r.ok) return null;
+        return r.json();
+      })
+      .then((data: ProfileData | null) => {
+        if (!cancelled) {
+          setProfile(data);
+          setLoadingProfile(false);
+        }
+      })
+      .catch(() => {
+        if (!cancelled) setLoadingProfile(false);
+      });
     return () => { cancelled = true; };
   }, [user?.uid]);
 
