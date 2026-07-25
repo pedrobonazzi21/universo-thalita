@@ -13,7 +13,10 @@ export const dynamic = "force-dynamic";
 
 export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {
   const { slug } = await params;
-  const obra = await prisma.obra.findUnique({ where: { slug } });
+  const obra = await prisma.obra.findUnique({
+    where: { slug },
+    include: { capas: { orderBy: { ordem: "asc" }, take: 1 } },
+  });
   if (!obra) return { title: "Obra não encontrada" };
   return {
     title: obra.titulo,
@@ -21,6 +24,7 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
     openGraph: {
       title: `${obra.titulo} | Universo Thalita Rebouças`,
       description: obra.sinopse ?? undefined,
+      images: obra.capas[0] ? [obra.capas[0].url] : undefined,
     },
   };
 }
@@ -50,6 +54,7 @@ export default async function ObraPage({ params }: { params: Promise<{ slug: str
   const obra = await prisma.obra.findUnique({
     where: { slug },
     include: {
+      capas: { orderBy: { ordem: "asc" } },
       relacoesDe: { include: { obraPara: { select: { titulo: true, slug: true, tipo: true } } } },
       relacoesPara: { include: { obraDe: { select: { titulo: true, slug: true, tipo: true } } } },
     },
@@ -71,13 +76,38 @@ export default async function ObraPage({ params }: { params: Promise<{ slug: str
         <div className="grid grid-cols-1 md:grid-cols-[300px_1fr] gap-10">
           <div className="md:sticky md:top-24 self-start">
             <Reveal>
-              <div className="aspect-[3/4] bg-gradient-to-br from-coral/10 to-yellow/10 rounded-[18px] flex items-center justify-center border border-gray-light/30">
-                {obra.tipo === "Filme" ? (
-                  <Film className="w-12 h-12 text-foreground/20" />
-                ) : (
-                  <BookOpen className="w-12 h-12 text-foreground/20" />
-                )}
-              </div>
+              {obra.capas.length > 0 ? (
+                <div className="space-y-3">
+                  <div className="aspect-[3/4] rounded-[18px] overflow-hidden border border-gray-light/30 bg-card">
+                    <img
+                      src={obra.capas[0].url}
+                      alt={obra.titulo}
+                      className="w-full h-full object-cover"
+                    />
+                  </div>
+                  {obra.capas.length > 1 && (
+                    <div className="flex gap-2 overflow-x-auto pb-1">
+                      {obra.capas.map((capa, i) => (
+                        <div key={capa.id} className="shrink-0 w-16 h-22 rounded-lg overflow-hidden border border-gray-light/30 opacity-70 hover:opacity-100 transition-opacity">
+                          <img
+                            src={capa.url}
+                            alt={`${obra.titulo} - Capa ${i + 1}`}
+                            className="w-full h-full object-cover"
+                          />
+                        </div>
+                      ))}
+                    </div>
+                  )}
+                </div>
+              ) : (
+                <div className="aspect-[3/4] bg-gradient-to-br from-coral/10 to-yellow/10 rounded-[18px] flex items-center justify-center border border-gray-light/30">
+                  {obra.tipo === "Filme" ? (
+                    <Film className="w-12 h-12 text-foreground/20" />
+                  ) : (
+                    <BookOpen className="w-12 h-12 text-foreground/20" />
+                  )}
+                </div>
+              )}
             </Reveal>
           </div>
 

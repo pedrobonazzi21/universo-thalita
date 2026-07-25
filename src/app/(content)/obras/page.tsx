@@ -44,7 +44,9 @@ export default async function ObrasPage({
   const { tipo } = await searchParams;
   const filtro = tipo?.toLowerCase() === "livro" ? "Livro" : tipo?.toLowerCase() === "filme" ? "Filme" : null;
 
-  let obras = await prisma.obra.findMany();
+  let obras = await prisma.obra.findMany({
+    include: { capas: { orderBy: { ordem: "asc" }, take: 1 } },
+  });
 
   if (filtro) {
     obras = obras.filter((o) => o.tipo === filtro);
@@ -89,14 +91,24 @@ export default async function ObrasPage({
                 href={`/obras/${obra.slug}`}
                 className="group bg-card rounded-[18px] overflow-hidden border border-gray-light/50 transition-all duration-300 hover:-translate-y-1 hover:shadow-lg block"
               >
-                <div className="aspect-[3/4] bg-gradient-to-br from-coral/10 to-yellow/10 flex items-center justify-center p-6 transition-transform duration-500 group-hover:scale-[1.02]">
-                  <div className="w-full h-full rounded-lg bg-white/60 flex items-center justify-center">
-                    {obra.tipo === "Filme" ? (
-                      <Film className="w-8 h-8 text-foreground/20" />
-                    ) : (
-                      <BookOpen className="w-8 h-8 text-foreground/20" />
-                    )}
-                  </div>
+                <div className="aspect-[3/4] bg-gradient-to-br from-coral/10 to-yellow/10 flex items-center justify-center overflow-hidden transition-transform duration-500 group-hover:scale-[1.02]">
+                  {obra.capas[0] ? (
+                    <img
+                      src={obra.capas[0].url}
+                      alt={obra.titulo}
+                      className="w-full h-full object-cover"
+                    />
+                  ) : (
+                    <div className="w-full h-full flex items-center justify-center p-6">
+                      <div className="w-full h-full rounded-lg bg-white/60 flex items-center justify-center">
+                        {obra.tipo === "Filme" ? (
+                          <Film className="w-8 h-8 text-foreground/20" />
+                        ) : (
+                          <BookOpen className="w-8 h-8 text-foreground/20" />
+                        )}
+                      </div>
+                    </div>
+                  )}
                 </div>
                 <div className="p-4 space-y-1">
                   <div className="flex items-center justify-between">
