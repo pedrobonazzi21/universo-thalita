@@ -47,9 +47,14 @@ export function PerfilContent() {
   useEffect(() => {
     if (!user?.uid) return;
     let cancelled = false;
-    fetch("/api/perfil")
-      .then((r) => (r.ok ? r.json() : null))
-      .then((data) => {
+    user.getIdToken().then((token: string) => {
+      if (cancelled) return;
+      return fetch("/api/perfil", {
+        headers: { Authorization: `Bearer ${token}` },
+      });
+    })
+      .then((r?: Response) => (r?.ok ? r.json() : null))
+      .then((data: ProfileData | null) => {
         if (!cancelled) {
           setProfile(data);
           setLoadingProfile(false);
