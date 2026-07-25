@@ -7,38 +7,55 @@ export async function GET(req: NextRequest) {
     const authHeader = req.headers.get("authorization");
     const token = authHeader?.startsWith("Bearer ") ? authHeader.slice(7) : null;
     if (!token) {
-      return NextResponse.json(null, { status: 401 });
+      return NextResponse.json({ step: "token", error: "no token" }, { status: 401 });
     }
 
     const firebaseUser = await getUserFromToken(token);
     if (!firebaseUser) {
-      return NextResponse.json(null, { status: 401 });
+      return NextResponse.json({ step: "firebase", error: "invalid token" }, { status: 401 });
     }
 
-    const dbUser = await prisma.user.findUnique({
-      where: { firebaseUid: firebaseUser.uid },
-      include: {
-        medalhas: {
-          include: { medalha: true },
+    let dbUser;
+    try {
+      dbUser = await prisma.user.findUnique({
+        where: { firebaseUid: firebaseUser.uid },
+        include: {
+          medalhas: {
+            include: { medalha: true },
+          },
         },
-      },
-    });
-    if (!dbUser) {
-      return NextResponse.json(null, { status: 401 });
+      });
+    } catch (e) {
+      return NextResponse.json({
+        step: "prisma-findUser",
+        error: e instanceof Error ? e.message : String(e),
+        uid: firebaseUser.uid,
+      }, { status: 500 });
     }
 
-    const [totalComentarios, totalAvaliacoes, comentariosDestaque] =
-      await Promise.all([
-        prisma.comentario.count({
-          where: { usuarioId: dbUser.id, parentId: null },
-        }),
-        prisma.comentario.count({
-          where: { usuarioId: dbUser.id, nota: { not: null } },
-        }),
-        prisma.comentario.count({
-          where: { usuarioId: dbUser.id, destaque: true },
-        }),
+    if (!dbUser) {
+      return NextResponse.json({
+        step: "user-not-found",
+        uid: firebaseUser.uid,
+        email: firebaseUser.email,
+      }, { status: 404 });
+    }
+
+    let counts;
+    try {
+      counts = await Promise.all([
+        prisma.comentario.count({ where: { usuarioId: dbUser.id, parentId: null } }),
+        prisma.comentario.count({ where: { usuarioId: dbUser.id, nota: { not: null } } }),
+        prisma.comentario.count({ where: { usuarioId: dbUser.id, destaque: true } }),
       ]);
+    } catch (e) {
+      return NextResponse.json({
+        step: "prisma-counts",
+        error: e instanceof Error ? e.message : String(e),
+      }, { status: 500 });
+    }
+
+    const [totalComentarios, totalAvaliacoes, comentariosDestaque] = counts;
 
     const proximoNivel =
       dbUser.xp >= 300
@@ -68,7 +85,6 @@ export async function GET(req: NextRequest) {
       proximoNivel,
     });
   } catch (e) {
-    console.error("[api/perfil] unexpected error:", e instanceof Error ? e.message : e);
-    return NextResponse.json({ error: "Internal server error" }, { status: 500 });
+    return NextResponse.json({ step: "unknown", error: e instanceof Error ? e.message : String(e) }, { status: 500 });
   }
 }
