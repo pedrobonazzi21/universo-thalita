@@ -42,7 +42,7 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
       },
     });
   } catch {
-    notFound();
+    return notFound();
   }
 
   if (!post) notFound();

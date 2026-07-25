@@ -67,7 +67,7 @@ export default async function ObraPage({ params }: { params: Promise<{ slug: str
       },
     });
   } catch {
-    notFound();
+    return notFound();
   }
 
   if (!obra) notFound();
