@@ -28,7 +28,10 @@ function StarRating({ rating }: { rating: number }) {
 }
 
 export default async function Home() {
-  let obras = await prisma.obra.findMany({ take: 6 });
+  let obras = await prisma.obra.findMany({
+    take: 6,
+    include: { capas: { orderBy: { ordem: "asc" }, take: 1 } },
+  });
 
   return (
     <PageTransition>
@@ -123,14 +126,24 @@ export default async function Home() {
                     href={`/obras/${work.slug}`}
                     className="group relative bg-card rounded-[18px] overflow-hidden border border-gray-light/50 transition-all duration-300 hover:-translate-y-1 hover:shadow-lg hover:shadow-coral/5 block"
                   >
-                    <div className="aspect-[3/4] bg-gradient-to-br from-coral/10 to-yellow/10 flex items-center justify-center p-6 transition-transform duration-500 group-hover:scale-[1.02]">
-                      <div className="w-full h-full rounded-lg bg-white/40 backdrop-blur-sm flex items-center justify-center">
-                        {work.tipo === "Filme" ? (
-                          <Film className="w-8 h-8 text-foreground/20" />
-                        ) : (
-                          <BookOpen className="w-8 h-8 text-foreground/20" />
-                        )}
-                      </div>
+                    <div className="aspect-[3/4] bg-gradient-to-br from-coral/10 to-yellow/10 flex items-center justify-center overflow-hidden transition-transform duration-500 group-hover:scale-[1.02]">
+                      {work.capas[0] ? (
+                        <img
+                          src={work.capas[0].url}
+                          alt={work.titulo}
+                          className="w-full h-full object-cover"
+                        />
+                      ) : (
+                        <div className="w-full h-full flex items-center justify-center p-6">
+                          <div className="w-full h-full rounded-lg bg-white/40 backdrop-blur-sm flex items-center justify-center">
+                            {work.tipo === "Filme" ? (
+                              <Film className="w-8 h-8 text-foreground/20" />
+                            ) : (
+                              <BookOpen className="w-8 h-8 text-foreground/20" />
+                            )}
+                          </div>
+                        </div>
+                      )}
                     </div>
                     <div className="p-4 space-y-2">
                       <div className="flex items-center justify-between">
