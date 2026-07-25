@@ -33,9 +33,15 @@ export default async function Home() {
     include: { capas: { orderBy: { ordem: "asc" }, take: 1 } },
   });
 
+  const heroCovers = obras.map((o) => ({
+    titulo: o.titulo,
+    url: o.capas[0]?.url ?? "",
+    tipo: o.tipo,
+  }));
+
   return (
     <PageTransition>
-      <Hero />
+      <Hero covers={heroCovers} />
 
       <main className="max-w-7xl mx-auto px-6 pb-24">
         <Reveal>

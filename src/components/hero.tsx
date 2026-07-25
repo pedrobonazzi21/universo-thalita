@@ -7,13 +7,19 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 
 gsap.registerPlugin(ScrollTrigger);
 
-const floatingCovers = [
-  { title: "Fala Sério, Mãe!", type: "Livro", x: "10%", y: "15%", rotate: -8, duration: 25, gradient: "from-coral/25 to-yellow/15", aspect: "aspect-[3/4]" },
-  { title: "Tudo por um Popstar", type: "Livro", x: "75%", y: "10%", rotate: 6, duration: 30, gradient: "from-yellow/25 to-blue-deep/15", aspect: "aspect-[3/4]" },
-  { title: "Fala Sério, Amor", type: "Livro", x: "5%", y: "55%", rotate: 12, duration: 28, gradient: "from-blue-deep/25 to-coral/15", aspect: "aspect-[3/4]" },
-  { title: "Tudo por um Popstar (Filme)", type: "Filme", x: "80%", y: "60%", rotate: -10, duration: 22, gradient: "from-coral/25 to-yellow/15", aspect: "aspect-[16/9]" },
-  { title: "Ela Disse, Ele Disse", type: "Livro", x: "65%", y: "75%", rotate: 4, duration: 35, gradient: "from-yellow/20 to-coral/15", aspect: "aspect-[3/4]" },
-  { title: "Fala Sério, Professor!", type: "Livro", x: "20%", y: "80%", rotate: -6, duration: 26, gradient: "from-blue-deep/25 to-yellow/15", aspect: "aspect-[3/4]" },
+interface HeroCover {
+  titulo: string;
+  url: string;
+  tipo: string;
+}
+
+const coverPositions = [
+  { x: "10%", y: "15%", rotate: -8, duration: 25 },
+  { x: "75%", y: "10%", rotate: 6, duration: 30 },
+  { x: "5%", y: "55%", rotate: 12, duration: 28 },
+  { x: "80%", y: "60%", rotate: -10, duration: 22 },
+  { x: "65%", y: "75%", rotate: 4, duration: 35 },
+  { x: "20%", y: "80%", rotate: -6, duration: 26 },
 ];
 
 const containerVariants = {
@@ -36,10 +42,15 @@ const itemVariants = {
   },
 };
 
-export function Hero() {
+export function Hero({ covers = [] }: { covers?: HeroCover[] }) {
   const heroRef = useRef<HTMLElement>(null);
   const contentRef = useRef<HTMLDivElement>(null);
   const bgRef = useRef<HTMLDivElement>(null);
+
+  const floatingCovers = coverPositions.map((pos, i) => ({
+    ...pos,
+    cover: covers[i] ?? null,
+  }));
 
   useEffect(() => {
     const hero = heroRef.current;
@@ -77,28 +88,29 @@ export function Hero() {
       className="relative h-screen flex items-center justify-center overflow-hidden bg-background"
     >
       <div ref={bgRef} className="absolute inset-0">
-        {floatingCovers.map((cover, i) => (
+        {floatingCovers.map((item, i) => (
           <div
             key={i}
             id={`floating-cover-${i}`}
-            className={`absolute ${cover.aspect} w-28 sm:w-36 md:w-44 rounded-xl bg-gradient-to-br ${cover.gradient} backdrop-blur-sm border border-white/10 shadow-xl`}
+            className="absolute aspect-[3/4] w-28 sm:w-36 md:w-44 rounded-xl overflow-hidden border border-white/10 shadow-xl"
             style={{
-              left: cover.x,
-              top: cover.y,
-              rotate: `${cover.rotate}deg`,
+              left: item.x,
+              top: item.y,
+              rotate: `${item.rotate}deg`,
               opacity: 0.15,
-              animation: `coverFloat ${cover.duration}s ease-in-out infinite alternate`,
+              animation: `coverFloat ${item.duration}s ease-in-out infinite alternate`,
               animationDelay: `${i * 2}s`,
             }}
           >
-            <div className="w-full h-full flex flex-col items-center justify-center p-3">
-              <span className="text-[8px] sm:text-[10px] font-medium text-foreground/40 uppercase tracking-wider">
-                {cover.type}
-              </span>
-              <span className="text-[10px] sm:text-xs font-heading text-foreground/50 text-center leading-tight mt-1">
-                {cover.title}
-              </span>
-            </div>
+            {item.cover ? (
+              <img
+                src={item.cover.url}
+                alt={item.cover.titulo}
+                className="w-full h-full object-cover"
+              />
+            ) : (
+              <div className="w-full h-full bg-gradient-to-br from-coral/25 to-yellow/15" />
+            )}
           </div>
         ))}
       </div>
