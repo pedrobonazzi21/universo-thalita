@@ -1,19 +1,35 @@
 import { NextResponse } from "next/server";
+import { getUserFromToken } from "@/lib/firebase-admin";
 
 export async function GET() {
   try {
-    const url = process.env.DATABASE_URL ?? "not set";
-    const token = process.env.TURSO_AUTH_TOKEN ? "set (length: " + process.env.TURSO_AUTH_TOKEN.length + ")" : "not set";
-    const email = process.env.FIREBASE_CLIENT_EMAIL ? "set" : "not set";
-    const key = process.env.FIREBASE_PRIVATE_KEY ? "set (length: " + process.env.FIREBASE_PRIVATE_KEY.length + ")" : "not set";
+    const email = process.env.FIREBASE_CLIENT_EMAIL ?? "not set";
+    const rawKey = process.env.FIREBASE_PRIVATE_KEY ?? "";
+    const hasNewlines = rawKey.includes("\n");
+    const hasLiteralBackslashN = rawKey.includes("\\n");
+    const keyLength = rawKey.length;
+
+    const keyStart = rawKey.substring(0, 30);
+    const keyEnd = rawKey.substring(rawKey.length - 30);
+
+    let testResult = "not tested";
+    try {
+      const user = await getUserFromToken("invalid-test-token");
+      testResult = user === null ? "getUserFromToken works (returned null for bad token)" : "unexpected result";
+    } catch (e) {
+      testResult = "error: " + (e instanceof Error ? e.message : String(e));
+    }
 
     return NextResponse.json({
-      databaseUrl: url.substring(0, 50) + "...",
-      tursoToken: token,
       firebaseEmail: email,
-      firebaseKey: key,
+      keyLength,
+      hasNewlines,
+      hasLiteralBackslashN,
+      keyStart,
+      keyEnd,
+      testResult,
     });
-  } catch (e: any) {
-    return NextResponse.json({ error: e.message }, { status: 500 });
+  } catch (e: unknown) {
+    return NextResponse.json({ error: e instanceof Error ? e.message : String(e) }, { status: 500 });
   }
 }
