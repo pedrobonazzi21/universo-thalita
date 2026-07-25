@@ -43,15 +43,11 @@ export type ObraMinAggregateOutputType = {
   tipo: string | null
   ano: number | null
   sinopse: string | null
-  capaUrl: string | null
   editora: string | null
   genero: string | null
-  nossaResenha: string | null
-  dataResenha: Date | null
   notaEquipe: number | null
-  personagens: string | null
-  curiosidades: string | null
-  timeline: string | null
+  dataResenha: Date | null
+  depoimentos: string | null
   createdAt: Date | null
 }
 
@@ -62,15 +58,11 @@ export type ObraMaxAggregateOutputType = {
   tipo: string | null
   ano: number | null
   sinopse: string | null
-  capaUrl: string | null
   editora: string | null
   genero: string | null
-  nossaResenha: string | null
-  dataResenha: Date | null
   notaEquipe: number | null
-  personagens: string | null
-  curiosidades: string | null
-  timeline: string | null
+  dataResenha: Date | null
+  depoimentos: string | null
   createdAt: Date | null
 }
 
@@ -81,15 +73,11 @@ export type ObraCountAggregateOutputType = {
   tipo: number
   ano: number
   sinopse: number
-  capaUrl: number
   editora: number
   genero: number
-  nossaResenha: number
-  dataResenha: number
   notaEquipe: number
-  personagens: number
-  curiosidades: number
-  timeline: number
+  dataResenha: number
+  depoimentos: number
   createdAt: number
   _all: number
 }
@@ -112,15 +100,11 @@ export type ObraMinAggregateInputType = {
   tipo?: true
   ano?: true
   sinopse?: true
-  capaUrl?: true
   editora?: true
   genero?: true
-  nossaResenha?: true
-  dataResenha?: true
   notaEquipe?: true
-  personagens?: true
-  curiosidades?: true
-  timeline?: true
+  dataResenha?: true
+  depoimentos?: true
   createdAt?: true
 }
 
@@ -131,15 +115,11 @@ export type ObraMaxAggregateInputType = {
   tipo?: true
   ano?: true
   sinopse?: true
-  capaUrl?: true
   editora?: true
   genero?: true
-  nossaResenha?: true
-  dataResenha?: true
   notaEquipe?: true
-  personagens?: true
-  curiosidades?: true
-  timeline?: true
+  dataResenha?: true
+  depoimentos?: true
   createdAt?: true
 }
 
@@ -150,15 +130,11 @@ export type ObraCountAggregateInputType = {
   tipo?: true
   ano?: true
   sinopse?: true
-  capaUrl?: true
   editora?: true
   genero?: true
-  nossaResenha?: true
-  dataResenha?: true
   notaEquipe?: true
-  personagens?: true
-  curiosidades?: true
-  timeline?: true
+  dataResenha?: true
+  depoimentos?: true
   createdAt?: true
   _all?: true
 }
@@ -256,15 +232,11 @@ export type ObraGroupByOutputType = {
   tipo: string
   ano: number
   sinopse: string | null
-  capaUrl: string | null
   editora: string | null
   genero: string | null
-  nossaResenha: string | null
-  dataResenha: Date | null
   notaEquipe: number | null
-  personagens: string | null
-  curiosidades: string | null
-  timeline: string | null
+  dataResenha: Date | null
+  depoimentos: string | null
   createdAt: Date
   _count: ObraCountAggregateOutputType | null
   _avg: ObraAvgAggregateOutputType | null
@@ -298,16 +270,13 @@ export type ObraWhereInput = {
   tipo?: Prisma.StringFilter<"Obra"> | string
   ano?: Prisma.IntFilter<"Obra"> | number
   sinopse?: Prisma.StringNullableFilter<"Obra"> | string | null
-  capaUrl?: Prisma.StringNullableFilter<"Obra"> | string | null
   editora?: Prisma.StringNullableFilter<"Obra"> | string | null
   genero?: Prisma.StringNullableFilter<"Obra"> | string | null
-  nossaResenha?: Prisma.StringNullableFilter<"Obra"> | string | null
-  dataResenha?: Prisma.DateTimeNullableFilter<"Obra"> | Date | string | null
   notaEquipe?: Prisma.FloatNullableFilter<"Obra"> | number | null
-  personagens?: Prisma.StringNullableFilter<"Obra"> | string | null
-  curiosidades?: Prisma.StringNullableFilter<"Obra"> | string | null
-  timeline?: Prisma.StringNullableFilter<"Obra"> | string | null
+  dataResenha?: Prisma.DateTimeNullableFilter<"Obra"> | Date | string | null
+  depoimentos?: Prisma.StringNullableFilter<"Obra"> | string | null
   createdAt?: Prisma.DateTimeFilter<"Obra"> | Date | string
+  capas?: Prisma.CapaListRelationFilter
   posts?: Prisma.PostListRelationFilter
   comentarios?: Prisma.ComentarioListRelationFilter
   avaliacoes?: Prisma.AvaliacaoListRelationFilter
@@ -322,16 +291,13 @@ export type ObraOrderByWithRelationInput = {
   tipo?: Prisma.SortOrder
   ano?: Prisma.SortOrder
   sinopse?: Prisma.SortOrderInput | Prisma.SortOrder
-  capaUrl?: Prisma.SortOrderInput | Prisma.SortOrder
   editora?: Prisma.SortOrderInput | Prisma.SortOrder
   genero?: Prisma.SortOrderInput | Prisma.SortOrder
-  nossaResenha?: Prisma.SortOrderInput | Prisma.SortOrder
-  dataResenha?: Prisma.SortOrderInput | Prisma.SortOrder
   notaEquipe?: Prisma.SortOrderInput | Prisma.SortOrder
-  personagens?: Prisma.SortOrderInput | Prisma.SortOrder
-  curiosidades?: Prisma.SortOrderInput | Prisma.SortOrder
-  timeline?: Prisma.SortOrderInput | Prisma.SortOrder
+  dataResenha?: Prisma.SortOrderInput | Prisma.SortOrder
+  depoimentos?: Prisma.SortOrderInput | Prisma.SortOrder
   createdAt?: Prisma.SortOrder
+  capas?: Prisma.CapaOrderByRelationAggregateInput
   posts?: Prisma.PostOrderByRelationAggregateInput
   comentarios?: Prisma.ComentarioOrderByRelationAggregateInput
   avaliacoes?: Prisma.AvaliacaoOrderByRelationAggregateInput
@@ -349,16 +315,13 @@ export type ObraWhereUniqueInput = Prisma.AtLeast<{
   tipo?: Prisma.StringFilter<"Obra"> | string
   ano?: Prisma.IntFilter<"Obra"> | number
   sinopse?: Prisma.StringNullableFilter<"Obra"> | string | null
-  capaUrl?: Prisma.StringNullableFilter<"Obra"> | string | null
   editora?: Prisma.StringNullableFilter<"Obra"> | string | null
   genero?: Prisma.StringNullableFilter<"Obra"> | string | null
-  nossaResenha?: Prisma.StringNullableFilter<"Obra"> | string | null
-  dataResenha?: Prisma.DateTimeNullableFilter<"Obra"> | Date | string | null
   notaEquipe?: Prisma.FloatNullableFilter<"Obra"> | number | null
-  personagens?: Prisma.StringNullableFilter<"Obra"> | string | null
-  curiosidades?: Prisma.StringNullableFilter<"Obra"> | string | null
-  timeline?: Prisma.StringNullableFilter<"Obra"> | string | null
+  dataResenha?: Prisma.DateTimeNullableFilter<"Obra"> | Date | string | null
+  depoimentos?: Prisma.StringNullableFilter<"Obra"> | string | null
   createdAt?: Prisma.DateTimeFilter<"Obra"> | Date | string
+  capas?: Prisma.CapaListRelationFilter
   posts?: Prisma.PostListRelationFilter
   comentarios?: Prisma.ComentarioListRelationFilter
   avaliacoes?: Prisma.AvaliacaoListRelationFilter
@@ -373,15 +336,11 @@ export type ObraOrderByWithAggregationInput = {
   tipo?: Prisma.SortOrder
   ano?: Prisma.SortOrder
   sinopse?: Prisma.SortOrderInput | Prisma.SortOrder
-  capaUrl?: Prisma.SortOrderInput | Prisma.SortOrder
   editora?: Prisma.SortOrderInput | Prisma.SortOrder
   genero?: Prisma.SortOrderInput | Prisma.SortOrder
-  nossaResenha?: Prisma.SortOrderInput | Prisma.SortOrder
-  dataResenha?: Prisma.SortOrderInput | Prisma.SortOrder
   notaEquipe?: Prisma.SortOrderInput | Prisma.SortOrder
-  personagens?: Prisma.SortOrderInput | Prisma.SortOrder
-  curiosidades?: Prisma.SortOrderInput | Prisma.SortOrder
-  timeline?: Prisma.SortOrderInput | Prisma.SortOrder
+  dataResenha?: Prisma.SortOrderInput | Prisma.SortOrder
+  depoimentos?: Prisma.SortOrderInput | Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   _count?: Prisma.ObraCountOrderByAggregateInput
   _avg?: Prisma.ObraAvgOrderByAggregateInput
@@ -400,15 +359,11 @@ export type ObraScalarWhereWithAggregatesInput = {
   tipo?: Prisma.StringWithAggregatesFilter<"Obra"> | string
   ano?: Prisma.IntWithAggregatesFilter<"Obra"> | number
   sinopse?: Prisma.StringNullableWithAggregatesFilter<"Obra"> | string | null
-  capaUrl?: Prisma.StringNullableWithAggregatesFilter<"Obra"> | string | null
   editora?: Prisma.StringNullableWithAggregatesFilter<"Obra"> | string | null
   genero?: Prisma.StringNullableWithAggregatesFilter<"Obra"> | string | null
-  nossaResenha?: Prisma.StringNullableWithAggregatesFilter<"Obra"> | string | null
-  dataResenha?: Prisma.DateTimeNullableWithAggregatesFilter<"Obra"> | Date | string | null
   notaEquipe?: Prisma.FloatNullableWithAggregatesFilter<"Obra"> | number | null
-  personagens?: Prisma.StringNullableWithAggregatesFilter<"Obra"> | string | null
-  curiosidades?: Prisma.StringNullableWithAggregatesFilter<"Obra"> | string | null
-  timeline?: Prisma.StringNullableWithAggregatesFilter<"Obra"> | string | null
+  dataResenha?: Prisma.DateTimeNullableWithAggregatesFilter<"Obra"> | Date | string | null
+  depoimentos?: Prisma.StringNullableWithAggregatesFilter<"Obra"> | string | null
   createdAt?: Prisma.DateTimeWithAggregatesFilter<"Obra"> | Date | string
 }
 
@@ -419,16 +374,13 @@ export type ObraCreateInput = {
   tipo?: string
   ano: number
   sinopse?: string | null
-  capaUrl?: string | null
   editora?: string | null
   genero?: string | null
-  nossaResenha?: string | null
-  dataResenha?: Date | string | null
   notaEquipe?: number | null
-  personagens?: string | null
-  curiosidades?: string | null
-  timeline?: string | null
+  dataResenha?: Date | string | null
+  depoimentos?: string | null
   createdAt?: Date | string
+  capas?: Prisma.CapaCreateNestedManyWithoutObraInput
   posts?: Prisma.PostCreateNestedManyWithoutObraInput
   comentarios?: Prisma.ComentarioCreateNestedManyWithoutObraInput
   avaliacoes?: Prisma.AvaliacaoCreateNestedManyWithoutObraInput
@@ -443,16 +395,13 @@ export type ObraUncheckedCreateInput = {
   tipo?: string
   ano: number
   sinopse?: string | null
-  capaUrl?: string | null
   editora?: string | null
   genero?: string | null
-  nossaResenha?: string | null
-  dataResenha?: Date | string | null
   notaEquipe?: number | null
-  personagens?: string | null
-  curiosidades?: string | null
-  timeline?: string | null
+  dataResenha?: Date | string | null
+  depoimentos?: string | null
   createdAt?: Date | string
+  capas?: Prisma.CapaUncheckedCreateNestedManyWithoutObraInput
   posts?: Prisma.PostUncheckedCreateNestedManyWithoutObraInput
   comentarios?: Prisma.ComentarioUncheckedCreateNestedManyWithoutObraInput
   avaliacoes?: Prisma.AvaliacaoUncheckedCreateNestedManyWithoutObraInput
@@ -467,16 +416,13 @@ export type ObraUpdateInput = {
   tipo?: Prisma.StringFieldUpdateOperationsInput | string
   ano?: Prisma.IntFieldUpdateOperationsInput | number
   sinopse?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  capaUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   editora?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   genero?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  nossaResenha?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  dataResenha?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   notaEquipe?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
-  personagens?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  curiosidades?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  timeline?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  dataResenha?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  depoimentos?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  capas?: Prisma.CapaUpdateManyWithoutObraNestedInput
   posts?: Prisma.PostUpdateManyWithoutObraNestedInput
   comentarios?: Prisma.ComentarioUpdateManyWithoutObraNestedInput
   avaliacoes?: Prisma.AvaliacaoUpdateManyWithoutObraNestedInput
@@ -491,16 +437,13 @@ export type ObraUncheckedUpdateInput = {
   tipo?: Prisma.StringFieldUpdateOperationsInput | string
   ano?: Prisma.IntFieldUpdateOperationsInput | number
   sinopse?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  capaUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   editora?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   genero?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  nossaResenha?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  dataResenha?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   notaEquipe?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
-  personagens?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  curiosidades?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  timeline?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  dataResenha?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  depoimentos?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  capas?: Prisma.CapaUncheckedUpdateManyWithoutObraNestedInput
   posts?: Prisma.PostUncheckedUpdateManyWithoutObraNestedInput
   comentarios?: Prisma.ComentarioUncheckedUpdateManyWithoutObraNestedInput
   avaliacoes?: Prisma.AvaliacaoUncheckedUpdateManyWithoutObraNestedInput
@@ -515,15 +458,11 @@ export type ObraCreateManyInput = {
   tipo?: string
   ano: number
   sinopse?: string | null
-  capaUrl?: string | null
   editora?: string | null
   genero?: string | null
-  nossaResenha?: string | null
-  dataResenha?: Date | string | null
   notaEquipe?: number | null
-  personagens?: string | null
-  curiosidades?: string | null
-  timeline?: string | null
+  dataResenha?: Date | string | null
+  depoimentos?: string | null
   createdAt?: Date | string
 }
 
@@ -534,15 +473,11 @@ export type ObraUpdateManyMutationInput = {
   tipo?: Prisma.StringFieldUpdateOperationsInput | string
   ano?: Prisma.IntFieldUpdateOperationsInput | number
   sinopse?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  capaUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   editora?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   genero?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  nossaResenha?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  dataResenha?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   notaEquipe?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
-  personagens?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  curiosidades?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  timeline?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  dataResenha?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  depoimentos?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
@@ -553,15 +488,11 @@ export type ObraUncheckedUpdateManyInput = {
   tipo?: Prisma.StringFieldUpdateOperationsInput | string
   ano?: Prisma.IntFieldUpdateOperationsInput | number
   sinopse?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  capaUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   editora?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   genero?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  nossaResenha?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  dataResenha?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   notaEquipe?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
-  personagens?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  curiosidades?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  timeline?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  dataResenha?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  depoimentos?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
@@ -572,15 +503,11 @@ export type ObraCountOrderByAggregateInput = {
   tipo?: Prisma.SortOrder
   ano?: Prisma.SortOrder
   sinopse?: Prisma.SortOrder
-  capaUrl?: Prisma.SortOrder
   editora?: Prisma.SortOrder
   genero?: Prisma.SortOrder
-  nossaResenha?: Prisma.SortOrder
-  dataResenha?: Prisma.SortOrder
   notaEquipe?: Prisma.SortOrder
-  personagens?: Prisma.SortOrder
-  curiosidades?: Prisma.SortOrder
-  timeline?: Prisma.SortOrder
+  dataResenha?: Prisma.SortOrder
+  depoimentos?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
 }
 
@@ -596,15 +523,11 @@ export type ObraMaxOrderByAggregateInput = {
   tipo?: Prisma.SortOrder
   ano?: Prisma.SortOrder
   sinopse?: Prisma.SortOrder
-  capaUrl?: Prisma.SortOrder
   editora?: Prisma.SortOrder
   genero?: Prisma.SortOrder
-  nossaResenha?: Prisma.SortOrder
-  dataResenha?: Prisma.SortOrder
   notaEquipe?: Prisma.SortOrder
-  personagens?: Prisma.SortOrder
-  curiosidades?: Prisma.SortOrder
-  timeline?: Prisma.SortOrder
+  dataResenha?: Prisma.SortOrder
+  depoimentos?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
 }
 
@@ -615,15 +538,11 @@ export type ObraMinOrderByAggregateInput = {
   tipo?: Prisma.SortOrder
   ano?: Prisma.SortOrder
   sinopse?: Prisma.SortOrder
-  capaUrl?: Prisma.SortOrder
   editora?: Prisma.SortOrder
   genero?: Prisma.SortOrder
-  nossaResenha?: Prisma.SortOrder
-  dataResenha?: Prisma.SortOrder
   notaEquipe?: Prisma.SortOrder
-  personagens?: Prisma.SortOrder
-  curiosidades?: Prisma.SortOrder
-  timeline?: Prisma.SortOrder
+  dataResenha?: Prisma.SortOrder
+  depoimentos?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
 }
 
@@ -632,14 +551,14 @@ export type ObraSumOrderByAggregateInput = {
   notaEquipe?: Prisma.SortOrder
 }
 
-export type ObraNullableScalarRelationFilter = {
-  is?: Prisma.ObraWhereInput | null
-  isNot?: Prisma.ObraWhereInput | null
-}
-
 export type ObraScalarRelationFilter = {
   is?: Prisma.ObraWhereInput
   isNot?: Prisma.ObraWhereInput
+}
+
+export type ObraNullableScalarRelationFilter = {
+  is?: Prisma.ObraWhereInput | null
+  isNot?: Prisma.ObraWhereInput | null
 }
 
 export type IntFieldUpdateOperationsInput = {
@@ -650,16 +569,30 @@ export type IntFieldUpdateOperationsInput = {
   divide?: number
 }
 
-export type NullableDateTimeFieldUpdateOperationsInput = {
-  set?: Date | string | null
-}
-
 export type NullableFloatFieldUpdateOperationsInput = {
   set?: number | null
   increment?: number
   decrement?: number
   multiply?: number
   divide?: number
+}
+
+export type NullableDateTimeFieldUpdateOperationsInput = {
+  set?: Date | string | null
+}
+
+export type ObraCreateNestedOneWithoutCapasInput = {
+  create?: Prisma.XOR<Prisma.ObraCreateWithoutCapasInput, Prisma.ObraUncheckedCreateWithoutCapasInput>
+  connectOrCreate?: Prisma.ObraCreateOrConnectWithoutCapasInput
+  connect?: Prisma.ObraWhereUniqueInput
+}
+
+export type ObraUpdateOneRequiredWithoutCapasNestedInput = {
+  create?: Prisma.XOR<Prisma.ObraCreateWithoutCapasInput, Prisma.ObraUncheckedCreateWithoutCapasInput>
+  connectOrCreate?: Prisma.ObraCreateOrConnectWithoutCapasInput
+  upsert?: Prisma.ObraUpsertWithoutCapasInput
+  connect?: Prisma.ObraWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.ObraUpdateToOneWithWhereWithoutCapasInput, Prisma.ObraUpdateWithoutCapasInput>, Prisma.ObraUncheckedUpdateWithoutCapasInput>
 }
 
 export type ObraCreateNestedOneWithoutPostsInput = {
@@ -736,6 +669,102 @@ export type ObraUpdateOneRequiredWithoutRelacoesParaNestedInput = {
   update?: Prisma.XOR<Prisma.XOR<Prisma.ObraUpdateToOneWithWhereWithoutRelacoesParaInput, Prisma.ObraUpdateWithoutRelacoesParaInput>, Prisma.ObraUncheckedUpdateWithoutRelacoesParaInput>
 }
 
+export type ObraCreateWithoutCapasInput = {
+  id?: string
+  titulo: string
+  slug: string
+  tipo?: string
+  ano: number
+  sinopse?: string | null
+  editora?: string | null
+  genero?: string | null
+  notaEquipe?: number | null
+  dataResenha?: Date | string | null
+  depoimentos?: string | null
+  createdAt?: Date | string
+  posts?: Prisma.PostCreateNestedManyWithoutObraInput
+  comentarios?: Prisma.ComentarioCreateNestedManyWithoutObraInput
+  avaliacoes?: Prisma.AvaliacaoCreateNestedManyWithoutObraInput
+  relacoesDe?: Prisma.RelacaoCreateNestedManyWithoutObraDeInput
+  relacoesPara?: Prisma.RelacaoCreateNestedManyWithoutObraParaInput
+}
+
+export type ObraUncheckedCreateWithoutCapasInput = {
+  id?: string
+  titulo: string
+  slug: string
+  tipo?: string
+  ano: number
+  sinopse?: string | null
+  editora?: string | null
+  genero?: string | null
+  notaEquipe?: number | null
+  dataResenha?: Date | string | null
+  depoimentos?: string | null
+  createdAt?: Date | string
+  posts?: Prisma.PostUncheckedCreateNestedManyWithoutObraInput
+  comentarios?: Prisma.ComentarioUncheckedCreateNestedManyWithoutObraInput
+  avaliacoes?: Prisma.AvaliacaoUncheckedCreateNestedManyWithoutObraInput
+  relacoesDe?: Prisma.RelacaoUncheckedCreateNestedManyWithoutObraDeInput
+  relacoesPara?: Prisma.RelacaoUncheckedCreateNestedManyWithoutObraParaInput
+}
+
+export type ObraCreateOrConnectWithoutCapasInput = {
+  where: Prisma.ObraWhereUniqueInput
+  create: Prisma.XOR<Prisma.ObraCreateWithoutCapasInput, Prisma.ObraUncheckedCreateWithoutCapasInput>
+}
+
+export type ObraUpsertWithoutCapasInput = {
+  update: Prisma.XOR<Prisma.ObraUpdateWithoutCapasInput, Prisma.ObraUncheckedUpdateWithoutCapasInput>
+  create: Prisma.XOR<Prisma.ObraCreateWithoutCapasInput, Prisma.ObraUncheckedCreateWithoutCapasInput>
+  where?: Prisma.ObraWhereInput
+}
+
+export type ObraUpdateToOneWithWhereWithoutCapasInput = {
+  where?: Prisma.ObraWhereInput
+  data: Prisma.XOR<Prisma.ObraUpdateWithoutCapasInput, Prisma.ObraUncheckedUpdateWithoutCapasInput>
+}
+
+export type ObraUpdateWithoutCapasInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  titulo?: Prisma.StringFieldUpdateOperationsInput | string
+  slug?: Prisma.StringFieldUpdateOperationsInput | string
+  tipo?: Prisma.StringFieldUpdateOperationsInput | string
+  ano?: Prisma.IntFieldUpdateOperationsInput | number
+  sinopse?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  editora?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  genero?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  notaEquipe?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  dataResenha?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  depoimentos?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  posts?: Prisma.PostUpdateManyWithoutObraNestedInput
+  comentarios?: Prisma.ComentarioUpdateManyWithoutObraNestedInput
+  avaliacoes?: Prisma.AvaliacaoUpdateManyWithoutObraNestedInput
+  relacoesDe?: Prisma.RelacaoUpdateManyWithoutObraDeNestedInput
+  relacoesPara?: Prisma.RelacaoUpdateManyWithoutObraParaNestedInput
+}
+
+export type ObraUncheckedUpdateWithoutCapasInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  titulo?: Prisma.StringFieldUpdateOperationsInput | string
+  slug?: Prisma.StringFieldUpdateOperationsInput | string
+  tipo?: Prisma.StringFieldUpdateOperationsInput | string
+  ano?: Prisma.IntFieldUpdateOperationsInput | number
+  sinopse?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  editora?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  genero?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  notaEquipe?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  dataResenha?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  depoimentos?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  posts?: Prisma.PostUncheckedUpdateManyWithoutObraNestedInput
+  comentarios?: Prisma.ComentarioUncheckedUpdateManyWithoutObraNestedInput
+  avaliacoes?: Prisma.AvaliacaoUncheckedUpdateManyWithoutObraNestedInput
+  relacoesDe?: Prisma.RelacaoUncheckedUpdateManyWithoutObraDeNestedInput
+  relacoesPara?: Prisma.RelacaoUncheckedUpdateManyWithoutObraParaNestedInput
+}
+
 export type ObraCreateWithoutPostsInput = {
   id?: string
   titulo: string
@@ -743,16 +772,13 @@ export type ObraCreateWithoutPostsInput = {
   tipo?: string
   ano: number
   sinopse?: string | null
-  capaUrl?: string | null
   editora?: string | null
   genero?: string | null
-  nossaResenha?: string | null
-  dataResenha?: Date | string | null
   notaEquipe?: number | null
-  personagens?: string | null
-  curiosidades?: string | null
-  timeline?: string | null
+  dataResenha?: Date | string | null
+  depoimentos?: string | null
   createdAt?: Date | string
+  capas?: Prisma.CapaCreateNestedManyWithoutObraInput
   comentarios?: Prisma.ComentarioCreateNestedManyWithoutObraInput
   avaliacoes?: Prisma.AvaliacaoCreateNestedManyWithoutObraInput
   relacoesDe?: Prisma.RelacaoCreateNestedManyWithoutObraDeInput
@@ -766,16 +792,13 @@ export type ObraUncheckedCreateWithoutPostsInput = {
   tipo?: string
   ano: number
   sinopse?: string | null
-  capaUrl?: string | null
   editora?: string | null
   genero?: string | null
-  nossaResenha?: string | null
-  dataResenha?: Date | string | null
   notaEquipe?: number | null
-  personagens?: string | null
-  curiosidades?: string | null
-  timeline?: string | null
+  dataResenha?: Date | string | null
+  depoimentos?: string | null
   createdAt?: Date | string
+  capas?: Prisma.CapaUncheckedCreateNestedManyWithoutObraInput
   comentarios?: Prisma.ComentarioUncheckedCreateNestedManyWithoutObraInput
   avaliacoes?: Prisma.AvaliacaoUncheckedCreateNestedManyWithoutObraInput
   relacoesDe?: Prisma.RelacaoUncheckedCreateNestedManyWithoutObraDeInput
@@ -805,16 +828,13 @@ export type ObraUpdateWithoutPostsInput = {
   tipo?: Prisma.StringFieldUpdateOperationsInput | string
   ano?: Prisma.IntFieldUpdateOperationsInput | number
   sinopse?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  capaUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   editora?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   genero?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  nossaResenha?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  dataResenha?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   notaEquipe?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
-  personagens?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  curiosidades?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  timeline?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  dataResenha?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  depoimentos?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  capas?: Prisma.CapaUpdateManyWithoutObraNestedInput
   comentarios?: Prisma.ComentarioUpdateManyWithoutObraNestedInput
   avaliacoes?: Prisma.AvaliacaoUpdateManyWithoutObraNestedInput
   relacoesDe?: Prisma.RelacaoUpdateManyWithoutObraDeNestedInput
@@ -828,16 +848,13 @@ export type ObraUncheckedUpdateWithoutPostsInput = {
   tipo?: Prisma.StringFieldUpdateOperationsInput | string
   ano?: Prisma.IntFieldUpdateOperationsInput | number
   sinopse?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  capaUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   editora?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   genero?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  nossaResenha?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  dataResenha?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   notaEquipe?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
-  personagens?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  curiosidades?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  timeline?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  dataResenha?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  depoimentos?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  capas?: Prisma.CapaUncheckedUpdateManyWithoutObraNestedInput
   comentarios?: Prisma.ComentarioUncheckedUpdateManyWithoutObraNestedInput
   avaliacoes?: Prisma.AvaliacaoUncheckedUpdateManyWithoutObraNestedInput
   relacoesDe?: Prisma.RelacaoUncheckedUpdateManyWithoutObraDeNestedInput
@@ -851,16 +868,13 @@ export type ObraCreateWithoutComentariosInput = {
   tipo?: string
   ano: number
   sinopse?: string | null
-  capaUrl?: string | null
   editora?: string | null
   genero?: string | null
-  nossaResenha?: string | null
-  dataResenha?: Date | string | null
   notaEquipe?: number | null
-  personagens?: string | null
-  curiosidades?: string | null
-  timeline?: string | null
+  dataResenha?: Date | string | null
+  depoimentos?: string | null
   createdAt?: Date | string
+  capas?: Prisma.CapaCreateNestedManyWithoutObraInput
   posts?: Prisma.PostCreateNestedManyWithoutObraInput
   avaliacoes?: Prisma.AvaliacaoCreateNestedManyWithoutObraInput
   relacoesDe?: Prisma.RelacaoCreateNestedManyWithoutObraDeInput
@@ -874,16 +888,13 @@ export type ObraUncheckedCreateWithoutComentariosInput = {
   tipo?: string
   ano: number
   sinopse?: string | null
-  capaUrl?: string | null
   editora?: string | null
   genero?: string | null
-  nossaResenha?: string | null
-  dataResenha?: Date | string | null
   notaEquipe?: number | null
-  personagens?: string | null
-  curiosidades?: string | null
-  timeline?: string | null
+  dataResenha?: Date | string | null
+  depoimentos?: string | null
   createdAt?: Date | string
+  capas?: Prisma.CapaUncheckedCreateNestedManyWithoutObraInput
   posts?: Prisma.PostUncheckedCreateNestedManyWithoutObraInput
   avaliacoes?: Prisma.AvaliacaoUncheckedCreateNestedManyWithoutObraInput
   relacoesDe?: Prisma.RelacaoUncheckedCreateNestedManyWithoutObraDeInput
@@ -913,16 +924,13 @@ export type ObraUpdateWithoutComentariosInput = {
   tipo?: Prisma.StringFieldUpdateOperationsInput | string
   ano?: Prisma.IntFieldUpdateOperationsInput | number
   sinopse?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  capaUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   editora?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   genero?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  nossaResenha?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  dataResenha?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   notaEquipe?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
-  personagens?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  curiosidades?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  timeline?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  dataResenha?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  depoimentos?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  capas?: Prisma.CapaUpdateManyWithoutObraNestedInput
   posts?: Prisma.PostUpdateManyWithoutObraNestedInput
   avaliacoes?: Prisma.AvaliacaoUpdateManyWithoutObraNestedInput
   relacoesDe?: Prisma.RelacaoUpdateManyWithoutObraDeNestedInput
@@ -936,16 +944,13 @@ export type ObraUncheckedUpdateWithoutComentariosInput = {
   tipo?: Prisma.StringFieldUpdateOperationsInput | string
   ano?: Prisma.IntFieldUpdateOperationsInput | number
   sinopse?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  capaUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   editora?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   genero?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  nossaResenha?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  dataResenha?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   notaEquipe?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
-  personagens?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  curiosidades?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  timeline?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  dataResenha?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  depoimentos?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  capas?: Prisma.CapaUncheckedUpdateManyWithoutObraNestedInput
   posts?: Prisma.PostUncheckedUpdateManyWithoutObraNestedInput
   avaliacoes?: Prisma.AvaliacaoUncheckedUpdateManyWithoutObraNestedInput
   relacoesDe?: Prisma.RelacaoUncheckedUpdateManyWithoutObraDeNestedInput
@@ -959,16 +964,13 @@ export type ObraCreateWithoutAvaliacoesInput = {
   tipo?: string
   ano: number
   sinopse?: string | null
-  capaUrl?: string | null
   editora?: string | null
   genero?: string | null
-  nossaResenha?: string | null
-  dataResenha?: Date | string | null
   notaEquipe?: number | null
-  personagens?: string | null
-  curiosidades?: string | null
-  timeline?: string | null
+  dataResenha?: Date | string | null
+  depoimentos?: string | null
   createdAt?: Date | string
+  capas?: Prisma.CapaCreateNestedManyWithoutObraInput
   posts?: Prisma.PostCreateNestedManyWithoutObraInput
   comentarios?: Prisma.ComentarioCreateNestedManyWithoutObraInput
   relacoesDe?: Prisma.RelacaoCreateNestedManyWithoutObraDeInput
@@ -982,16 +984,13 @@ export type ObraUncheckedCreateWithoutAvaliacoesInput = {
   tipo?: string
   ano: number
   sinopse?: string | null
-  capaUrl?: string | null
   editora?: string | null
   genero?: string | null
-  nossaResenha?: string | null
-  dataResenha?: Date | string | null
   notaEquipe?: number | null
-  personagens?: string | null
-  curiosidades?: string | null
-  timeline?: string | null
+  dataResenha?: Date | string | null
+  depoimentos?: string | null
   createdAt?: Date | string
+  capas?: Prisma.CapaUncheckedCreateNestedManyWithoutObraInput
   posts?: Prisma.PostUncheckedCreateNestedManyWithoutObraInput
   comentarios?: Prisma.ComentarioUncheckedCreateNestedManyWithoutObraInput
   relacoesDe?: Prisma.RelacaoUncheckedCreateNestedManyWithoutObraDeInput
@@ -1021,16 +1020,13 @@ export type ObraUpdateWithoutAvaliacoesInput = {
   tipo?: Prisma.StringFieldUpdateOperationsInput | string
   ano?: Prisma.IntFieldUpdateOperationsInput | number
   sinopse?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  capaUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   editora?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   genero?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  nossaResenha?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  dataResenha?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   notaEquipe?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
-  personagens?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  curiosidades?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  timeline?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  dataResenha?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  depoimentos?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  capas?: Prisma.CapaUpdateManyWithoutObraNestedInput
   posts?: Prisma.PostUpdateManyWithoutObraNestedInput
   comentarios?: Prisma.ComentarioUpdateManyWithoutObraNestedInput
   relacoesDe?: Prisma.RelacaoUpdateManyWithoutObraDeNestedInput
@@ -1044,16 +1040,13 @@ export type ObraUncheckedUpdateWithoutAvaliacoesInput = {
   tipo?: Prisma.StringFieldUpdateOperationsInput | string
   ano?: Prisma.IntFieldUpdateOperationsInput | number
   sinopse?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  capaUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   editora?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   genero?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  nossaResenha?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  dataResenha?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   notaEquipe?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
-  personagens?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  curiosidades?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  timeline?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  dataResenha?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  depoimentos?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  capas?: Prisma.CapaUncheckedUpdateManyWithoutObraNestedInput
   posts?: Prisma.PostUncheckedUpdateManyWithoutObraNestedInput
   comentarios?: Prisma.ComentarioUncheckedUpdateManyWithoutObraNestedInput
   relacoesDe?: Prisma.RelacaoUncheckedUpdateManyWithoutObraDeNestedInput
@@ -1067,16 +1060,13 @@ export type ObraCreateWithoutRelacoesDeInput = {
   tipo?: string
   ano: number
   sinopse?: string | null
-  capaUrl?: string | null
   editora?: string | null
   genero?: string | null
-  nossaResenha?: string | null
-  dataResenha?: Date | string | null
   notaEquipe?: number | null
-  personagens?: string | null
-  curiosidades?: string | null
-  timeline?: string | null
+  dataResenha?: Date | string | null
+  depoimentos?: string | null
   createdAt?: Date | string
+  capas?: Prisma.CapaCreateNestedManyWithoutObraInput
   posts?: Prisma.PostCreateNestedManyWithoutObraInput
   comentarios?: Prisma.ComentarioCreateNestedManyWithoutObraInput
   avaliacoes?: Prisma.AvaliacaoCreateNestedManyWithoutObraInput
@@ -1090,16 +1080,13 @@ export type ObraUncheckedCreateWithoutRelacoesDeInput = {
   tipo?: string
   ano: number
   sinopse?: string | null
-  capaUrl?: string | null
   editora?: string | null
   genero?: string | null
-  nossaResenha?: string | null
-  dataResenha?: Date | string | null
   notaEquipe?: number | null
-  personagens?: string | null
-  curiosidades?: string | null
-  timeline?: string | null
+  dataResenha?: Date | string | null
+  depoimentos?: string | null
   createdAt?: Date | string
+  capas?: Prisma.CapaUncheckedCreateNestedManyWithoutObraInput
   posts?: Prisma.PostUncheckedCreateNestedManyWithoutObraInput
   comentarios?: Prisma.ComentarioUncheckedCreateNestedManyWithoutObraInput
   avaliacoes?: Prisma.AvaliacaoUncheckedCreateNestedManyWithoutObraInput
@@ -1118,16 +1105,13 @@ export type ObraCreateWithoutRelacoesParaInput = {
   tipo?: string
   ano: number
   sinopse?: string | null
-  capaUrl?: string | null
   editora?: string | null
   genero?: string | null
-  nossaResenha?: string | null
-  dataResenha?: Date | string | null
   notaEquipe?: number | null
-  personagens?: string | null
-  curiosidades?: string | null
-  timeline?: string | null
+  dataResenha?: Date | string | null
+  depoimentos?: string | null
   createdAt?: Date | string
+  capas?: Prisma.CapaCreateNestedManyWithoutObraInput
   posts?: Prisma.PostCreateNestedManyWithoutObraInput
   comentarios?: Prisma.ComentarioCreateNestedManyWithoutObraInput
   avaliacoes?: Prisma.AvaliacaoCreateNestedManyWithoutObraInput
@@ -1141,16 +1125,13 @@ export type ObraUncheckedCreateWithoutRelacoesParaInput = {
   tipo?: string
   ano: number
   sinopse?: string | null
-  capaUrl?: string | null
   editora?: string | null
   genero?: string | null
-  nossaResenha?: string | null
-  dataResenha?: Date | string | null
   notaEquipe?: number | null
-  personagens?: string | null
-  curiosidades?: string | null
-  timeline?: string | null
+  dataResenha?: Date | string | null
+  depoimentos?: string | null
   createdAt?: Date | string
+  capas?: Prisma.CapaUncheckedCreateNestedManyWithoutObraInput
   posts?: Prisma.PostUncheckedCreateNestedManyWithoutObraInput
   comentarios?: Prisma.ComentarioUncheckedCreateNestedManyWithoutObraInput
   avaliacoes?: Prisma.AvaliacaoUncheckedCreateNestedManyWithoutObraInput
@@ -1180,16 +1161,13 @@ export type ObraUpdateWithoutRelacoesDeInput = {
   tipo?: Prisma.StringFieldUpdateOperationsInput | string
   ano?: Prisma.IntFieldUpdateOperationsInput | number
   sinopse?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  capaUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   editora?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   genero?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  nossaResenha?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  dataResenha?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   notaEquipe?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
-  personagens?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  curiosidades?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  timeline?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  dataResenha?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  depoimentos?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  capas?: Prisma.CapaUpdateManyWithoutObraNestedInput
   posts?: Prisma.PostUpdateManyWithoutObraNestedInput
   comentarios?: Prisma.ComentarioUpdateManyWithoutObraNestedInput
   avaliacoes?: Prisma.AvaliacaoUpdateManyWithoutObraNestedInput
@@ -1203,16 +1181,13 @@ export type ObraUncheckedUpdateWithoutRelacoesDeInput = {
   tipo?: Prisma.StringFieldUpdateOperationsInput | string
   ano?: Prisma.IntFieldUpdateOperationsInput | number
   sinopse?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  capaUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   editora?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   genero?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  nossaResenha?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  dataResenha?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   notaEquipe?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
-  personagens?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  curiosidades?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  timeline?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  dataResenha?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  depoimentos?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  capas?: Prisma.CapaUncheckedUpdateManyWithoutObraNestedInput
   posts?: Prisma.PostUncheckedUpdateManyWithoutObraNestedInput
   comentarios?: Prisma.ComentarioUncheckedUpdateManyWithoutObraNestedInput
   avaliacoes?: Prisma.AvaliacaoUncheckedUpdateManyWithoutObraNestedInput
@@ -1237,16 +1212,13 @@ export type ObraUpdateWithoutRelacoesParaInput = {
   tipo?: Prisma.StringFieldUpdateOperationsInput | string
   ano?: Prisma.IntFieldUpdateOperationsInput | number
   sinopse?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  capaUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   editora?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   genero?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  nossaResenha?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  dataResenha?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   notaEquipe?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
-  personagens?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  curiosidades?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  timeline?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  dataResenha?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  depoimentos?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  capas?: Prisma.CapaUpdateManyWithoutObraNestedInput
   posts?: Prisma.PostUpdateManyWithoutObraNestedInput
   comentarios?: Prisma.ComentarioUpdateManyWithoutObraNestedInput
   avaliacoes?: Prisma.AvaliacaoUpdateManyWithoutObraNestedInput
@@ -1260,16 +1232,13 @@ export type ObraUncheckedUpdateWithoutRelacoesParaInput = {
   tipo?: Prisma.StringFieldUpdateOperationsInput | string
   ano?: Prisma.IntFieldUpdateOperationsInput | number
   sinopse?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  capaUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   editora?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   genero?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  nossaResenha?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  dataResenha?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   notaEquipe?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
-  personagens?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  curiosidades?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  timeline?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  dataResenha?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  depoimentos?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  capas?: Prisma.CapaUncheckedUpdateManyWithoutObraNestedInput
   posts?: Prisma.PostUncheckedUpdateManyWithoutObraNestedInput
   comentarios?: Prisma.ComentarioUncheckedUpdateManyWithoutObraNestedInput
   avaliacoes?: Prisma.AvaliacaoUncheckedUpdateManyWithoutObraNestedInput
@@ -1282,6 +1251,7 @@ export type ObraUncheckedUpdateWithoutRelacoesParaInput = {
  */
 
 export type ObraCountOutputType = {
+  capas: number
   posts: number
   comentarios: number
   avaliacoes: number
@@ -1290,6 +1260,7 @@ export type ObraCountOutputType = {
 }
 
 export type ObraCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  capas?: boolean | ObraCountOutputTypeCountCapasArgs
   posts?: boolean | ObraCountOutputTypeCountPostsArgs
   comentarios?: boolean | ObraCountOutputTypeCountComentariosArgs
   avaliacoes?: boolean | ObraCountOutputTypeCountAvaliacoesArgs
@@ -1305,6 +1276,13 @@ export type ObraCountOutputTypeDefaultArgs<ExtArgs extends runtime.Types.Extensi
    * Select specific fields to fetch from the ObraCountOutputType
    */
   select?: Prisma.ObraCountOutputTypeSelect<ExtArgs> | null
+}
+
+/**
+ * ObraCountOutputType without action
+ */
+export type ObraCountOutputTypeCountCapasArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.CapaWhereInput
 }
 
 /**
@@ -1350,16 +1328,13 @@ export type ObraSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = r
   tipo?: boolean
   ano?: boolean
   sinopse?: boolean
-  capaUrl?: boolean
   editora?: boolean
   genero?: boolean
-  nossaResenha?: boolean
-  dataResenha?: boolean
   notaEquipe?: boolean
-  personagens?: boolean
-  curiosidades?: boolean
-  timeline?: boolean
+  dataResenha?: boolean
+  depoimentos?: boolean
   createdAt?: boolean
+  capas?: boolean | Prisma.Obra$capasArgs<ExtArgs>
   posts?: boolean | Prisma.Obra$postsArgs<ExtArgs>
   comentarios?: boolean | Prisma.Obra$comentariosArgs<ExtArgs>
   avaliacoes?: boolean | Prisma.Obra$avaliacoesArgs<ExtArgs>
@@ -1375,15 +1350,11 @@ export type ObraSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensio
   tipo?: boolean
   ano?: boolean
   sinopse?: boolean
-  capaUrl?: boolean
   editora?: boolean
   genero?: boolean
-  nossaResenha?: boolean
-  dataResenha?: boolean
   notaEquipe?: boolean
-  personagens?: boolean
-  curiosidades?: boolean
-  timeline?: boolean
+  dataResenha?: boolean
+  depoimentos?: boolean
   createdAt?: boolean
 }, ExtArgs["result"]["obra"]>
 
@@ -1394,15 +1365,11 @@ export type ObraSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensio
   tipo?: boolean
   ano?: boolean
   sinopse?: boolean
-  capaUrl?: boolean
   editora?: boolean
   genero?: boolean
-  nossaResenha?: boolean
-  dataResenha?: boolean
   notaEquipe?: boolean
-  personagens?: boolean
-  curiosidades?: boolean
-  timeline?: boolean
+  dataResenha?: boolean
+  depoimentos?: boolean
   createdAt?: boolean
 }, ExtArgs["result"]["obra"]>
 
@@ -1413,20 +1380,17 @@ export type ObraSelectScalar = {
   tipo?: boolean
   ano?: boolean
   sinopse?: boolean
-  capaUrl?: boolean
   editora?: boolean
   genero?: boolean
-  nossaResenha?: boolean
-  dataResenha?: boolean
   notaEquipe?: boolean
-  personagens?: boolean
-  curiosidades?: boolean
-  timeline?: boolean
+  dataResenha?: boolean
+  depoimentos?: boolean
   createdAt?: boolean
 }
 
-export type ObraOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "titulo" | "slug" | "tipo" | "ano" | "sinopse" | "capaUrl" | "editora" | "genero" | "nossaResenha" | "dataResenha" | "notaEquipe" | "personagens" | "curiosidades" | "timeline" | "createdAt", ExtArgs["result"]["obra"]>
+export type ObraOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "titulo" | "slug" | "tipo" | "ano" | "sinopse" | "editora" | "genero" | "notaEquipe" | "dataResenha" | "depoimentos" | "createdAt", ExtArgs["result"]["obra"]>
 export type ObraInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  capas?: boolean | Prisma.Obra$capasArgs<ExtArgs>
   posts?: boolean | Prisma.Obra$postsArgs<ExtArgs>
   comentarios?: boolean | Prisma.Obra$comentariosArgs<ExtArgs>
   avaliacoes?: boolean | Prisma.Obra$avaliacoesArgs<ExtArgs>
@@ -1440,6 +1404,7 @@ export type ObraIncludeUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensi
 export type $ObraPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   name: "Obra"
   objects: {
+    capas: Prisma.$CapaPayload<ExtArgs>[]
     posts: Prisma.$PostPayload<ExtArgs>[]
     comentarios: Prisma.$ComentarioPayload<ExtArgs>[]
     avaliacoes: Prisma.$AvaliacaoPayload<ExtArgs>[]
@@ -1453,15 +1418,11 @@ export type $ObraPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs =
     tipo: string
     ano: number
     sinopse: string | null
-    capaUrl: string | null
     editora: string | null
     genero: string | null
-    nossaResenha: string | null
-    dataResenha: Date | null
     notaEquipe: number | null
-    personagens: string | null
-    curiosidades: string | null
-    timeline: string | null
+    dataResenha: Date | null
+    depoimentos: string | null
     createdAt: Date
   }, ExtArgs["result"]["obra"]>
   composites: {}
@@ -1857,6 +1818,7 @@ readonly fields: ObraFieldRefs;
  */
 export interface Prisma__ObraClient<T, Null = never, ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
   readonly [Symbol.toStringTag]: "PrismaPromise"
+  capas<T extends Prisma.Obra$capasArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Obra$capasArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$CapaPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   posts<T extends Prisma.Obra$postsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Obra$postsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$PostPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   comentarios<T extends Prisma.Obra$comentariosArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Obra$comentariosArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$ComentarioPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   avaliacoes<T extends Prisma.Obra$avaliacoesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Obra$avaliacoesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$AvaliacaoPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
@@ -1897,15 +1859,11 @@ export interface ObraFieldRefs {
   readonly tipo: Prisma.FieldRef<"Obra", 'String'>
   readonly ano: Prisma.FieldRef<"Obra", 'Int'>
   readonly sinopse: Prisma.FieldRef<"Obra", 'String'>
-  readonly capaUrl: Prisma.FieldRef<"Obra", 'String'>
   readonly editora: Prisma.FieldRef<"Obra", 'String'>
   readonly genero: Prisma.FieldRef<"Obra", 'String'>
-  readonly nossaResenha: Prisma.FieldRef<"Obra", 'String'>
-  readonly dataResenha: Prisma.FieldRef<"Obra", 'DateTime'>
   readonly notaEquipe: Prisma.FieldRef<"Obra", 'Float'>
-  readonly personagens: Prisma.FieldRef<"Obra", 'String'>
-  readonly curiosidades: Prisma.FieldRef<"Obra", 'String'>
-  readonly timeline: Prisma.FieldRef<"Obra", 'String'>
+  readonly dataResenha: Prisma.FieldRef<"Obra", 'DateTime'>
+  readonly depoimentos: Prisma.FieldRef<"Obra", 'String'>
   readonly createdAt: Prisma.FieldRef<"Obra", 'DateTime'>
 }
     
@@ -2295,6 +2253,30 @@ export type ObraDeleteManyArgs<ExtArgs extends runtime.Types.Extensions.Internal
    * Limit how many Obras to delete.
    */
   limit?: number
+}
+
+/**
+ * Obra.capas
+ */
+export type Obra$capasArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the Capa
+   */
+  select?: Prisma.CapaSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the Capa
+   */
+  omit?: Prisma.CapaOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.CapaInclude<ExtArgs> | null
+  where?: Prisma.CapaWhereInput
+  orderBy?: Prisma.CapaOrderByWithRelationInput | Prisma.CapaOrderByWithRelationInput[]
+  cursor?: Prisma.CapaWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.CapaScalarFieldEnum | Prisma.CapaScalarFieldEnum[]
 }
 
 /**

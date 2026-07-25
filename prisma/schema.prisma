@@ -27,22 +27,30 @@ model Obra {
   tipo        String   @default("Livro")
   ano         Int
   sinopse     String?
-  capaUrl     String?
   editora     String?
   genero      String?
-  nossaResenha String?
-  dataResenha DateTime?
   notaEquipe  Float?
-  personagens String?
-  curiosidades String?
-  timeline    String?
+  dataResenha DateTime?
+  depoimentos String?
   createdAt   DateTime @default(now())
 
+  capas       Capa[]
   posts       Post[]
   comentarios  Comentario[]
   avaliacoes   Avaliacao[]
   relacoesDe   Relacao[]  @relation("De")
   relacoesPara Relacao[]  @relation("Para")
+}
+
+model Capa {
+  id          String @id @default(cuid())
+  url         String
+  editora     String?
+  ano         Int?
+  descricao   String?
+  ordem       Int    @default(0)
+  obraId      String
+  obra        Obra   @relation(fields: [obraId], references: [id], onDelete: Cascade)
 }
 
 model Post {

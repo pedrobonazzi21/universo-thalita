@@ -52,6 +52,11 @@ export type User = Prisma.UserModel
  */
 export type Obra = Prisma.ObraModel
 /**
+ * Model Capa
+ * 
+ */
+export type Capa = Prisma.CapaModel
+/**
  * Model Post
  * 
  */

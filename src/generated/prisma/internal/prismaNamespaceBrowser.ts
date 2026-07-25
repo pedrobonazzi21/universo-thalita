@@ -53,6 +53,7 @@ export const AnyNull = runtime.AnyNull
 export const ModelName = {
   User: 'User',
   Obra: 'Obra',
+  Capa: 'Capa',
   Post: 'Post',
   Tag: 'Tag',
   PostTag: 'PostTag',
@@ -94,19 +95,28 @@ export const ObraScalarFieldEnum = {
   tipo: 'tipo',
   ano: 'ano',
   sinopse: 'sinopse',
-  capaUrl: 'capaUrl',
   editora: 'editora',
   genero: 'genero',
-  nossaResenha: 'nossaResenha',
-  dataResenha: 'dataResenha',
   notaEquipe: 'notaEquipe',
-  personagens: 'personagens',
-  curiosidades: 'curiosidades',
-  timeline: 'timeline',
+  dataResenha: 'dataResenha',
+  depoimentos: 'depoimentos',
   createdAt: 'createdAt'
 } as const
 
 export type ObraScalarFieldEnum = (typeof ObraScalarFieldEnum)[keyof typeof ObraScalarFieldEnum]
+
+
+export const CapaScalarFieldEnum = {
+  id: 'id',
+  url: 'url',
+  editora: 'editora',
+  ano: 'ano',
+  descricao: 'descricao',
+  ordem: 'ordem',
+  obraId: 'obraId'
+} as const
+
+export type CapaScalarFieldEnum = (typeof CapaScalarFieldEnum)[keyof typeof CapaScalarFieldEnum]
 
 
 export const PostScalarFieldEnum = {

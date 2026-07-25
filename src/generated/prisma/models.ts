@@ -10,6 +10,7 @@
  */
 export type * from './models/User'
 export type * from './models/Obra'
+export type * from './models/Capa'
 export type * from './models/Post'
 export type * from './models/Tag'
 export type * from './models/PostTag'

@@ -386,6 +386,7 @@ type FieldRefInputType<Model, FieldType> = Model extends never ? never : FieldRe
 export const ModelName = {
   User: 'User',
   Obra: 'Obra',
+  Capa: 'Capa',
   Post: 'Post',
   Tag: 'Tag',
   PostTag: 'PostTag',
@@ -408,7 +409,7 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
     omit: GlobalOmitOptions
   }
   meta: {
-    modelProps: "user" | "obra" | "post" | "tag" | "postTag" | "comentario" | "avaliacao" | "curtida" | "relacao"
+    modelProps: "user" | "obra" | "capa" | "post" | "tag" | "postTag" | "comentario" | "avaliacao" | "curtida" | "relacao"
     txIsolationLevel: TransactionIsolationLevel
   }
   model: {
@@ -557,6 +558,80 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
         count: {
           args: Prisma.ObraCountArgs<ExtArgs>
           result: runtime.Types.Utils.Optional<Prisma.ObraCountAggregateOutputType> | number
+        }
+      }
+    }
+    Capa: {
+      payload: Prisma.$CapaPayload<ExtArgs>
+      fields: Prisma.CapaFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.CapaFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$CapaPayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.CapaFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$CapaPayload>
+        }
+        findFirst: {
+          args: Prisma.CapaFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$CapaPayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.CapaFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$CapaPayload>
+        }
+        findMany: {
+          args: Prisma.CapaFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$CapaPayload>[]
+        }
+        create: {
+          args: Prisma.CapaCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$CapaPayload>
+        }
+        createMany: {
+          args: Prisma.CapaCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        createManyAndReturn: {
+          args: Prisma.CapaCreateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$CapaPayload>[]
+        }
+        delete: {
+          args: Prisma.CapaDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$CapaPayload>
+        }
+        update: {
+          args: Prisma.CapaUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$CapaPayload>
+        }
+        deleteMany: {
+          args: Prisma.CapaDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.CapaUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateManyAndReturn: {
+          args: Prisma.CapaUpdateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$CapaPayload>[]
+        }
+        upsert: {
+          args: Prisma.CapaUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$CapaPayload>
+        }
+        aggregate: {
+          args: Prisma.CapaAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateCapa>
+        }
+        groupBy: {
+          args: Prisma.CapaGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.CapaGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.CapaCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.CapaCountAggregateOutputType> | number
         }
       }
     }
@@ -1133,19 +1208,28 @@ export const ObraScalarFieldEnum = {
   tipo: 'tipo',
   ano: 'ano',
   sinopse: 'sinopse',
-  capaUrl: 'capaUrl',
   editora: 'editora',
   genero: 'genero',
-  nossaResenha: 'nossaResenha',
-  dataResenha: 'dataResenha',
   notaEquipe: 'notaEquipe',
-  personagens: 'personagens',
-  curiosidades: 'curiosidades',
-  timeline: 'timeline',
+  dataResenha: 'dataResenha',
+  depoimentos: 'depoimentos',
   createdAt: 'createdAt'
 } as const
 
 export type ObraScalarFieldEnum = (typeof ObraScalarFieldEnum)[keyof typeof ObraScalarFieldEnum]
+
+
+export const CapaScalarFieldEnum = {
+  id: 'id',
+  url: 'url',
+  editora: 'editora',
+  ano: 'ano',
+  descricao: 'descricao',
+  ordem: 'ordem',
+  obraId: 'obraId'
+} as const
+
+export type CapaScalarFieldEnum = (typeof CapaScalarFieldEnum)[keyof typeof CapaScalarFieldEnum]
 
 
 export const PostScalarFieldEnum = {
@@ -1396,6 +1480,7 @@ export type PrismaClientOptions = ({
 export type GlobalOmitConfig = {
   user?: Prisma.UserOmit
   obra?: Prisma.ObraOmit
+  capa?: Prisma.CapaOmit
   post?: Prisma.PostOmit
   tag?: Prisma.TagOmit
   postTag?: Prisma.PostTagOmit
