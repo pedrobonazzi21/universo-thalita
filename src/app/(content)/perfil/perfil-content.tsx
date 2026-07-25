@@ -39,24 +39,27 @@ export function PerfilContent() {
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (u) => {
       setUser(u);
-      if (!u) {
-        setLoadingProfile(false);
-      }
+      if (!u) setLoadingProfile(false);
     });
     return () => unsubscribe();
   }, []);
 
   useEffect(() => {
-    if (!user) return;
-    setLoadingProfile(true);
+    if (!user?.uid) return;
+    let cancelled = false;
     fetch("/api/perfil")
-      .then((r) => r.json())
+      .then((r) => (r.ok ? r.json() : null))
       .then((data) => {
-        setProfile(data);
-        setLoadingProfile(false);
+        if (!cancelled) {
+          setProfile(data);
+          setLoadingProfile(false);
+        }
       })
-      .catch(() => setLoadingProfile(false));
-  }, [user]);
+      .catch(() => {
+        if (!cancelled) setLoadingProfile(false);
+      });
+    return () => { cancelled = true; };
+  }, [user?.uid]);
 
   if (!user) {
     return (
