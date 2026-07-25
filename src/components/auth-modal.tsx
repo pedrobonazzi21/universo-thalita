@@ -3,8 +3,9 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { auth } from "@/lib/firebase";
-import { signInWithPopup, GoogleAuthProvider, sendSignInLinkToEmail, isSignInWithEmailLink, signInWithEmailLink } from "firebase/auth";
+import { signInWithPopup, GoogleAuthProvider, sendSignInLinkToEmail } from "firebase/auth";
 import { X } from "lucide-react";
+import { syncFirebaseToken } from "@/lib/sync-token";
 
 type AuthModalProps = {
   isOpen: boolean;
@@ -40,6 +41,7 @@ export function AuthModal({ isOpen, onClose }: AuthModalProps) {
     try {
       const provider = new GoogleAuthProvider();
       await signInWithPopup(auth, provider);
+      await syncFirebaseToken();
       onClose();
     } catch (error: unknown) {
       const msg = error instanceof Error ? error.message : "Erro ao entrar com Google";
