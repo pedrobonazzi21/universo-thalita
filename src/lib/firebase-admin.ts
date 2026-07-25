@@ -11,11 +11,18 @@ function getApp() {
     return _app;
   }
 
+  const clientEmail = process.env.FIREBASE_CLIENT_EMAIL;
+  const privateKey = process.env.FIREBASE_PRIVATE_KEY;
+
+  if (!clientEmail || !privateKey) {
+    return null;
+  }
+
   _app = initializeApp({
     credential: cert({
       projectId: process.env.NEXT_PUBLIC_FIREBASE_PROJECT_ID,
-      clientEmail: process.env.FIREBASE_CLIENT_EMAIL,
-      privateKey: process.env.FIREBASE_PRIVATE_KEY?.replace(/\\n/g, "\n"),
+      clientEmail,
+      privateKey: privateKey.replace(/\\n/g, "\n"),
     }),
   });
 
@@ -23,12 +30,16 @@ function getApp() {
 }
 
 export function getAdminAuth() {
-  return getAuth(getApp());
+  const app = getApp();
+  if (!app) return null;
+  return getAuth(app);
 }
 
 export async function getUserFromToken(token: string) {
   try {
-    const decoded = await getAdminAuth().verifyIdToken(token);
+    const auth = getAdminAuth();
+    if (!auth) return null;
+    const decoded = await auth.verifyIdToken(token);
     return decoded;
   } catch {
     return null;
