@@ -90,8 +90,8 @@ const obras: ObraInput[] = [
     depoimentos:
       '"...é um livro que gera bastante reflexão, especialmente em relação a nossa necessidade de rotular as coisas. A autora aborda temas bem interessantes como a homossexualidade, o primeiro amor, homofobia e principalmente a amizade, o que faz do livro uma obra que sensibiliza ao mesmo tempo que diverte. E pelo amor de Getúlio, as cenas finais são lindas, fiquei com os olhos cheios de lágrimas! Difícil não ter empatia por Davi e não se comover com a narrativa da Thalita Rebouças." – Michele Lima, do Blog Na Nossa Estante.',
     capas: [
-      { url: "/img/capa-confissoes-de-um-garoto-nerd.jpg", editora: "Pitaya", ano: 2025 },
-      { url: "/img/capa-confissoes-de-um-garoto-timido-nerd.jpg", editora: "Arqueiro", ano: 2017 },
+      { url: "/img/capa-confissoes-de-um-garoto.jpg", editora: "Pitaya", ano: 2025 },
+      { url: "/img/capa-confissoes-de-um-garoto-nerd.jpg", editora: "Arqueiro", ano: 2017 },
     ],
   },
   {
@@ -168,7 +168,6 @@ const obras: ObraInput[] = [
       "Na edição revista e ampliada de 'Fala sério, amiga!', a autora Thalita Rebouças convida o leitor a mergulhar nas memórias de sua famosa protagonista, Malu (Maria de Lourdes), focando exclusivamente em suas relações de amizade dos 3 aos 21 anos de idade. Por meio de crônicas leves e bem-humoradas, o livro aborda situações universais que moldam os laços afetivos na juventude, como apelidos bizarros, ciúmes, brigas bobas, sinceridade excessiva e a convivência com namorados 'chatinhos' de amigas queridas.",
     depoimentos: null,
     capas: [
-      { url: "/img/capa-fala-serio-amiga.jpg", editora: "Rocco", ano: 2023 },
       { url: "/img/capa-fala-serio-amiga-capa-2.jpg", editora: "Rocco", ano: 2023 },
     ],
   },
@@ -438,7 +437,7 @@ const obras: ObraInput[] = [
       'Fala sério, filha! é o sexto volume da famosa série de Thalita e funciona como o aguardado "troco" dos pais contra as reclamações da primogênita, Maria de Lourdes (Malu). Após darem seus depoimentos nos livros anteriores, a superprotetora Ângela Cristina e o paizão Armando assumem os holofotes.',
     depoimentos: null,
     capas: [
-      { url: "/img/capa-fala-serio-filha-a-vinganca-dos-pais.jpg", editora: "Rocco", ano: 2011 },
+      { url: "/img/capa-fala-serio-filha-a-vingança-dos-pais.jpg", editora: "Rocco", ano: 2011 },
     ],
   },
   {
