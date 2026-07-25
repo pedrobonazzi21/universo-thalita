@@ -37,8 +37,9 @@ type CommentData = {
   texto: string;
   nota: number | null;
   curtidasCount: number;
+  destaque: boolean;
   createdAt: string;
-  usuario: { nome: string; avatarUrl: string | null };
+  usuario: { nome: string; avatarUrl: string | null; xp: number; nivel: string };
   respostas?: CommentData[];
 };
 
@@ -224,7 +225,17 @@ function CommentCard({
           {comment.usuario.nome.charAt(0).toUpperCase()}
         </div>
         <div className="flex-1">
-          <p className="text-sm font-medium text-foreground">{comment.usuario.nome}</p>
+          <div className="flex items-center gap-2">
+            <p className="text-sm font-medium text-foreground">{comment.usuario.nome}</p>
+            <span className="text-[10px] px-2 py-0.5 rounded-full bg-coral/10 text-coral/80 font-medium">
+              {comment.usuario.nivel}
+            </span>
+            {comment.destaque && (
+              <span className="text-[10px] px-2 py-0.5 rounded-full bg-yellow/20 text-yellow/80 font-medium">
+                Destaque
+              </span>
+            )}
+          </div>
           {comment.nota && <StarDisplay rating={comment.nota} />}
         </div>
         <span className="text-[10px] text-foreground/30">
@@ -276,6 +287,9 @@ function CommentCard({
                   {reply.usuario.nome.charAt(0).toUpperCase()}
                 </div>
                 <span className="text-xs font-medium text-foreground">{reply.usuario.nome}</span>
+                <span className="text-[10px] px-1.5 py-0.5 rounded-full bg-coral/10 text-coral/80 font-medium">
+                  {reply.usuario.nivel}
+                </span>
                 <span className="text-[10px] text-foreground/30">
                   {new Date(reply.createdAt).toLocaleDateString("pt-BR")}
                 </span>

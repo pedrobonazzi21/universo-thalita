@@ -67,3 +67,13 @@ export type Curtida = Prisma.CurtidaModel
  * 
  */
 export type Relacao = Prisma.RelacaoModel
+/**
+ * Model Medalha
+ * 
+ */
+export type Medalha = Prisma.MedalhaModel
+/**
+ * Model UserMedalha
+ * 
+ */
+export type UserMedalha = Prisma.UserMedalhaModel

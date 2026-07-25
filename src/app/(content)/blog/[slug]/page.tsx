@@ -5,8 +5,7 @@ import { ResenhaContent } from "@/components/resenha-content";
 import { CommentSection } from "@/components/comment-section";
 import { notFound } from "next/navigation";
 import type { Metadata } from "next";
-import Link from "next/link";
-import { Calendar, Tag, BookOpen, ExternalLink } from "lucide-react";
+import { Calendar, Tag, ExternalLink } from "lucide-react";
 
 export const dynamic = "force-dynamic";
 
@@ -14,14 +13,13 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   const { slug } = await params;
   const post = await prisma.post.findUnique({
     where: { slug },
-    include: { obra: { select: { titulo: true } } },
   });
   if (!post) return { title: "Post não encontrado" };
   return {
     title: post.titulo,
     description: post.conteudo.slice(0, 160),
     openGraph: {
-    title: `${post.titulo} | Universo Thalita Rebouças`,
+      title: `${post.titulo} | Universo Thalita Rebouças`,
       description: post.conteudo.slice(0, 160),
     },
   };
@@ -32,7 +30,7 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
   const post = await prisma.post.findUnique({
     where: { slug },
     include: {
-      obra: { select: { titulo: true, slug: true, tipo: true } },
+      obra: { select: { titulo: true, editora: true } },
       tags: { include: { tag: true } },
     },
   });
@@ -56,28 +54,45 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
       <main className="pt-24 max-w-3xl mx-auto px-6 pb-24">
         <Reveal>
           <article>
-            <div className="flex items-center gap-2 text-xs text-foreground/40 mb-3">
+            <div className="flex items-center gap-2 text-xs text-foreground/40 mb-4">
               <Calendar className="w-3.5 h-3.5" />
               <span>{new Date(post.dataPublicacao).toLocaleDateString("pt-BR")}</span>
-              {post.obra && (
-                <>
-                  <span className="text-foreground/20">•</span>
-                  <BookOpen className="w-3.5 h-3.5" />
-                  <Link href={`/obras/${post.obra.slug}`} className="text-coral hover:text-coral/80 transition-colors">
-                    {post.obra.titulo}
-                  </Link>
-                </>
-              )}
             </div>
 
-            <h1 className="font-heading text-4xl text-foreground mb-6">{post.titulo}</h1>
+            <h1 className="font-heading text-4xl text-foreground mb-8 leading-tight">{post.titulo}</h1>
 
-            <div className="prose prose-sm max-w-none">
+            {post.capaUrl && (
+              <div className="mb-8 rounded-[18px] overflow-hidden border border-gray-light/50">
+                <img
+                  src={post.capaUrl}
+                  alt={post.titulo}
+                  className="w-full h-auto object-cover max-h-96"
+                />
+              </div>
+            )}
+
+            <div className="text-foreground/70 leading-relaxed">
               <ResenhaContent content={post.conteudo} />
             </div>
 
+            {post.obra && (
+              <div className="mt-8 p-4 bg-card rounded-[18px] border border-gray-light/50">
+                <p className="text-sm text-foreground/50">
+                  <span className="font-medium text-foreground/70">Título:</span> {post.obra.titulo}
+                  {" ✦ "}
+                  <span className="font-medium text-foreground/70">Autora:</span> Thalita Rebouças
+                  {post.obra.editora && (
+                    <>
+                      {" ✦ "}
+                      <span className="font-medium text-foreground/70">Editora:</span> {post.obra.editora}
+                    </>
+                  )}
+                </p>
+              </div>
+            )}
+
             {post.linkAfiliado && (
-              <div className="mt-6 p-4 bg-card rounded-[18px] border border-gray-light/50">
+              <div className="mt-6 p-4 bg-gradient-to-br from-coral/5 to-yellow/5 rounded-[18px] border border-coral/10">
                 <p className="text-sm text-foreground/60">
                   Ajude o blog comprando o livro através do nosso link!
                 </p>
@@ -111,7 +126,7 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
                 <h2 className="font-heading text-lg text-foreground mb-4">Posts Relacionados</h2>
                 <div className="space-y-3">
                   {postsRelacionados.map((p) => (
-                    <Link
+                    <a
                       key={p.slug}
                       href={`/blog/${p.slug}`}
                       className="block bg-card rounded-[14px] p-4 border border-gray-light/50 hover:border-coral/20 transition-all duration-200"
@@ -122,7 +137,7 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
                       <p className="text-xs text-foreground/40 mt-1">
                         {new Date(p.dataPublicacao).toLocaleDateString("pt-BR")}
                       </p>
-                    </Link>
+                    </a>
                   ))}
                 </div>
               </section>

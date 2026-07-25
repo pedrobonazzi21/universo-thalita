@@ -13,11 +13,14 @@ model User {
   email       String      @unique
   avatarUrl   String?
   firebaseUid String      @unique
+  xp          Int         @default(0)
+  nivel       String      @default("Leitor Iniciante")
   createdAt   DateTime    @default(now())
 
   comentarios Comentario[]
   avaliacoes  Avaliacao[]
   curtidas    Curtida[]
+  medalhas    UserMedalha[]
 }
 
 model Obra {
@@ -94,6 +97,7 @@ model Comentario {
   nota      Int?
   createdAt DateTime    @default(now())
   curtidasCount Int     @default(0)
+  destaque  Boolean     @default(false)
 
   obraId    String?
   obra      Obra?     @relation(fields: [obraId], references: [id])
@@ -143,4 +147,23 @@ model Relacao {
   obraDe     Obra @relation("De", fields: [obraDeId], references: [id])
   obraParaId String
   obraPara   Obra @relation("Para", fields: [obraParaId], references: [id])
+}
+
+model Medalha {
+  id        String   @id @default(cuid())
+  nome      String   @unique
+  icone     String
+  descricao String
+  users     UserMedalha[]
+}
+
+model UserMedalha {
+  id          String   @id @default(cuid())
+  userId      String
+  medalhaId   String
+  user        User     @relation(fields: [userId], references: [id])
+  medalha     Medalha  @relation(fields: [medalhaId], references: [id])
+  conquistaEm DateTime @default(now())
+
+  @@unique([userId, medalhaId])
 }

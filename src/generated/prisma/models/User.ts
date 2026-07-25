@@ -20,8 +20,18 @@ export type UserModel = runtime.Types.Result.DefaultSelection<Prisma.$UserPayloa
 
 export type AggregateUser = {
   _count: UserCountAggregateOutputType | null
+  _avg: UserAvgAggregateOutputType | null
+  _sum: UserSumAggregateOutputType | null
   _min: UserMinAggregateOutputType | null
   _max: UserMaxAggregateOutputType | null
+}
+
+export type UserAvgAggregateOutputType = {
+  xp: number | null
+}
+
+export type UserSumAggregateOutputType = {
+  xp: number | null
 }
 
 export type UserMinAggregateOutputType = {
@@ -30,6 +40,8 @@ export type UserMinAggregateOutputType = {
   email: string | null
   avatarUrl: string | null
   firebaseUid: string | null
+  xp: number | null
+  nivel: string | null
   createdAt: Date | null
 }
 
@@ -39,6 +51,8 @@ export type UserMaxAggregateOutputType = {
   email: string | null
   avatarUrl: string | null
   firebaseUid: string | null
+  xp: number | null
+  nivel: string | null
   createdAt: Date | null
 }
 
@@ -48,10 +62,20 @@ export type UserCountAggregateOutputType = {
   email: number
   avatarUrl: number
   firebaseUid: number
+  xp: number
+  nivel: number
   createdAt: number
   _all: number
 }
 
+
+export type UserAvgAggregateInputType = {
+  xp?: true
+}
+
+export type UserSumAggregateInputType = {
+  xp?: true
+}
 
 export type UserMinAggregateInputType = {
   id?: true
@@ -59,6 +83,8 @@ export type UserMinAggregateInputType = {
   email?: true
   avatarUrl?: true
   firebaseUid?: true
+  xp?: true
+  nivel?: true
   createdAt?: true
 }
 
@@ -68,6 +94,8 @@ export type UserMaxAggregateInputType = {
   email?: true
   avatarUrl?: true
   firebaseUid?: true
+  xp?: true
+  nivel?: true
   createdAt?: true
 }
 
@@ -77,6 +105,8 @@ export type UserCountAggregateInputType = {
   email?: true
   avatarUrl?: true
   firebaseUid?: true
+  xp?: true
+  nivel?: true
   createdAt?: true
   _all?: true
 }
@@ -119,6 +149,18 @@ export type UserAggregateArgs<ExtArgs extends runtime.Types.Extensions.InternalA
   /**
    * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
    * 
+   * Select which fields to average
+  **/
+  _avg?: UserAvgAggregateInputType
+  /**
+   * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+   * 
+   * Select which fields to sum
+  **/
+  _sum?: UserSumAggregateInputType
+  /**
+   * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+   * 
    * Select which fields to find the minimum value
   **/
   _min?: UserMinAggregateInputType
@@ -149,6 +191,8 @@ export type UserGroupByArgs<ExtArgs extends runtime.Types.Extensions.InternalArg
   take?: number
   skip?: number
   _count?: UserCountAggregateInputType | true
+  _avg?: UserAvgAggregateInputType
+  _sum?: UserSumAggregateInputType
   _min?: UserMinAggregateInputType
   _max?: UserMaxAggregateInputType
 }
@@ -159,8 +203,12 @@ export type UserGroupByOutputType = {
   email: string
   avatarUrl: string | null
   firebaseUid: string
+  xp: number
+  nivel: string
   createdAt: Date
   _count: UserCountAggregateOutputType | null
+  _avg: UserAvgAggregateOutputType | null
+  _sum: UserSumAggregateOutputType | null
   _min: UserMinAggregateOutputType | null
   _max: UserMaxAggregateOutputType | null
 }
@@ -189,10 +237,13 @@ export type UserWhereInput = {
   email?: Prisma.StringFilter<"User"> | string
   avatarUrl?: Prisma.StringNullableFilter<"User"> | string | null
   firebaseUid?: Prisma.StringFilter<"User"> | string
+  xp?: Prisma.IntFilter<"User"> | number
+  nivel?: Prisma.StringFilter<"User"> | string
   createdAt?: Prisma.DateTimeFilter<"User"> | Date | string
   comentarios?: Prisma.ComentarioListRelationFilter
   avaliacoes?: Prisma.AvaliacaoListRelationFilter
   curtidas?: Prisma.CurtidaListRelationFilter
+  medalhas?: Prisma.UserMedalhaListRelationFilter
 }
 
 export type UserOrderByWithRelationInput = {
@@ -201,10 +252,13 @@ export type UserOrderByWithRelationInput = {
   email?: Prisma.SortOrder
   avatarUrl?: Prisma.SortOrderInput | Prisma.SortOrder
   firebaseUid?: Prisma.SortOrder
+  xp?: Prisma.SortOrder
+  nivel?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   comentarios?: Prisma.ComentarioOrderByRelationAggregateInput
   avaliacoes?: Prisma.AvaliacaoOrderByRelationAggregateInput
   curtidas?: Prisma.CurtidaOrderByRelationAggregateInput
+  medalhas?: Prisma.UserMedalhaOrderByRelationAggregateInput
 }
 
 export type UserWhereUniqueInput = Prisma.AtLeast<{
@@ -216,10 +270,13 @@ export type UserWhereUniqueInput = Prisma.AtLeast<{
   NOT?: Prisma.UserWhereInput | Prisma.UserWhereInput[]
   nome?: Prisma.StringFilter<"User"> | string
   avatarUrl?: Prisma.StringNullableFilter<"User"> | string | null
+  xp?: Prisma.IntFilter<"User"> | number
+  nivel?: Prisma.StringFilter<"User"> | string
   createdAt?: Prisma.DateTimeFilter<"User"> | Date | string
   comentarios?: Prisma.ComentarioListRelationFilter
   avaliacoes?: Prisma.AvaliacaoListRelationFilter
   curtidas?: Prisma.CurtidaListRelationFilter
+  medalhas?: Prisma.UserMedalhaListRelationFilter
 }, "id" | "email" | "firebaseUid">
 
 export type UserOrderByWithAggregationInput = {
@@ -228,10 +285,14 @@ export type UserOrderByWithAggregationInput = {
   email?: Prisma.SortOrder
   avatarUrl?: Prisma.SortOrderInput | Prisma.SortOrder
   firebaseUid?: Prisma.SortOrder
+  xp?: Prisma.SortOrder
+  nivel?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   _count?: Prisma.UserCountOrderByAggregateInput
+  _avg?: Prisma.UserAvgOrderByAggregateInput
   _max?: Prisma.UserMaxOrderByAggregateInput
   _min?: Prisma.UserMinOrderByAggregateInput
+  _sum?: Prisma.UserSumOrderByAggregateInput
 }
 
 export type UserScalarWhereWithAggregatesInput = {
@@ -243,6 +304,8 @@ export type UserScalarWhereWithAggregatesInput = {
   email?: Prisma.StringWithAggregatesFilter<"User"> | string
   avatarUrl?: Prisma.StringNullableWithAggregatesFilter<"User"> | string | null
   firebaseUid?: Prisma.StringWithAggregatesFilter<"User"> | string
+  xp?: Prisma.IntWithAggregatesFilter<"User"> | number
+  nivel?: Prisma.StringWithAggregatesFilter<"User"> | string
   createdAt?: Prisma.DateTimeWithAggregatesFilter<"User"> | Date | string
 }
 
@@ -252,10 +315,13 @@ export type UserCreateInput = {
   email: string
   avatarUrl?: string | null
   firebaseUid: string
+  xp?: number
+  nivel?: string
   createdAt?: Date | string
   comentarios?: Prisma.ComentarioCreateNestedManyWithoutUsuarioInput
   avaliacoes?: Prisma.AvaliacaoCreateNestedManyWithoutUsuarioInput
   curtidas?: Prisma.CurtidaCreateNestedManyWithoutUsuarioInput
+  medalhas?: Prisma.UserMedalhaCreateNestedManyWithoutUserInput
 }
 
 export type UserUncheckedCreateInput = {
@@ -264,10 +330,13 @@ export type UserUncheckedCreateInput = {
   email: string
   avatarUrl?: string | null
   firebaseUid: string
+  xp?: number
+  nivel?: string
   createdAt?: Date | string
   comentarios?: Prisma.ComentarioUncheckedCreateNestedManyWithoutUsuarioInput
   avaliacoes?: Prisma.AvaliacaoUncheckedCreateNestedManyWithoutUsuarioInput
   curtidas?: Prisma.CurtidaUncheckedCreateNestedManyWithoutUsuarioInput
+  medalhas?: Prisma.UserMedalhaUncheckedCreateNestedManyWithoutUserInput
 }
 
 export type UserUpdateInput = {
@@ -276,10 +345,13 @@ export type UserUpdateInput = {
   email?: Prisma.StringFieldUpdateOperationsInput | string
   avatarUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   firebaseUid?: Prisma.StringFieldUpdateOperationsInput | string
+  xp?: Prisma.IntFieldUpdateOperationsInput | number
+  nivel?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   comentarios?: Prisma.ComentarioUpdateManyWithoutUsuarioNestedInput
   avaliacoes?: Prisma.AvaliacaoUpdateManyWithoutUsuarioNestedInput
   curtidas?: Prisma.CurtidaUpdateManyWithoutUsuarioNestedInput
+  medalhas?: Prisma.UserMedalhaUpdateManyWithoutUserNestedInput
 }
 
 export type UserUncheckedUpdateInput = {
@@ -288,10 +360,13 @@ export type UserUncheckedUpdateInput = {
   email?: Prisma.StringFieldUpdateOperationsInput | string
   avatarUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   firebaseUid?: Prisma.StringFieldUpdateOperationsInput | string
+  xp?: Prisma.IntFieldUpdateOperationsInput | number
+  nivel?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   comentarios?: Prisma.ComentarioUncheckedUpdateManyWithoutUsuarioNestedInput
   avaliacoes?: Prisma.AvaliacaoUncheckedUpdateManyWithoutUsuarioNestedInput
   curtidas?: Prisma.CurtidaUncheckedUpdateManyWithoutUsuarioNestedInput
+  medalhas?: Prisma.UserMedalhaUncheckedUpdateManyWithoutUserNestedInput
 }
 
 export type UserCreateManyInput = {
@@ -300,6 +375,8 @@ export type UserCreateManyInput = {
   email: string
   avatarUrl?: string | null
   firebaseUid: string
+  xp?: number
+  nivel?: string
   createdAt?: Date | string
 }
 
@@ -309,6 +386,8 @@ export type UserUpdateManyMutationInput = {
   email?: Prisma.StringFieldUpdateOperationsInput | string
   avatarUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   firebaseUid?: Prisma.StringFieldUpdateOperationsInput | string
+  xp?: Prisma.IntFieldUpdateOperationsInput | number
+  nivel?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
@@ -318,6 +397,8 @@ export type UserUncheckedUpdateManyInput = {
   email?: Prisma.StringFieldUpdateOperationsInput | string
   avatarUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   firebaseUid?: Prisma.StringFieldUpdateOperationsInput | string
+  xp?: Prisma.IntFieldUpdateOperationsInput | number
+  nivel?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
@@ -327,7 +408,13 @@ export type UserCountOrderByAggregateInput = {
   email?: Prisma.SortOrder
   avatarUrl?: Prisma.SortOrder
   firebaseUid?: Prisma.SortOrder
+  xp?: Prisma.SortOrder
+  nivel?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
+}
+
+export type UserAvgOrderByAggregateInput = {
+  xp?: Prisma.SortOrder
 }
 
 export type UserMaxOrderByAggregateInput = {
@@ -336,6 +423,8 @@ export type UserMaxOrderByAggregateInput = {
   email?: Prisma.SortOrder
   avatarUrl?: Prisma.SortOrder
   firebaseUid?: Prisma.SortOrder
+  xp?: Prisma.SortOrder
+  nivel?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
 }
 
@@ -345,7 +434,13 @@ export type UserMinOrderByAggregateInput = {
   email?: Prisma.SortOrder
   avatarUrl?: Prisma.SortOrder
   firebaseUid?: Prisma.SortOrder
+  xp?: Prisma.SortOrder
+  nivel?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
+}
+
+export type UserSumOrderByAggregateInput = {
+  xp?: Prisma.SortOrder
 }
 
 export type UserScalarRelationFilter = {
@@ -359,6 +454,14 @@ export type StringFieldUpdateOperationsInput = {
 
 export type NullableStringFieldUpdateOperationsInput = {
   set?: string | null
+}
+
+export type IntFieldUpdateOperationsInput = {
+  set?: number
+  increment?: number
+  decrement?: number
+  multiply?: number
+  divide?: number
 }
 
 export type DateTimeFieldUpdateOperationsInput = {
@@ -407,15 +510,32 @@ export type UserUpdateOneRequiredWithoutCurtidasNestedInput = {
   update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutCurtidasInput, Prisma.UserUpdateWithoutCurtidasInput>, Prisma.UserUncheckedUpdateWithoutCurtidasInput>
 }
 
+export type UserCreateNestedOneWithoutMedalhasInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutMedalhasInput, Prisma.UserUncheckedCreateWithoutMedalhasInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutMedalhasInput
+  connect?: Prisma.UserWhereUniqueInput
+}
+
+export type UserUpdateOneRequiredWithoutMedalhasNestedInput = {
+  create?: Prisma.XOR<Prisma.UserCreateWithoutMedalhasInput, Prisma.UserUncheckedCreateWithoutMedalhasInput>
+  connectOrCreate?: Prisma.UserCreateOrConnectWithoutMedalhasInput
+  upsert?: Prisma.UserUpsertWithoutMedalhasInput
+  connect?: Prisma.UserWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.UserUpdateToOneWithWhereWithoutMedalhasInput, Prisma.UserUpdateWithoutMedalhasInput>, Prisma.UserUncheckedUpdateWithoutMedalhasInput>
+}
+
 export type UserCreateWithoutComentariosInput = {
   id?: string
   nome: string
   email: string
   avatarUrl?: string | null
   firebaseUid: string
+  xp?: number
+  nivel?: string
   createdAt?: Date | string
   avaliacoes?: Prisma.AvaliacaoCreateNestedManyWithoutUsuarioInput
   curtidas?: Prisma.CurtidaCreateNestedManyWithoutUsuarioInput
+  medalhas?: Prisma.UserMedalhaCreateNestedManyWithoutUserInput
 }
 
 export type UserUncheckedCreateWithoutComentariosInput = {
@@ -424,9 +544,12 @@ export type UserUncheckedCreateWithoutComentariosInput = {
   email: string
   avatarUrl?: string | null
   firebaseUid: string
+  xp?: number
+  nivel?: string
   createdAt?: Date | string
   avaliacoes?: Prisma.AvaliacaoUncheckedCreateNestedManyWithoutUsuarioInput
   curtidas?: Prisma.CurtidaUncheckedCreateNestedManyWithoutUsuarioInput
+  medalhas?: Prisma.UserMedalhaUncheckedCreateNestedManyWithoutUserInput
 }
 
 export type UserCreateOrConnectWithoutComentariosInput = {
@@ -451,9 +574,12 @@ export type UserUpdateWithoutComentariosInput = {
   email?: Prisma.StringFieldUpdateOperationsInput | string
   avatarUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   firebaseUid?: Prisma.StringFieldUpdateOperationsInput | string
+  xp?: Prisma.IntFieldUpdateOperationsInput | number
+  nivel?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   avaliacoes?: Prisma.AvaliacaoUpdateManyWithoutUsuarioNestedInput
   curtidas?: Prisma.CurtidaUpdateManyWithoutUsuarioNestedInput
+  medalhas?: Prisma.UserMedalhaUpdateManyWithoutUserNestedInput
 }
 
 export type UserUncheckedUpdateWithoutComentariosInput = {
@@ -462,9 +588,12 @@ export type UserUncheckedUpdateWithoutComentariosInput = {
   email?: Prisma.StringFieldUpdateOperationsInput | string
   avatarUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   firebaseUid?: Prisma.StringFieldUpdateOperationsInput | string
+  xp?: Prisma.IntFieldUpdateOperationsInput | number
+  nivel?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   avaliacoes?: Prisma.AvaliacaoUncheckedUpdateManyWithoutUsuarioNestedInput
   curtidas?: Prisma.CurtidaUncheckedUpdateManyWithoutUsuarioNestedInput
+  medalhas?: Prisma.UserMedalhaUncheckedUpdateManyWithoutUserNestedInput
 }
 
 export type UserCreateWithoutAvaliacoesInput = {
@@ -473,9 +602,12 @@ export type UserCreateWithoutAvaliacoesInput = {
   email: string
   avatarUrl?: string | null
   firebaseUid: string
+  xp?: number
+  nivel?: string
   createdAt?: Date | string
   comentarios?: Prisma.ComentarioCreateNestedManyWithoutUsuarioInput
   curtidas?: Prisma.CurtidaCreateNestedManyWithoutUsuarioInput
+  medalhas?: Prisma.UserMedalhaCreateNestedManyWithoutUserInput
 }
 
 export type UserUncheckedCreateWithoutAvaliacoesInput = {
@@ -484,9 +616,12 @@ export type UserUncheckedCreateWithoutAvaliacoesInput = {
   email: string
   avatarUrl?: string | null
   firebaseUid: string
+  xp?: number
+  nivel?: string
   createdAt?: Date | string
   comentarios?: Prisma.ComentarioUncheckedCreateNestedManyWithoutUsuarioInput
   curtidas?: Prisma.CurtidaUncheckedCreateNestedManyWithoutUsuarioInput
+  medalhas?: Prisma.UserMedalhaUncheckedCreateNestedManyWithoutUserInput
 }
 
 export type UserCreateOrConnectWithoutAvaliacoesInput = {
@@ -511,9 +646,12 @@ export type UserUpdateWithoutAvaliacoesInput = {
   email?: Prisma.StringFieldUpdateOperationsInput | string
   avatarUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   firebaseUid?: Prisma.StringFieldUpdateOperationsInput | string
+  xp?: Prisma.IntFieldUpdateOperationsInput | number
+  nivel?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   comentarios?: Prisma.ComentarioUpdateManyWithoutUsuarioNestedInput
   curtidas?: Prisma.CurtidaUpdateManyWithoutUsuarioNestedInput
+  medalhas?: Prisma.UserMedalhaUpdateManyWithoutUserNestedInput
 }
 
 export type UserUncheckedUpdateWithoutAvaliacoesInput = {
@@ -522,9 +660,12 @@ export type UserUncheckedUpdateWithoutAvaliacoesInput = {
   email?: Prisma.StringFieldUpdateOperationsInput | string
   avatarUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   firebaseUid?: Prisma.StringFieldUpdateOperationsInput | string
+  xp?: Prisma.IntFieldUpdateOperationsInput | number
+  nivel?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   comentarios?: Prisma.ComentarioUncheckedUpdateManyWithoutUsuarioNestedInput
   curtidas?: Prisma.CurtidaUncheckedUpdateManyWithoutUsuarioNestedInput
+  medalhas?: Prisma.UserMedalhaUncheckedUpdateManyWithoutUserNestedInput
 }
 
 export type UserCreateWithoutCurtidasInput = {
@@ -533,9 +674,12 @@ export type UserCreateWithoutCurtidasInput = {
   email: string
   avatarUrl?: string | null
   firebaseUid: string
+  xp?: number
+  nivel?: string
   createdAt?: Date | string
   comentarios?: Prisma.ComentarioCreateNestedManyWithoutUsuarioInput
   avaliacoes?: Prisma.AvaliacaoCreateNestedManyWithoutUsuarioInput
+  medalhas?: Prisma.UserMedalhaCreateNestedManyWithoutUserInput
 }
 
 export type UserUncheckedCreateWithoutCurtidasInput = {
@@ -544,9 +688,12 @@ export type UserUncheckedCreateWithoutCurtidasInput = {
   email: string
   avatarUrl?: string | null
   firebaseUid: string
+  xp?: number
+  nivel?: string
   createdAt?: Date | string
   comentarios?: Prisma.ComentarioUncheckedCreateNestedManyWithoutUsuarioInput
   avaliacoes?: Prisma.AvaliacaoUncheckedCreateNestedManyWithoutUsuarioInput
+  medalhas?: Prisma.UserMedalhaUncheckedCreateNestedManyWithoutUserInput
 }
 
 export type UserCreateOrConnectWithoutCurtidasInput = {
@@ -571,9 +718,12 @@ export type UserUpdateWithoutCurtidasInput = {
   email?: Prisma.StringFieldUpdateOperationsInput | string
   avatarUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   firebaseUid?: Prisma.StringFieldUpdateOperationsInput | string
+  xp?: Prisma.IntFieldUpdateOperationsInput | number
+  nivel?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   comentarios?: Prisma.ComentarioUpdateManyWithoutUsuarioNestedInput
   avaliacoes?: Prisma.AvaliacaoUpdateManyWithoutUsuarioNestedInput
+  medalhas?: Prisma.UserMedalhaUpdateManyWithoutUserNestedInput
 }
 
 export type UserUncheckedUpdateWithoutCurtidasInput = {
@@ -582,9 +732,84 @@ export type UserUncheckedUpdateWithoutCurtidasInput = {
   email?: Prisma.StringFieldUpdateOperationsInput | string
   avatarUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   firebaseUid?: Prisma.StringFieldUpdateOperationsInput | string
+  xp?: Prisma.IntFieldUpdateOperationsInput | number
+  nivel?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   comentarios?: Prisma.ComentarioUncheckedUpdateManyWithoutUsuarioNestedInput
   avaliacoes?: Prisma.AvaliacaoUncheckedUpdateManyWithoutUsuarioNestedInput
+  medalhas?: Prisma.UserMedalhaUncheckedUpdateManyWithoutUserNestedInput
+}
+
+export type UserCreateWithoutMedalhasInput = {
+  id?: string
+  nome: string
+  email: string
+  avatarUrl?: string | null
+  firebaseUid: string
+  xp?: number
+  nivel?: string
+  createdAt?: Date | string
+  comentarios?: Prisma.ComentarioCreateNestedManyWithoutUsuarioInput
+  avaliacoes?: Prisma.AvaliacaoCreateNestedManyWithoutUsuarioInput
+  curtidas?: Prisma.CurtidaCreateNestedManyWithoutUsuarioInput
+}
+
+export type UserUncheckedCreateWithoutMedalhasInput = {
+  id?: string
+  nome: string
+  email: string
+  avatarUrl?: string | null
+  firebaseUid: string
+  xp?: number
+  nivel?: string
+  createdAt?: Date | string
+  comentarios?: Prisma.ComentarioUncheckedCreateNestedManyWithoutUsuarioInput
+  avaliacoes?: Prisma.AvaliacaoUncheckedCreateNestedManyWithoutUsuarioInput
+  curtidas?: Prisma.CurtidaUncheckedCreateNestedManyWithoutUsuarioInput
+}
+
+export type UserCreateOrConnectWithoutMedalhasInput = {
+  where: Prisma.UserWhereUniqueInput
+  create: Prisma.XOR<Prisma.UserCreateWithoutMedalhasInput, Prisma.UserUncheckedCreateWithoutMedalhasInput>
+}
+
+export type UserUpsertWithoutMedalhasInput = {
+  update: Prisma.XOR<Prisma.UserUpdateWithoutMedalhasInput, Prisma.UserUncheckedUpdateWithoutMedalhasInput>
+  create: Prisma.XOR<Prisma.UserCreateWithoutMedalhasInput, Prisma.UserUncheckedCreateWithoutMedalhasInput>
+  where?: Prisma.UserWhereInput
+}
+
+export type UserUpdateToOneWithWhereWithoutMedalhasInput = {
+  where?: Prisma.UserWhereInput
+  data: Prisma.XOR<Prisma.UserUpdateWithoutMedalhasInput, Prisma.UserUncheckedUpdateWithoutMedalhasInput>
+}
+
+export type UserUpdateWithoutMedalhasInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  nome?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  avatarUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  firebaseUid?: Prisma.StringFieldUpdateOperationsInput | string
+  xp?: Prisma.IntFieldUpdateOperationsInput | number
+  nivel?: Prisma.StringFieldUpdateOperationsInput | string
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  comentarios?: Prisma.ComentarioUpdateManyWithoutUsuarioNestedInput
+  avaliacoes?: Prisma.AvaliacaoUpdateManyWithoutUsuarioNestedInput
+  curtidas?: Prisma.CurtidaUpdateManyWithoutUsuarioNestedInput
+}
+
+export type UserUncheckedUpdateWithoutMedalhasInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  nome?: Prisma.StringFieldUpdateOperationsInput | string
+  email?: Prisma.StringFieldUpdateOperationsInput | string
+  avatarUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  firebaseUid?: Prisma.StringFieldUpdateOperationsInput | string
+  xp?: Prisma.IntFieldUpdateOperationsInput | number
+  nivel?: Prisma.StringFieldUpdateOperationsInput | string
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  comentarios?: Prisma.ComentarioUncheckedUpdateManyWithoutUsuarioNestedInput
+  avaliacoes?: Prisma.AvaliacaoUncheckedUpdateManyWithoutUsuarioNestedInput
+  curtidas?: Prisma.CurtidaUncheckedUpdateManyWithoutUsuarioNestedInput
 }
 
 
@@ -596,12 +821,14 @@ export type UserCountOutputType = {
   comentarios: number
   avaliacoes: number
   curtidas: number
+  medalhas: number
 }
 
 export type UserCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   comentarios?: boolean | UserCountOutputTypeCountComentariosArgs
   avaliacoes?: boolean | UserCountOutputTypeCountAvaliacoesArgs
   curtidas?: boolean | UserCountOutputTypeCountCurtidasArgs
+  medalhas?: boolean | UserCountOutputTypeCountMedalhasArgs
 }
 
 /**
@@ -635,6 +862,13 @@ export type UserCountOutputTypeCountCurtidasArgs<ExtArgs extends runtime.Types.E
   where?: Prisma.CurtidaWhereInput
 }
 
+/**
+ * UserCountOutputType without action
+ */
+export type UserCountOutputTypeCountMedalhasArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.UserMedalhaWhereInput
+}
+
 
 export type UserSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
@@ -642,10 +876,13 @@ export type UserSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = r
   email?: boolean
   avatarUrl?: boolean
   firebaseUid?: boolean
+  xp?: boolean
+  nivel?: boolean
   createdAt?: boolean
   comentarios?: boolean | Prisma.User$comentariosArgs<ExtArgs>
   avaliacoes?: boolean | Prisma.User$avaliacoesArgs<ExtArgs>
   curtidas?: boolean | Prisma.User$curtidasArgs<ExtArgs>
+  medalhas?: boolean | Prisma.User$medalhasArgs<ExtArgs>
   _count?: boolean | Prisma.UserCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["user"]>
 
@@ -655,6 +892,8 @@ export type UserSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensio
   email?: boolean
   avatarUrl?: boolean
   firebaseUid?: boolean
+  xp?: boolean
+  nivel?: boolean
   createdAt?: boolean
 }, ExtArgs["result"]["user"]>
 
@@ -664,6 +903,8 @@ export type UserSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensio
   email?: boolean
   avatarUrl?: boolean
   firebaseUid?: boolean
+  xp?: boolean
+  nivel?: boolean
   createdAt?: boolean
 }, ExtArgs["result"]["user"]>
 
@@ -673,14 +914,17 @@ export type UserSelectScalar = {
   email?: boolean
   avatarUrl?: boolean
   firebaseUid?: boolean
+  xp?: boolean
+  nivel?: boolean
   createdAt?: boolean
 }
 
-export type UserOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "nome" | "email" | "avatarUrl" | "firebaseUid" | "createdAt", ExtArgs["result"]["user"]>
+export type UserOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "nome" | "email" | "avatarUrl" | "firebaseUid" | "xp" | "nivel" | "createdAt", ExtArgs["result"]["user"]>
 export type UserInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   comentarios?: boolean | Prisma.User$comentariosArgs<ExtArgs>
   avaliacoes?: boolean | Prisma.User$avaliacoesArgs<ExtArgs>
   curtidas?: boolean | Prisma.User$curtidasArgs<ExtArgs>
+  medalhas?: boolean | Prisma.User$medalhasArgs<ExtArgs>
   _count?: boolean | Prisma.UserCountOutputTypeDefaultArgs<ExtArgs>
 }
 export type UserIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {}
@@ -692,6 +936,7 @@ export type $UserPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs =
     comentarios: Prisma.$ComentarioPayload<ExtArgs>[]
     avaliacoes: Prisma.$AvaliacaoPayload<ExtArgs>[]
     curtidas: Prisma.$CurtidaPayload<ExtArgs>[]
+    medalhas: Prisma.$UserMedalhaPayload<ExtArgs>[]
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
@@ -699,6 +944,8 @@ export type $UserPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs =
     email: string
     avatarUrl: string | null
     firebaseUid: string
+    xp: number
+    nivel: string
     createdAt: Date
   }, ExtArgs["result"]["user"]>
   composites: {}
@@ -1097,6 +1344,7 @@ export interface Prisma__UserClient<T, Null = never, ExtArgs extends runtime.Typ
   comentarios<T extends Prisma.User$comentariosArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$comentariosArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$ComentarioPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   avaliacoes<T extends Prisma.User$avaliacoesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$avaliacoesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$AvaliacaoPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   curtidas<T extends Prisma.User$curtidasArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$curtidasArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$CurtidaPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  medalhas<T extends Prisma.User$medalhasArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.User$medalhasArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$UserMedalhaPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -1131,6 +1379,8 @@ export interface UserFieldRefs {
   readonly email: Prisma.FieldRef<"User", 'String'>
   readonly avatarUrl: Prisma.FieldRef<"User", 'String'>
   readonly firebaseUid: Prisma.FieldRef<"User", 'String'>
+  readonly xp: Prisma.FieldRef<"User", 'Int'>
+  readonly nivel: Prisma.FieldRef<"User", 'String'>
   readonly createdAt: Prisma.FieldRef<"User", 'DateTime'>
 }
     
@@ -1592,6 +1842,30 @@ export type User$curtidasArgs<ExtArgs extends runtime.Types.Extensions.InternalA
   take?: number
   skip?: number
   distinct?: Prisma.CurtidaScalarFieldEnum | Prisma.CurtidaScalarFieldEnum[]
+}
+
+/**
+ * User.medalhas
+ */
+export type User$medalhasArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the UserMedalha
+   */
+  select?: Prisma.UserMedalhaSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the UserMedalha
+   */
+  omit?: Prisma.UserMedalhaOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.UserMedalhaInclude<ExtArgs> | null
+  where?: Prisma.UserMedalhaWhereInput
+  orderBy?: Prisma.UserMedalhaOrderByWithRelationInput | Prisma.UserMedalhaOrderByWithRelationInput[]
+  cursor?: Prisma.UserMedalhaWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.UserMedalhaScalarFieldEnum | Prisma.UserMedalhaScalarFieldEnum[]
 }
 
 /**

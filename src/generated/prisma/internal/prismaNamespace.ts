@@ -393,7 +393,9 @@ export const ModelName = {
   Comentario: 'Comentario',
   Avaliacao: 'Avaliacao',
   Curtida: 'Curtida',
-  Relacao: 'Relacao'
+  Relacao: 'Relacao',
+  Medalha: 'Medalha',
+  UserMedalha: 'UserMedalha'
 } as const
 
 export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -409,7 +411,7 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
     omit: GlobalOmitOptions
   }
   meta: {
-    modelProps: "user" | "obra" | "capa" | "post" | "tag" | "postTag" | "comentario" | "avaliacao" | "curtida" | "relacao"
+    modelProps: "user" | "obra" | "capa" | "post" | "tag" | "postTag" | "comentario" | "avaliacao" | "curtida" | "relacao" | "medalha" | "userMedalha"
     txIsolationLevel: TransactionIsolationLevel
   }
   model: {
@@ -1153,6 +1155,154 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
         }
       }
     }
+    Medalha: {
+      payload: Prisma.$MedalhaPayload<ExtArgs>
+      fields: Prisma.MedalhaFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.MedalhaFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$MedalhaPayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.MedalhaFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$MedalhaPayload>
+        }
+        findFirst: {
+          args: Prisma.MedalhaFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$MedalhaPayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.MedalhaFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$MedalhaPayload>
+        }
+        findMany: {
+          args: Prisma.MedalhaFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$MedalhaPayload>[]
+        }
+        create: {
+          args: Prisma.MedalhaCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$MedalhaPayload>
+        }
+        createMany: {
+          args: Prisma.MedalhaCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        createManyAndReturn: {
+          args: Prisma.MedalhaCreateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$MedalhaPayload>[]
+        }
+        delete: {
+          args: Prisma.MedalhaDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$MedalhaPayload>
+        }
+        update: {
+          args: Prisma.MedalhaUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$MedalhaPayload>
+        }
+        deleteMany: {
+          args: Prisma.MedalhaDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.MedalhaUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateManyAndReturn: {
+          args: Prisma.MedalhaUpdateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$MedalhaPayload>[]
+        }
+        upsert: {
+          args: Prisma.MedalhaUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$MedalhaPayload>
+        }
+        aggregate: {
+          args: Prisma.MedalhaAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateMedalha>
+        }
+        groupBy: {
+          args: Prisma.MedalhaGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.MedalhaGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.MedalhaCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.MedalhaCountAggregateOutputType> | number
+        }
+      }
+    }
+    UserMedalha: {
+      payload: Prisma.$UserMedalhaPayload<ExtArgs>
+      fields: Prisma.UserMedalhaFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.UserMedalhaFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$UserMedalhaPayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.UserMedalhaFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$UserMedalhaPayload>
+        }
+        findFirst: {
+          args: Prisma.UserMedalhaFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$UserMedalhaPayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.UserMedalhaFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$UserMedalhaPayload>
+        }
+        findMany: {
+          args: Prisma.UserMedalhaFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$UserMedalhaPayload>[]
+        }
+        create: {
+          args: Prisma.UserMedalhaCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$UserMedalhaPayload>
+        }
+        createMany: {
+          args: Prisma.UserMedalhaCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        createManyAndReturn: {
+          args: Prisma.UserMedalhaCreateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$UserMedalhaPayload>[]
+        }
+        delete: {
+          args: Prisma.UserMedalhaDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$UserMedalhaPayload>
+        }
+        update: {
+          args: Prisma.UserMedalhaUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$UserMedalhaPayload>
+        }
+        deleteMany: {
+          args: Prisma.UserMedalhaDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.UserMedalhaUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateManyAndReturn: {
+          args: Prisma.UserMedalhaUpdateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$UserMedalhaPayload>[]
+        }
+        upsert: {
+          args: Prisma.UserMedalhaUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$UserMedalhaPayload>
+        }
+        aggregate: {
+          args: Prisma.UserMedalhaAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateUserMedalha>
+        }
+        groupBy: {
+          args: Prisma.UserMedalhaGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.UserMedalhaGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.UserMedalhaCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.UserMedalhaCountAggregateOutputType> | number
+        }
+      }
+    }
   }
 } & {
   other: {
@@ -1195,6 +1345,8 @@ export const UserScalarFieldEnum = {
   email: 'email',
   avatarUrl: 'avatarUrl',
   firebaseUid: 'firebaseUid',
+  xp: 'xp',
+  nivel: 'nivel',
   createdAt: 'createdAt'
 } as const
 
@@ -1271,6 +1423,7 @@ export const ComentarioScalarFieldEnum = {
   nota: 'nota',
   createdAt: 'createdAt',
   curtidasCount: 'curtidasCount',
+  destaque: 'destaque',
   obraId: 'obraId',
   postId: 'postId',
   usuarioId: 'usuarioId',
@@ -1312,6 +1465,26 @@ export const RelacaoScalarFieldEnum = {
 export type RelacaoScalarFieldEnum = (typeof RelacaoScalarFieldEnum)[keyof typeof RelacaoScalarFieldEnum]
 
 
+export const MedalhaScalarFieldEnum = {
+  id: 'id',
+  nome: 'nome',
+  icone: 'icone',
+  descricao: 'descricao'
+} as const
+
+export type MedalhaScalarFieldEnum = (typeof MedalhaScalarFieldEnum)[keyof typeof MedalhaScalarFieldEnum]
+
+
+export const UserMedalhaScalarFieldEnum = {
+  id: 'id',
+  userId: 'userId',
+  medalhaId: 'medalhaId',
+  conquistaEm: 'conquistaEm'
+} as const
+
+export type UserMedalhaScalarFieldEnum = (typeof UserMedalhaScalarFieldEnum)[keyof typeof UserMedalhaScalarFieldEnum]
+
+
 export const SortOrder = {
   asc: 'asc',
   desc: 'desc'
@@ -1342,16 +1515,16 @@ export type StringFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 
 
 
 /**
- * Reference to a field of type 'DateTime'
+ * Reference to a field of type 'Int'
  */
-export type DateTimeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'DateTime'>
+export type IntFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Int'>
     
 
 
 /**
- * Reference to a field of type 'Int'
+ * Reference to a field of type 'DateTime'
  */
-export type IntFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Int'>
+export type DateTimeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'DateTime'>
     
 
 
@@ -1488,6 +1661,8 @@ export type GlobalOmitConfig = {
   avaliacao?: Prisma.AvaliacaoOmit
   curtida?: Prisma.CurtidaOmit
   relacao?: Prisma.RelacaoOmit
+  medalha?: Prisma.MedalhaOmit
+  userMedalha?: Prisma.UserMedalhaOmit
 }
 
 /* Types for Logging */

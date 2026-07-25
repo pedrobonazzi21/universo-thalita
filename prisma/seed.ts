@@ -604,7 +604,80 @@ const obras: ObraInput[] = [
   },
 ];
 
+interface PostInput {
+  titulo: string;
+  slug: string;
+  conteudo: string;
+  capaUrl?: string;
+  linkAfiliado?: string;
+  obraSlug?: string;
+  tags?: string[];
+}
+
+const posts: PostInput[] = [
+  {
+    titulo: "Fala Sério, Mãe!, de Thalita Rebouças: uma comédia divertida sobre a maternidade e o crescimento",
+    slug: "fala-serio-mae-resenha",
+    capaUrl: "/img/capa-fala-serio-mae.jpg",
+    linkAfiliado: "https://www.amazon.com.br/dp/8579804574",
+    obraSlug: "fala-serio-mae",
+    tags: ["Resenha", "Comédia", "Maternidade"],
+    conteudo: `Fala Sério, Mãe!, de Thalita Rebouças, é uma leitura leve e bem-humorada que acompanha a relação entre uma mãe e sua filha desde a gravidez até a adolescência. Em vez de narrar a história pelo olhar da filha, como costuma acontecer em livros voltados para o público jovem, a autora escolhe contar tudo pela perspectiva de Ângela, mostrando os desafios, as inseguranças e os momentos engraçados que fazem parte da maternidade.
+
+Ao longo da narrativa, a autora reforça que ser mãe significa aprender constantemente. Cada nova fase da vida da filha traz descobertas, preocupações e desafios diferentes.
+
+A escrita da Thalita é bastante simples e descontraída, o que faz com que a leitura seja rápida e muito envolvente. Os capítulos são curtos e apresentam episódios marcantes da vida de Malu, desde a infância até os conflitos típicos da adolescência. Essa estrutura faz o livro parecer uma coleção de memórias, deixando a leitura leve e divertida.
+
+Grande parte do humor surge justamente das diferenças entre mãe e filha. Enquanto Ângela tenta proteger Malu de qualquer problema, a adolescente busca cada vez mais independência e liberdade. Essa diferença de perspectivas rende situações engraçadas, mas também cria momentos de reflexão sobre as mudanças que acontecem naturalmente durante o crescimento.
+
+A relação entre mãe e filha muda conforme os anos passam. As discussões se tornam mais frequentes, mas o carinho e a preocupação continuam sendo o elo que mantém as duas unidas.
+
+Apesar do foco na comédia, o livro também reserva espaço para momentos emocionantes. A autora mostra que nem sempre existe um jeito certo de educar um filho e que tanto os pais quanto os filhos aprendem um com o outro ao longo da vida. Isso torna a história bastante fácil de se identificar, principalmente para quem já viveu situações parecidas em família.
+
+Por outro lado, a narrativa não apresenta um grande conflito central. Como o livro é dividido em diversos episódios do cotidiano, alguns momentos acabam sendo mais marcantes do que outros, e quem prefere histórias com uma trama mais contínua pode sentir falta de um desenvolvimento maior.
+
+Ainda assim, esse formato funciona muito bem dentro da proposta da obra. O grande destaque não está em acontecimentos extraordinários, mas na forma divertida como Thalita Rebouças retrata situações comuns da vida em família. O humor, os diálogos e a identificação com as personagens tornam a leitura bastante agradável.
+
+No fim, Fala Sério, Mãe! é um livro divertido, sensível e capaz de agradar leitores de diferentes idades. Sem grandes reviravoltas, a obra conquista justamente por mostrar que as relações familiares são feitas de pequenas histórias, muitos aprendizados e, acima de tudo, muito amor.`,
+  },
+  {
+    titulo: "Confissões de uma Garota Excluída: drama e autodescoberta na adolescência",
+    slug: "confissoes-garota-excluida-resenha",
+    capaUrl: "/img/capa-confissoes-de-uma-garota.jpg",
+    obraSlug: "confissoes-de-uma-garota-excluida",
+    tags: ["Resenha", "Drama", "Adolescência"],
+    conteudo: `Confissões de Uma Garota Excluída, Mal-Amada E (Um Pouco) Dramática acompanha Tetê, uma adolescente que precisa deixar sua vida confortável na Barra da Tijuca para morar com os avós em Copacabana. A mudança é abrupta e a personagem precisa lidar com a perda de privacidade, a separação do colégio e o medo de recomeçar tudo do zero.
+
+Thalita Rebouças conseguiu retratar com muita naturalidade o sentimento de exclusão que muitos adolescentes vivenciam. Tetê se sente deslocada, mas a narrativa não se prende ao drama. A autora equilibra os momentos de insegurança com situações leves e engraçadas, criando uma leitura fluida e envolvente.
+
+O grande ponto forte do livro é a representatividade. Tetê não é uma personagem perfeita — ela é dramática, insegura e, por vezes, egoísta. Isso a torna extremamente real e fácil de se identificar. O leitor acompanha sua evolução desde o medo inicial até a descoberta de que enfrentar os próprios medos é o único caminho para a felicidade.
+
+A estrutura do livro em capítulos curtos permite uma leitura rápida, mas sem perder a profundidade dos temas abordados. Amizade, autoaceitação, familiaridade e o medo do desconhecido são trabalhados com sensibilidade e humor.
+
+Para quem já passou por uma mudança de colégio ou se sentiu excluído em algum momento, este livro é uma leitura obrigatória. Thalita mostra que, mesmo nos momentos mais difíceis, sempre há espaço para novas amizades e descobertas.`,
+  },
+  {
+    titulo: "Tudo por um Pop Star: a energia contagiante da amizade e da adolescência",
+    slug: "tudo-por-um-pop-star-resenha",
+    capaUrl: "/img/capa-tudo-por-um-pop-star.jpg",
+    obraSlug: "tudo-por-um-pop-star-original",
+    tags: ["Resenha", "Romance", "Amizade"],
+    conteudo: `Tudo por um pop star é um daqueles livros que nos fazem reviver a intensidade da adolescência com um sorriso no rosto. A história acompanha Manu, Gabi e Ritinha, três melhores amigas completamente obcecadas pela boy band "Slava Body Disco Disco Boys".
+
+A força do livro está na química entre as três protagonistas. Cada uma tem uma personalidade diferente, mas a amizade entre elas é inabalável. Thalita Rebouças retrata com maestria essa fase da vida em que tudo parece ser o fim do mundo — um show, um encontro, uma desavença — mas que, olhando para trás, são apenasMEMÓRIAS que nos fazem sorrir.
+
+A escrita é leve, divertida e cheia de referências que remetem à cultura pop dos anos 2000. Os diálogos são naturais e as situações são tão absurdas que beiram a comédia. É impossível não se identificar com pelo menos uma das três amigas.
+
+O livro não se prende apenas ao romance. Thalita explora temas como amizade, fidelidade, ciúmes e a pressão social de ser adolescente. Tudo isso de forma leve, sem sermões ou lições óbvias.
+
+Tudo por um pop star é uma celebração da adolescência em todas as suas formas — intensa, caótica, divertida e, acima de tudo, inesquecível. Uma leitura perfeita para quem quer reviver aquela época em que um show de uma banda era o evento mais importante da vida.`,
+  },
+];
+
 async function main() {
+  await prisma.postTag.deleteMany();
+  await prisma.post.deleteMany();
+  await prisma.tag.deleteMany();
   await prisma.capa.deleteMany();
   await prisma.obra.deleteMany();
   console.log("Registros antigos removidos.");
@@ -652,6 +725,78 @@ async function main() {
 
   console.log(`${totalObras} obras criadas com sucesso!`);
   console.log(`${totalCapas} capas criadas com sucesso!`);
+
+  const obraTags: Record<string, string> = {};
+  for (const obra of obras) {
+    const tag = await prisma.tag.upsert({
+      where: { nome: obra.titulo },
+      update: {},
+      create: { nome: obra.titulo },
+    });
+    obraTags[obra.slug] = tag.id;
+  }
+  console.log(`${Object.keys(obraTags).length} tags de obras criadas!`);
+
+  let totalPosts = 0;
+  let totalPostTags = 0;
+
+  for (const post of posts) {
+    const { tags, obraSlug, ...postData } = post;
+
+    const obra = obraSlug
+      ? await prisma.obra.findUnique({ where: { slug: obraSlug } })
+      : null;
+
+    const created = await prisma.post.upsert({
+      where: { slug: postData.slug },
+      update: { ...postData, obraId: obra?.id ?? null },
+      create: { ...postData, obraId: obra?.id ?? null },
+    });
+
+    const tagNames = [...(tags ?? [])];
+    if (obraSlug && obraTags[obraSlug]) {
+      const obra = obras.find((o) => o.slug === obraSlug);
+      if (obra && !tagNames.includes(obra.titulo)) {
+        tagNames.push(obra.titulo);
+      }
+    }
+
+    for (const tagNome of tagNames) {
+      const tag = await prisma.tag.upsert({
+        where: { nome: tagNome },
+        update: {},
+        create: { nome: tagNome },
+      });
+
+      await prisma.postTag.upsert({
+        where: { postId_tagId: { postId: created.id, tagId: tag.id } },
+        update: {},
+        create: { postId: created.id, tagId: tag.id },
+      });
+      totalPostTags++;
+    }
+
+    totalPosts++;
+  }
+
+  console.log(`${totalPosts} posts criados com sucesso!`);
+  console.log(`${totalPostTags} post-tags criadas com sucesso!`);
+
+  const medalhas = [
+    { nome: "Primeira Leitura", icone: "\ud83d\udcda", descricao: "Primeira avalia\u00e7\u00e3o realizada" },
+    { nome: "Primeira Palavra", icone: "\ud83d\udcac", descricao: "Primeiro coment\u00e1rio publicado" },
+    { nome: "Estrela em Ascens\u00e3o", icone: "\ud83c\udf1f", descricao: "Dez coment\u00e1rios aprovados" },
+    { nome: "Leitor Dedicado", icone: "\ud83d\udcd6", descricao: "Participa\u00e7\u00e3o em cinco leituras diferentes" },
+  ];
+
+  for (const medalha of medalhas) {
+    await prisma.medalha.upsert({
+      where: { nome: medalha.nome },
+      update: {},
+      create: medalha,
+    });
+  }
+  console.log(`${medalhas.length} medalhas criadas com sucesso!`);
 }
 
 main()

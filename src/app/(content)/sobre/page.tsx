@@ -81,6 +81,16 @@ export default function SobrePage() {
                 </a>
               </li>
               <li>
+                <a href="https://www.netflix.com/" target="_blank" rel="noopener noreferrer" className="text-coral hover:text-coral/80 transition-colors">
+                  Netflix
+                </a> — capas de filmes
+              </li>
+              <li>
+                <a href="https://www.amazon.com.br/" target="_blank" rel="noopener noreferrer" className="text-coral hover:text-coral/80 transition-colors">
+                  Amazon
+                </a> — capas de livros
+              </li>
+              <li>
                 Dados bibliográficos coletados dos próprios livros e fontes oficiais.
               </li>
             </ul>

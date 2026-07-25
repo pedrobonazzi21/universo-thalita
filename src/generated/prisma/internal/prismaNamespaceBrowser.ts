@@ -60,7 +60,9 @@ export const ModelName = {
   Comentario: 'Comentario',
   Avaliacao: 'Avaliacao',
   Curtida: 'Curtida',
-  Relacao: 'Relacao'
+  Relacao: 'Relacao',
+  Medalha: 'Medalha',
+  UserMedalha: 'UserMedalha'
 } as const
 
 export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -82,6 +84,8 @@ export const UserScalarFieldEnum = {
   email: 'email',
   avatarUrl: 'avatarUrl',
   firebaseUid: 'firebaseUid',
+  xp: 'xp',
+  nivel: 'nivel',
   createdAt: 'createdAt'
 } as const
 
@@ -158,6 +162,7 @@ export const ComentarioScalarFieldEnum = {
   nota: 'nota',
   createdAt: 'createdAt',
   curtidasCount: 'curtidasCount',
+  destaque: 'destaque',
   obraId: 'obraId',
   postId: 'postId',
   usuarioId: 'usuarioId',
@@ -197,6 +202,26 @@ export const RelacaoScalarFieldEnum = {
 } as const
 
 export type RelacaoScalarFieldEnum = (typeof RelacaoScalarFieldEnum)[keyof typeof RelacaoScalarFieldEnum]
+
+
+export const MedalhaScalarFieldEnum = {
+  id: 'id',
+  nome: 'nome',
+  icone: 'icone',
+  descricao: 'descricao'
+} as const
+
+export type MedalhaScalarFieldEnum = (typeof MedalhaScalarFieldEnum)[keyof typeof MedalhaScalarFieldEnum]
+
+
+export const UserMedalhaScalarFieldEnum = {
+  id: 'id',
+  userId: 'userId',
+  medalhaId: 'medalhaId',
+  conquistaEm: 'conquistaEm'
+} as const
+
+export type UserMedalhaScalarFieldEnum = (typeof UserMedalhaScalarFieldEnum)[keyof typeof UserMedalhaScalarFieldEnum]
 
 
 export const SortOrder = {

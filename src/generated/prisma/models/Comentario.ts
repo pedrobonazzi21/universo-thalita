@@ -42,6 +42,7 @@ export type ComentarioMinAggregateOutputType = {
   nota: number | null
   createdAt: Date | null
   curtidasCount: number | null
+  destaque: boolean | null
   obraId: string | null
   postId: string | null
   usuarioId: string | null
@@ -54,6 +55,7 @@ export type ComentarioMaxAggregateOutputType = {
   nota: number | null
   createdAt: Date | null
   curtidasCount: number | null
+  destaque: boolean | null
   obraId: string | null
   postId: string | null
   usuarioId: string | null
@@ -66,6 +68,7 @@ export type ComentarioCountAggregateOutputType = {
   nota: number
   createdAt: number
   curtidasCount: number
+  destaque: number
   obraId: number
   postId: number
   usuarioId: number
@@ -90,6 +93,7 @@ export type ComentarioMinAggregateInputType = {
   nota?: true
   createdAt?: true
   curtidasCount?: true
+  destaque?: true
   obraId?: true
   postId?: true
   usuarioId?: true
@@ -102,6 +106,7 @@ export type ComentarioMaxAggregateInputType = {
   nota?: true
   createdAt?: true
   curtidasCount?: true
+  destaque?: true
   obraId?: true
   postId?: true
   usuarioId?: true
@@ -114,6 +119,7 @@ export type ComentarioCountAggregateInputType = {
   nota?: true
   createdAt?: true
   curtidasCount?: true
+  destaque?: true
   obraId?: true
   postId?: true
   usuarioId?: true
@@ -213,6 +219,7 @@ export type ComentarioGroupByOutputType = {
   nota: number | null
   createdAt: Date
   curtidasCount: number
+  destaque: boolean
   obraId: string | null
   postId: string | null
   usuarioId: string
@@ -248,6 +255,7 @@ export type ComentarioWhereInput = {
   nota?: Prisma.IntNullableFilter<"Comentario"> | number | null
   createdAt?: Prisma.DateTimeFilter<"Comentario"> | Date | string
   curtidasCount?: Prisma.IntFilter<"Comentario"> | number
+  destaque?: Prisma.BoolFilter<"Comentario"> | boolean
   obraId?: Prisma.StringNullableFilter<"Comentario"> | string | null
   postId?: Prisma.StringNullableFilter<"Comentario"> | string | null
   usuarioId?: Prisma.StringFilter<"Comentario"> | string
@@ -266,6 +274,7 @@ export type ComentarioOrderByWithRelationInput = {
   nota?: Prisma.SortOrderInput | Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   curtidasCount?: Prisma.SortOrder
+  destaque?: Prisma.SortOrder
   obraId?: Prisma.SortOrderInput | Prisma.SortOrder
   postId?: Prisma.SortOrderInput | Prisma.SortOrder
   usuarioId?: Prisma.SortOrder
@@ -287,6 +296,7 @@ export type ComentarioWhereUniqueInput = Prisma.AtLeast<{
   nota?: Prisma.IntNullableFilter<"Comentario"> | number | null
   createdAt?: Prisma.DateTimeFilter<"Comentario"> | Date | string
   curtidasCount?: Prisma.IntFilter<"Comentario"> | number
+  destaque?: Prisma.BoolFilter<"Comentario"> | boolean
   obraId?: Prisma.StringNullableFilter<"Comentario"> | string | null
   postId?: Prisma.StringNullableFilter<"Comentario"> | string | null
   usuarioId?: Prisma.StringFilter<"Comentario"> | string
@@ -305,6 +315,7 @@ export type ComentarioOrderByWithAggregationInput = {
   nota?: Prisma.SortOrderInput | Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   curtidasCount?: Prisma.SortOrder
+  destaque?: Prisma.SortOrder
   obraId?: Prisma.SortOrderInput | Prisma.SortOrder
   postId?: Prisma.SortOrderInput | Prisma.SortOrder
   usuarioId?: Prisma.SortOrder
@@ -325,6 +336,7 @@ export type ComentarioScalarWhereWithAggregatesInput = {
   nota?: Prisma.IntNullableWithAggregatesFilter<"Comentario"> | number | null
   createdAt?: Prisma.DateTimeWithAggregatesFilter<"Comentario"> | Date | string
   curtidasCount?: Prisma.IntWithAggregatesFilter<"Comentario"> | number
+  destaque?: Prisma.BoolWithAggregatesFilter<"Comentario"> | boolean
   obraId?: Prisma.StringNullableWithAggregatesFilter<"Comentario"> | string | null
   postId?: Prisma.StringNullableWithAggregatesFilter<"Comentario"> | string | null
   usuarioId?: Prisma.StringWithAggregatesFilter<"Comentario"> | string
@@ -337,6 +349,7 @@ export type ComentarioCreateInput = {
   nota?: number | null
   createdAt?: Date | string
   curtidasCount?: number
+  destaque?: boolean
   obra?: Prisma.ObraCreateNestedOneWithoutComentariosInput
   post?: Prisma.PostCreateNestedOneWithoutComentariosInput
   usuario: Prisma.UserCreateNestedOneWithoutComentariosInput
@@ -351,6 +364,7 @@ export type ComentarioUncheckedCreateInput = {
   nota?: number | null
   createdAt?: Date | string
   curtidasCount?: number
+  destaque?: boolean
   obraId?: string | null
   postId?: string | null
   usuarioId: string
@@ -365,6 +379,7 @@ export type ComentarioUpdateInput = {
   nota?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   curtidasCount?: Prisma.IntFieldUpdateOperationsInput | number
+  destaque?: Prisma.BoolFieldUpdateOperationsInput | boolean
   obra?: Prisma.ObraUpdateOneWithoutComentariosNestedInput
   post?: Prisma.PostUpdateOneWithoutComentariosNestedInput
   usuario?: Prisma.UserUpdateOneRequiredWithoutComentariosNestedInput
@@ -379,6 +394,7 @@ export type ComentarioUncheckedUpdateInput = {
   nota?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   curtidasCount?: Prisma.IntFieldUpdateOperationsInput | number
+  destaque?: Prisma.BoolFieldUpdateOperationsInput | boolean
   obraId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   postId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   usuarioId?: Prisma.StringFieldUpdateOperationsInput | string
@@ -393,6 +409,7 @@ export type ComentarioCreateManyInput = {
   nota?: number | null
   createdAt?: Date | string
   curtidasCount?: number
+  destaque?: boolean
   obraId?: string | null
   postId?: string | null
   usuarioId: string
@@ -405,6 +422,7 @@ export type ComentarioUpdateManyMutationInput = {
   nota?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   curtidasCount?: Prisma.IntFieldUpdateOperationsInput | number
+  destaque?: Prisma.BoolFieldUpdateOperationsInput | boolean
 }
 
 export type ComentarioUncheckedUpdateManyInput = {
@@ -413,6 +431,7 @@ export type ComentarioUncheckedUpdateManyInput = {
   nota?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   curtidasCount?: Prisma.IntFieldUpdateOperationsInput | number
+  destaque?: Prisma.BoolFieldUpdateOperationsInput | boolean
   obraId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   postId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   usuarioId?: Prisma.StringFieldUpdateOperationsInput | string
@@ -440,6 +459,7 @@ export type ComentarioCountOrderByAggregateInput = {
   nota?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   curtidasCount?: Prisma.SortOrder
+  destaque?: Prisma.SortOrder
   obraId?: Prisma.SortOrder
   postId?: Prisma.SortOrder
   usuarioId?: Prisma.SortOrder
@@ -457,6 +477,7 @@ export type ComentarioMaxOrderByAggregateInput = {
   nota?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   curtidasCount?: Prisma.SortOrder
+  destaque?: Prisma.SortOrder
   obraId?: Prisma.SortOrder
   postId?: Prisma.SortOrder
   usuarioId?: Prisma.SortOrder
@@ -469,6 +490,7 @@ export type ComentarioMinOrderByAggregateInput = {
   nota?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   curtidasCount?: Prisma.SortOrder
+  destaque?: Prisma.SortOrder
   obraId?: Prisma.SortOrder
   postId?: Prisma.SortOrder
   usuarioId?: Prisma.SortOrder
@@ -689,6 +711,7 @@ export type ComentarioCreateWithoutUsuarioInput = {
   nota?: number | null
   createdAt?: Date | string
   curtidasCount?: number
+  destaque?: boolean
   obra?: Prisma.ObraCreateNestedOneWithoutComentariosInput
   post?: Prisma.PostCreateNestedOneWithoutComentariosInput
   parent?: Prisma.ComentarioCreateNestedOneWithoutRespostasInput
@@ -702,6 +725,7 @@ export type ComentarioUncheckedCreateWithoutUsuarioInput = {
   nota?: number | null
   createdAt?: Date | string
   curtidasCount?: number
+  destaque?: boolean
   obraId?: string | null
   postId?: string | null
   parentId?: string | null
@@ -743,6 +767,7 @@ export type ComentarioScalarWhereInput = {
   nota?: Prisma.IntNullableFilter<"Comentario"> | number | null
   createdAt?: Prisma.DateTimeFilter<"Comentario"> | Date | string
   curtidasCount?: Prisma.IntFilter<"Comentario"> | number
+  destaque?: Prisma.BoolFilter<"Comentario"> | boolean
   obraId?: Prisma.StringNullableFilter<"Comentario"> | string | null
   postId?: Prisma.StringNullableFilter<"Comentario"> | string | null
   usuarioId?: Prisma.StringFilter<"Comentario"> | string
@@ -755,6 +780,7 @@ export type ComentarioCreateWithoutObraInput = {
   nota?: number | null
   createdAt?: Date | string
   curtidasCount?: number
+  destaque?: boolean
   post?: Prisma.PostCreateNestedOneWithoutComentariosInput
   usuario: Prisma.UserCreateNestedOneWithoutComentariosInput
   parent?: Prisma.ComentarioCreateNestedOneWithoutRespostasInput
@@ -768,6 +794,7 @@ export type ComentarioUncheckedCreateWithoutObraInput = {
   nota?: number | null
   createdAt?: Date | string
   curtidasCount?: number
+  destaque?: boolean
   postId?: string | null
   usuarioId: string
   parentId?: string | null
@@ -806,6 +833,7 @@ export type ComentarioCreateWithoutPostInput = {
   nota?: number | null
   createdAt?: Date | string
   curtidasCount?: number
+  destaque?: boolean
   obra?: Prisma.ObraCreateNestedOneWithoutComentariosInput
   usuario: Prisma.UserCreateNestedOneWithoutComentariosInput
   parent?: Prisma.ComentarioCreateNestedOneWithoutRespostasInput
@@ -819,6 +847,7 @@ export type ComentarioUncheckedCreateWithoutPostInput = {
   nota?: number | null
   createdAt?: Date | string
   curtidasCount?: number
+  destaque?: boolean
   obraId?: string | null
   usuarioId: string
   parentId?: string | null
@@ -857,6 +886,7 @@ export type ComentarioCreateWithoutRespostasInput = {
   nota?: number | null
   createdAt?: Date | string
   curtidasCount?: number
+  destaque?: boolean
   obra?: Prisma.ObraCreateNestedOneWithoutComentariosInput
   post?: Prisma.PostCreateNestedOneWithoutComentariosInput
   usuario: Prisma.UserCreateNestedOneWithoutComentariosInput
@@ -870,6 +900,7 @@ export type ComentarioUncheckedCreateWithoutRespostasInput = {
   nota?: number | null
   createdAt?: Date | string
   curtidasCount?: number
+  destaque?: boolean
   obraId?: string | null
   postId?: string | null
   usuarioId: string
@@ -888,6 +919,7 @@ export type ComentarioCreateWithoutParentInput = {
   nota?: number | null
   createdAt?: Date | string
   curtidasCount?: number
+  destaque?: boolean
   obra?: Prisma.ObraCreateNestedOneWithoutComentariosInput
   post?: Prisma.PostCreateNestedOneWithoutComentariosInput
   usuario: Prisma.UserCreateNestedOneWithoutComentariosInput
@@ -901,6 +933,7 @@ export type ComentarioUncheckedCreateWithoutParentInput = {
   nota?: number | null
   createdAt?: Date | string
   curtidasCount?: number
+  destaque?: boolean
   obraId?: string | null
   postId?: string | null
   usuarioId: string
@@ -934,6 +967,7 @@ export type ComentarioUpdateWithoutRespostasInput = {
   nota?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   curtidasCount?: Prisma.IntFieldUpdateOperationsInput | number
+  destaque?: Prisma.BoolFieldUpdateOperationsInput | boolean
   obra?: Prisma.ObraUpdateOneWithoutComentariosNestedInput
   post?: Prisma.PostUpdateOneWithoutComentariosNestedInput
   usuario?: Prisma.UserUpdateOneRequiredWithoutComentariosNestedInput
@@ -947,6 +981,7 @@ export type ComentarioUncheckedUpdateWithoutRespostasInput = {
   nota?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   curtidasCount?: Prisma.IntFieldUpdateOperationsInput | number
+  destaque?: Prisma.BoolFieldUpdateOperationsInput | boolean
   obraId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   postId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   usuarioId?: Prisma.StringFieldUpdateOperationsInput | string
@@ -976,6 +1011,7 @@ export type ComentarioCreateWithoutCurtidasInput = {
   nota?: number | null
   createdAt?: Date | string
   curtidasCount?: number
+  destaque?: boolean
   obra?: Prisma.ObraCreateNestedOneWithoutComentariosInput
   post?: Prisma.PostCreateNestedOneWithoutComentariosInput
   usuario: Prisma.UserCreateNestedOneWithoutComentariosInput
@@ -989,6 +1025,7 @@ export type ComentarioUncheckedCreateWithoutCurtidasInput = {
   nota?: number | null
   createdAt?: Date | string
   curtidasCount?: number
+  destaque?: boolean
   obraId?: string | null
   postId?: string | null
   usuarioId: string
@@ -1018,6 +1055,7 @@ export type ComentarioUpdateWithoutCurtidasInput = {
   nota?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   curtidasCount?: Prisma.IntFieldUpdateOperationsInput | number
+  destaque?: Prisma.BoolFieldUpdateOperationsInput | boolean
   obra?: Prisma.ObraUpdateOneWithoutComentariosNestedInput
   post?: Prisma.PostUpdateOneWithoutComentariosNestedInput
   usuario?: Prisma.UserUpdateOneRequiredWithoutComentariosNestedInput
@@ -1031,6 +1069,7 @@ export type ComentarioUncheckedUpdateWithoutCurtidasInput = {
   nota?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   curtidasCount?: Prisma.IntFieldUpdateOperationsInput | number
+  destaque?: Prisma.BoolFieldUpdateOperationsInput | boolean
   obraId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   postId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   usuarioId?: Prisma.StringFieldUpdateOperationsInput | string
@@ -1044,6 +1083,7 @@ export type ComentarioCreateManyUsuarioInput = {
   nota?: number | null
   createdAt?: Date | string
   curtidasCount?: number
+  destaque?: boolean
   obraId?: string | null
   postId?: string | null
   parentId?: string | null
@@ -1055,6 +1095,7 @@ export type ComentarioUpdateWithoutUsuarioInput = {
   nota?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   curtidasCount?: Prisma.IntFieldUpdateOperationsInput | number
+  destaque?: Prisma.BoolFieldUpdateOperationsInput | boolean
   obra?: Prisma.ObraUpdateOneWithoutComentariosNestedInput
   post?: Prisma.PostUpdateOneWithoutComentariosNestedInput
   parent?: Prisma.ComentarioUpdateOneWithoutRespostasNestedInput
@@ -1068,6 +1109,7 @@ export type ComentarioUncheckedUpdateWithoutUsuarioInput = {
   nota?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   curtidasCount?: Prisma.IntFieldUpdateOperationsInput | number
+  destaque?: Prisma.BoolFieldUpdateOperationsInput | boolean
   obraId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   postId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   parentId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -1081,6 +1123,7 @@ export type ComentarioUncheckedUpdateManyWithoutUsuarioInput = {
   nota?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   curtidasCount?: Prisma.IntFieldUpdateOperationsInput | number
+  destaque?: Prisma.BoolFieldUpdateOperationsInput | boolean
   obraId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   postId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   parentId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -1092,6 +1135,7 @@ export type ComentarioCreateManyObraInput = {
   nota?: number | null
   createdAt?: Date | string
   curtidasCount?: number
+  destaque?: boolean
   postId?: string | null
   usuarioId: string
   parentId?: string | null
@@ -1103,6 +1147,7 @@ export type ComentarioUpdateWithoutObraInput = {
   nota?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   curtidasCount?: Prisma.IntFieldUpdateOperationsInput | number
+  destaque?: Prisma.BoolFieldUpdateOperationsInput | boolean
   post?: Prisma.PostUpdateOneWithoutComentariosNestedInput
   usuario?: Prisma.UserUpdateOneRequiredWithoutComentariosNestedInput
   parent?: Prisma.ComentarioUpdateOneWithoutRespostasNestedInput
@@ -1116,6 +1161,7 @@ export type ComentarioUncheckedUpdateWithoutObraInput = {
   nota?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   curtidasCount?: Prisma.IntFieldUpdateOperationsInput | number
+  destaque?: Prisma.BoolFieldUpdateOperationsInput | boolean
   postId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   usuarioId?: Prisma.StringFieldUpdateOperationsInput | string
   parentId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -1129,6 +1175,7 @@ export type ComentarioUncheckedUpdateManyWithoutObraInput = {
   nota?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   curtidasCount?: Prisma.IntFieldUpdateOperationsInput | number
+  destaque?: Prisma.BoolFieldUpdateOperationsInput | boolean
   postId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   usuarioId?: Prisma.StringFieldUpdateOperationsInput | string
   parentId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -1140,6 +1187,7 @@ export type ComentarioCreateManyPostInput = {
   nota?: number | null
   createdAt?: Date | string
   curtidasCount?: number
+  destaque?: boolean
   obraId?: string | null
   usuarioId: string
   parentId?: string | null
@@ -1151,6 +1199,7 @@ export type ComentarioUpdateWithoutPostInput = {
   nota?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   curtidasCount?: Prisma.IntFieldUpdateOperationsInput | number
+  destaque?: Prisma.BoolFieldUpdateOperationsInput | boolean
   obra?: Prisma.ObraUpdateOneWithoutComentariosNestedInput
   usuario?: Prisma.UserUpdateOneRequiredWithoutComentariosNestedInput
   parent?: Prisma.ComentarioUpdateOneWithoutRespostasNestedInput
@@ -1164,6 +1213,7 @@ export type ComentarioUncheckedUpdateWithoutPostInput = {
   nota?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   curtidasCount?: Prisma.IntFieldUpdateOperationsInput | number
+  destaque?: Prisma.BoolFieldUpdateOperationsInput | boolean
   obraId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   usuarioId?: Prisma.StringFieldUpdateOperationsInput | string
   parentId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -1177,6 +1227,7 @@ export type ComentarioUncheckedUpdateManyWithoutPostInput = {
   nota?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   curtidasCount?: Prisma.IntFieldUpdateOperationsInput | number
+  destaque?: Prisma.BoolFieldUpdateOperationsInput | boolean
   obraId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   usuarioId?: Prisma.StringFieldUpdateOperationsInput | string
   parentId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
@@ -1188,6 +1239,7 @@ export type ComentarioCreateManyParentInput = {
   nota?: number | null
   createdAt?: Date | string
   curtidasCount?: number
+  destaque?: boolean
   obraId?: string | null
   postId?: string | null
   usuarioId: string
@@ -1199,6 +1251,7 @@ export type ComentarioUpdateWithoutParentInput = {
   nota?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   curtidasCount?: Prisma.IntFieldUpdateOperationsInput | number
+  destaque?: Prisma.BoolFieldUpdateOperationsInput | boolean
   obra?: Prisma.ObraUpdateOneWithoutComentariosNestedInput
   post?: Prisma.PostUpdateOneWithoutComentariosNestedInput
   usuario?: Prisma.UserUpdateOneRequiredWithoutComentariosNestedInput
@@ -1212,6 +1265,7 @@ export type ComentarioUncheckedUpdateWithoutParentInput = {
   nota?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   curtidasCount?: Prisma.IntFieldUpdateOperationsInput | number
+  destaque?: Prisma.BoolFieldUpdateOperationsInput | boolean
   obraId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   postId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   usuarioId?: Prisma.StringFieldUpdateOperationsInput | string
@@ -1225,6 +1279,7 @@ export type ComentarioUncheckedUpdateManyWithoutParentInput = {
   nota?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   curtidasCount?: Prisma.IntFieldUpdateOperationsInput | number
+  destaque?: Prisma.BoolFieldUpdateOperationsInput | boolean
   obraId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   postId?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   usuarioId?: Prisma.StringFieldUpdateOperationsInput | string
@@ -1276,6 +1331,7 @@ export type ComentarioSelect<ExtArgs extends runtime.Types.Extensions.InternalAr
   nota?: boolean
   createdAt?: boolean
   curtidasCount?: boolean
+  destaque?: boolean
   obraId?: boolean
   postId?: boolean
   usuarioId?: boolean
@@ -1295,6 +1351,7 @@ export type ComentarioSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Ex
   nota?: boolean
   createdAt?: boolean
   curtidasCount?: boolean
+  destaque?: boolean
   obraId?: boolean
   postId?: boolean
   usuarioId?: boolean
@@ -1311,6 +1368,7 @@ export type ComentarioSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Ex
   nota?: boolean
   createdAt?: boolean
   curtidasCount?: boolean
+  destaque?: boolean
   obraId?: boolean
   postId?: boolean
   usuarioId?: boolean
@@ -1327,13 +1385,14 @@ export type ComentarioSelectScalar = {
   nota?: boolean
   createdAt?: boolean
   curtidasCount?: boolean
+  destaque?: boolean
   obraId?: boolean
   postId?: boolean
   usuarioId?: boolean
   parentId?: boolean
 }
 
-export type ComentarioOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "texto" | "nota" | "createdAt" | "curtidasCount" | "obraId" | "postId" | "usuarioId" | "parentId", ExtArgs["result"]["comentario"]>
+export type ComentarioOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "texto" | "nota" | "createdAt" | "curtidasCount" | "destaque" | "obraId" | "postId" | "usuarioId" | "parentId", ExtArgs["result"]["comentario"]>
 export type ComentarioInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   obra?: boolean | Prisma.Comentario$obraArgs<ExtArgs>
   post?: boolean | Prisma.Comentario$postArgs<ExtArgs>
@@ -1372,6 +1431,7 @@ export type $ComentarioPayload<ExtArgs extends runtime.Types.Extensions.Internal
     nota: number | null
     createdAt: Date
     curtidasCount: number
+    destaque: boolean
     obraId: string | null
     postId: string | null
     usuarioId: string
@@ -1810,6 +1870,7 @@ export interface ComentarioFieldRefs {
   readonly nota: Prisma.FieldRef<"Comentario", 'Int'>
   readonly createdAt: Prisma.FieldRef<"Comentario", 'DateTime'>
   readonly curtidasCount: Prisma.FieldRef<"Comentario", 'Int'>
+  readonly destaque: Prisma.FieldRef<"Comentario", 'Boolean'>
   readonly obraId: Prisma.FieldRef<"Comentario", 'String'>
   readonly postId: Prisma.FieldRef<"Comentario", 'String'>
   readonly usuarioId: Prisma.FieldRef<"Comentario", 'String'>
