@@ -13,20 +13,24 @@ export const dynamic = "force-dynamic";
 
 export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {
   const { slug } = await params;
-  const obra = await prisma.obra.findUnique({
-    where: { slug },
-    include: { capas: { orderBy: { ordem: "asc" }, take: 1 } },
-  });
-  if (!obra) return { title: "Obra não encontrada" };
-  return {
-    title: obra.titulo,
-    description: obra.sinopse ?? `${obra.tipo} de Thalita Rebouças (${obra.ano}).`,
-    openGraph: {
-      title: `${obra.titulo} | Universo Thalita Rebouças`,
-      description: obra.sinopse ?? undefined,
-      images: obra.capas[0] ? [obra.capas[0].url] : undefined,
-    },
-  };
+  try {
+    const obra = await prisma.obra.findUnique({
+      where: { slug },
+      include: { capas: { orderBy: { ordem: "asc" }, take: 1 } },
+    });
+    if (!obra) return { title: "Obra n\u00e3o encontrada" };
+    return {
+      title: obra.titulo,
+      description: obra.sinopse ?? `${obra.tipo} de Thalita Rebou\u00e7as (${obra.ano}).`,
+      openGraph: {
+        title: `${obra.titulo} | Universo Thalita Rebou\u00e7as`,
+        description: obra.sinopse ?? undefined,
+        images: obra.capas[0] ? [obra.capas[0].url] : undefined,
+      },
+    };
+  } catch {
+    return { title: "Obra" };
+  }
 }
 
 function StarRating({ rating, size = 18 }: { rating: number; size?: number }) {
@@ -51,14 +55,20 @@ function StarRating({ rating, size = 18 }: { rating: number; size?: number }) {
 
 export default async function ObraPage({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params;
-  const obra = await prisma.obra.findUnique({
-    where: { slug },
-    include: {
-      capas: { orderBy: { ordem: "asc" } },
-      relacoesDe: { include: { obraPara: { select: { titulo: true, slug: true, tipo: true } } } },
-      relacoesPara: { include: { obraDe: { select: { titulo: true, slug: true, tipo: true } } } },
-    },
-  });
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  let obra: any = null;
+  try {
+    obra = await prisma.obra.findUnique({
+      where: { slug },
+      include: {
+        capas: { orderBy: { ordem: "asc" } },
+        relacoesDe: { include: { obraPara: { select: { titulo: true, slug: true, tipo: true } } } },
+        relacoesPara: { include: { obraDe: { select: { titulo: true, slug: true, tipo: true } } } },
+      },
+    });
+  } catch {
+    notFound();
+  }
 
   if (!obra) notFound();
 
@@ -67,8 +77,8 @@ export default async function ObraPage({ params }: { params: Promise<{ slug: str
     mediaComunidade = await getMediaAvaliacoes(obra.id);
   } catch {}
 
-  const adaptacao = obra.relacoesDe.find((r) => r.tipo === "adaptacao")?.obraPara
-    ?? obra.relacoesPara.find((r) => r.tipo === "adaptacao")?.obraDe;
+  const adaptacao = obra.relacoesDe.find((r: { tipo: string }) => r.tipo === "adaptacao")?.obraPara
+    ?? obra.relacoesPara.find((r: { tipo: string }) => r.tipo === "adaptacao")?.obraDe;
 
   return (
     <PageTransition>
@@ -87,7 +97,7 @@ export default async function ObraPage({ params }: { params: Promise<{ slug: str
                   </div>
                   {obra.capas.length > 1 && (
                     <div className="flex gap-2 overflow-x-auto pb-1">
-                      {obra.capas.map((capa, i) => (
+                      {obra.capas.map((capa: { id: string; url: string }, i: number) => (
                         <div key={capa.id} className="shrink-0 w-16 h-22 rounded-lg overflow-hidden border border-gray-light/30 opacity-70 hover:opacity-100 transition-opacity">
                           <img
                             src={capa.url}

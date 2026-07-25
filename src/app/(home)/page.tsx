@@ -28,10 +28,23 @@ function StarRating({ rating }: { rating: number }) {
 }
 
 export default async function Home() {
-  let obras = await prisma.obra.findMany({
-    take: 6,
-    include: { capas: { orderBy: { ordem: "asc" }, take: 1 } },
-  });
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  let obras: any[] = [];
+  try {
+    obras = await prisma.obra.findMany({
+      take: 6,
+      include: { capas: { orderBy: { ordem: "asc" }, take: 1 } },
+    });
+  } catch {
+    return (
+      <PageTransition>
+        <Hero covers={[]} />
+        <main className="max-w-7xl mx-auto px-6 pb-24">
+          <p className="text-center text-foreground/40 py-20">Carregando...</p>
+        </main>
+      </PageTransition>
+    );
+  }
 
   const heroCovers = obras.map((o) => ({
     titulo: o.titulo,

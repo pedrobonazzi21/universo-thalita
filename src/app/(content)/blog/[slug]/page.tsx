@@ -11,43 +11,59 @@ export const dynamic = "force-dynamic";
 
 export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {
   const { slug } = await params;
-  const post = await prisma.post.findUnique({
-    where: { slug },
-  });
-  if (!post) return { title: "Post não encontrado" };
-  return {
-    title: post.titulo,
-    description: post.conteudo.slice(0, 160),
-    openGraph: {
-      title: `${post.titulo} | Universo Thalita Rebouças`,
+  try {
+    const post = await prisma.post.findUnique({
+      where: { slug },
+    });
+    if (!post) return { title: "Post n\u00e3o encontrado" };
+    return {
+      title: post.titulo,
       description: post.conteudo.slice(0, 160),
-    },
-  };
+      openGraph: {
+        title: `${post.titulo} | Universo Thalita Rebou\u00e7as`,
+        description: post.conteudo.slice(0, 160),
+      },
+    };
+  } catch {
+    return { title: "Post" };
+  }
 }
 
 export default async function BlogPostPage({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params;
-  const post = await prisma.post.findUnique({
-    where: { slug },
-    include: {
-      obra: { select: { titulo: true, editora: true } },
-      tags: { include: { tag: true } },
-    },
-  });
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  let post: any = null;
+  try {
+    post = await prisma.post.findUnique({
+      where: { slug },
+      include: {
+        obra: { select: { titulo: true, editora: true } },
+        tags: { include: { tag: true } },
+      },
+    });
+  } catch {
+    notFound();
+  }
 
   if (!post) notFound();
 
-  const postsRelacionados = post.tags.length > 0
-    ? await prisma.post.findMany({
-        where: {
-          id: { not: post.id },
-          tags: { some: { tagId: { in: post.tags.map((t) => t.tagId) } } },
-        },
-        take: 3,
-        orderBy: { dataPublicacao: "desc" },
-        select: { titulo: true, slug: true, dataPublicacao: true },
-      })
-    : [];
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  let postsRelacionados: any[] = [];
+  try {
+    postsRelacionados = post.tags.length > 0
+      ? await prisma.post.findMany({
+          where: {
+            id: { not: post.id },
+            tags: { some: { tagId: { in: post.tags.map((t: { tagId: string }) => t.tagId) } } },
+          },
+          take: 3,
+          orderBy: { dataPublicacao: "desc" },
+          select: { titulo: true, slug: true, dataPublicacao: true },
+        })
+      : [];
+  } catch {
+    postsRelacionados = [];
+  }
 
   return (
     <PageTransition>
@@ -110,7 +126,7 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
             {post.tags.length > 0 && (
               <div className="flex items-center gap-2 mt-6 flex-wrap">
                 <Tag className="w-3.5 h-3.5 text-foreground/40" />
-                {post.tags.map((pt) => (
+                {post.tags.map((pt: { tag: { id: string; nome: string } }) => (
                   <span
                     key={pt.tag.id}
                     className="px-2.5 py-0.5 rounded-full bg-coral/10 text-coral text-xs font-medium"

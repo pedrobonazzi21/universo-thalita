@@ -44,9 +44,23 @@ export default async function ObrasPage({
   const { tipo } = await searchParams;
   const filtro = tipo?.toLowerCase() === "livro" ? "Livro" : tipo?.toLowerCase() === "filme" ? "Filme" : null;
 
-  let obras = await prisma.obra.findMany({
-    include: { capas: { orderBy: { ordem: "asc" }, take: 1 } },
-  });
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  let obras: any[] = [];
+  try {
+    obras = await prisma.obra.findMany({
+      include: { capas: { orderBy: { ordem: "asc" }, take: 1 } },
+    });
+  } catch {
+    return (
+      <PageTransition>
+        <main className="pt-24 max-w-7xl mx-auto px-6 pb-24">
+          <h1 className="font-heading text-4xl text-foreground mb-2">Obras</h1>
+          <p className="text-foreground/50 mb-10">Todos os livros e filmes de Thalita Rebou\u00e7as</p>
+          <p className="text-center text-sm text-foreground/30 py-12">Carregando...</p>
+        </main>
+      </PageTransition>
+    );
+  }
 
   if (filtro) {
     obras = obras.filter((o) => o.tipo === filtro);

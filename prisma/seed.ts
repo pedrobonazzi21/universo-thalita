@@ -143,80 +143,22 @@ const obras: ObraInput[] = [
     ],
   },
   {
-    titulo: "Fala sério, professor! Edição revista e ampliada",
-    slug: "fala-serio-professor",
+    titulo: "Fala sério, amiga!",
+    slug: "fala-serio-amiga",
     tipo: "Livro",
-    ano: 2023,
+    ano: 2008,
     editora: "Rocco",
-    genero: "Crônica/ ficção",
+    genero: "literatura infantojuvenil",
     sinopse:
-      "Nesta edição revista e ampliada, Thalita Rebouças retoma a trajetória de Malu, abordando de forma bem-humorada as memórias escolares e a influência de professores marcantes em sua vida dos 3 aos 22 anos, através de crônicas sobre os desafios do crescimento. A obra, lançada pela Editora Rocco, atualiza as trapalhadas da protagonista para a realidade da geração hiperconectada dos anos 2020.",
-    depoimentos:
-      '"Nós nos identificamos com a Malu porque várias coisas que ela vive nós também já vivemos ou conhecemos alguém que já passou por aquela situação, então a leitura se torna fluida e muito divertida." – Beatriz Gosmin, do WordPress',
-    capas: [
-      { url: "/img/capa-fala-serio-professor.jpg", editora: "Rocco", ano: 2023 },
-    ],
-  },
-  {
-    titulo: "Fala sério, amiga! Edição revista e ampliada",
-    slug: "fala-serio-amiga-edicao-revista",
-    tipo: "Livro",
-    ano: 2023,
-    editora: "Rocco",
-    genero: "Crônica/ ficção",
-    sinopse:
-      "Na edição revista e ampliada de 'Fala sério, amiga!', a autora Thalita Rebouças convida o leitor a mergulhar nas memórias de sua famosa protagonista, Malu (Maria de Lourdes), focando exclusivamente em suas relações de amizade dos 3 aos 21 anos de idade. Por meio de crônicas leves e bem-humoradas, o livro aborda situações universais que moldam os laços afetivos na juventude, como apelidos bizarros, ciúmes, brigas bobas, sinceridade excessiva e a convivência com namorados 'chatinhos' de amigas queridas.",
+      "Fala sério, amiga! coloca os holofotes sobre a intensa vida social de Maria de Lourdes, a Malu. Organizada em crônicas cronológicas desde os 3 aninhos até os 21 anos.",
     depoimentos: null,
     capas: [
-      { url: "/img/capa-fala-serio-amiga-capa-2.jpg", editora: "Rocco", ano: 2023 },
+      { url: "/img/capa-fala-serio-amiga.jpg", editora: "Rocco", ano: 2008 },
+      { url: "/img/capa-fala-serio-amiga-capa-2.jpg", editora: "Rocco", ano: 2008 },
     ],
   },
   {
-    titulo: "Tudo por um namorado: Edição revista e ampliada",
-    slug: "tudo-por-um-namorado-edicao-revista",
-    tipo: "Livro",
-    ano: 2022,
-    editora: "Rocco",
-    genero: "Romance Juvenil",
-    sinopse:
-      "Na edição revista e ampliada de 'Tudo por um namorado', a escritora Thalita Rebouças traz de volta as inseparáveis amigas Manu, Gabi e Ritinha, trio de protagonistas que conquistou o público no sucesso 'Tudo por um pop star'. Se antes as adolescentes eram capazes de qualquer loucura para chegar perto de seus ídolos musicais, desta vez elas enfrentam as dores e as delícias do primeiro amor quando Gabi se apaixona por Diogo, um jovem surfista e músico amador.",
-    depoimentos: null,
-    capas: [
-      { url: "/img/capa-tudo-por-um-namorado.jpg", editora: "Rocco", ano: 2022 },
-      { url: "/img/capa-tudo-por-um-namorado-capa-2.jpg", editora: "Rocco", ano: 2022 },
-    ],
-  },
-  {
-    titulo: "Fala sério, filha! Edição revista e ampliada",
-    slug: "fala-serio-filha-edicao-revista",
-    tipo: "Livro",
-    ano: 2022,
-    editora: "Rocco",
-    genero: "Crônica/ ficção",
-    sinopse:
-      "Na edição revista e ampliada de 'Fala sério, filha!', subtitulada originalmente como 'A vingança dos pais', a autora Thalita Rebouças inverte os papéis da sua famosa série literária para dar voz aos pensamentos de Ângela Cristina e Armando, os pais da carismática protagonista Malu (Maria de Lourdes). Afastando-se do tradicional ponto de vista da jovem, a obra reúne crônicas bem-humoradas que cobrem a trajetória de Malu dos seis meses aos 21 anos de idade, mas sob a perspectiva madura, protetora e muitas vezes desesperada de seus genitores.",
-    depoimentos: null,
-    capas: [
-      { url: "/img/capa-fala-serio-filha.jpg", editora: "Rocco", ano: 2022 },
-    ],
-  },
-  {
-    titulo: "Fala sério, mãe! Edição revista e ampliada",
-    slug: "fala-serio-mae-edicao-revista",
-    tipo: "Livro",
-    ano: 2022,
-    editora: "Rocco",
-    genero: "Crônica/ ficção",
-    sinopse:
-      "Na edição revista e ampliada de 'Fala sério, mãe!', a escritora Thalita Rebouças apresenta uma coletânea de crônicas bem-humoradas que mapeiam a intensa, afetiva e turbulenta relação entre a mãe coruja Ângela Cristina e sua filha Maria de Lourdes, a Malu. A estrutura narrativa se divide de forma única: a primeira metade do livro reflete o ponto de vista e as angústias da mãe desde a gravidez e a infância da menina; já a partir dos 12 anos, logo após o primeiro beijo, Malu assume a voz da história para relatar suas próprias teimosias e descobertas juvenis. Esta versão expande a linha do tempo original — que ia até os 21 anos — para incluir as aventuras inéditas da protagonista até os 23 anos.",
-    depoimentos: null,
-    capas: [
-      { url: "/img/capa-fala-serio-mae.jpg", editora: "Rocco", ano: 2022 },
-      { url: "/img/capa-fala-serio-mae-capa-2.jpg", editora: "Rocco", ano: 2022 },
-    ],
-  },
-  {
-    titulo: "Natali e sua vontade idiota de agradar todo mundo",
+    titulo: "Tudo por um Feriado",
     slug: "natali-e-sua-vontade-idiota-de-agradar-todo-mundo",
     tipo: "Livro",
     ano: 2022,
@@ -358,7 +300,7 @@ const obras: ObraInput[] = [
     ],
   },
   {
-    titulo: "Adultos sem filtro",
+    titulo: "Adultos sem filtro: só assim pode tirar",
     slug: "adultos-sem-filtro",
     tipo: "Livro",
     ano: 2024,
@@ -370,62 +312,7 @@ const obras: ObraInput[] = [
       { url: "/img/capa-adultos-sem-filtro.jpg", editora: "Rocco", ano: 2024 },
     ],
   },
-  {
-    titulo: "Traição entre amigas",
-    slug: "traicao-entre-amigas",
-    tipo: "Livro",
-    ano: 2012,
-    editora: "Rocco",
-    genero: "Romance juvenil",
-    sinopse: null,
-    depoimentos: null,
-    capas: [
-      { url: "/img/capa-traicao-entre-amigas.jpg", editora: "Rocco", ano: 2012 },
-      { url: "/img/capa-traicao-entre-amigas-capa-2.jpg", editora: "Rocco", ano: 2012 },
-    ],
-  },
-  {
-    titulo: "Tudo por um pop star",
-    slug: "tudo-por-um-pop-star",
-    tipo: "Livro",
-    ano: 2011,
-    editora: "Rocco",
-    genero: "Romance juvenil",
-    sinopse: null,
-    depoimentos: null,
-    capas: [
-      { url: "/img/capa-tudo-por-um-pop-star.jpg", editora: "Rocco", ano: 2011 },
-      { url: "/img/capa-tudo-por-um-pop-star-capa-2.jpg", editora: "Rocco", ano: 2011 },
-    ],
-  },
-  {
-    titulo: "Uma fada veio me visitar",
-    slug: "uma-fada-me-visitou",
-    tipo: "Livro",
-    ano: 2013,
-    editora: "Rocco",
-    genero: "Ficção infantil",
-    sinopse: null,
-    depoimentos: null,
-    capas: [
-      { url: "/img/capa-uma-fada-me-visitou.jpg", editora: "Rocco", ano: 2013 },
-    ],
-  },
   // ── 13 edições originais (adicionadas) ──────────────────────────────
-  {
-    titulo: "Adultos sem filtro: E outras crônicas",
-    slug: "adultos-sem-filtro-outras-cronicas",
-    tipo: "Livro",
-    ano: 2012,
-    editora: "Rocco",
-    genero: "Crônica",
-    sinopse:
-      "Adultos sem filtro marca a transição de Thalita Rebouças para um público mais maduro, reunindo crônicas bem-humoradas originalmente escritas para sua coluna na Veja Rio. A autora debater, com sua habitual cumplicidade e leveza, as dores e delícias do cotidiano adulto.",
-    depoimentos: null,
-    capas: [
-      { url: "/img/capa-adultos-sem-filtro.jpg", editora: "Rocco", ano: 2012 },
-    ],
-  },
   {
     titulo: "Fala sério, filha! A vingança dos pais",
     slug: "fala-serio-filha",
@@ -532,7 +419,7 @@ const obras: ObraInput[] = [
     titulo: "Uma fada veio me visitar",
     slug: "uma-fada-veio-me-visitou",
     tipo: "Livro",
-    ano: 2007,
+    ano: 2011,
     editora: "Rocco",
     genero: "Literatura infantojuvenil",
     sinopse:
@@ -574,7 +461,7 @@ const obras: ObraInput[] = [
   },
   {
     titulo: "Tudo por um pop star",
-    slug: "tudo-por-um-pop-star-original",
+    slug: "tudo-por-um-pop-star",
     tipo: "Livro",
     ano: 2003,
     editora: "Rocco",
@@ -589,7 +476,7 @@ const obras: ObraInput[] = [
   },
   {
     titulo: "Traição entre amigas",
-    slug: "traicao-entre-amigas-original",
+    slug: "traicao-entre-amigas",
     tipo: "Livro",
     ano: 2000,
     editora: "Rocco",
@@ -660,7 +547,7 @@ Para quem já passou por uma mudança de colégio ou se sentiu excluído em algu
     titulo: "Tudo por um Pop Star: a energia contagiante da amizade e da adolescência",
     slug: "tudo-por-um-pop-star-resenha",
     capaUrl: "/img/capa-tudo-por-um-pop-star.jpg",
-    obraSlug: "tudo-por-um-pop-star-original",
+    obraSlug: "tudo-por-um-pop-star",
     tags: ["Resenha", "Romance", "Amizade"],
     conteudo: `Tudo por um pop star é um daqueles livros que nos fazem reviver a intensidade da adolescência com um sorriso no rosto. A história acompanha Manu, Gabi e Ritinha, três melhores amigas completamente obcecadas pela boy band "Slava Body Disco Disco Boys".
 

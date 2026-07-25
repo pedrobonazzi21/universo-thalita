@@ -17,15 +17,34 @@ export const metadata: Metadata = {
 };
 
 export default async function MuralPage() {
-  const comentariosRecentes = await prisma.comentario.findMany({
-    where: { parentId: null },
-    include: {
-      usuario: { select: { nome: true } },
-      obra: { select: { titulo: true, slug: true } },
-    },
-    orderBy: { createdAt: "desc" },
-    take: 50,
-  });
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  let comentariosRecentes: any[] = [];
+  try {
+    comentariosRecentes = await prisma.comentario.findMany({
+      where: { parentId: null },
+      include: {
+        usuario: { select: { nome: true } },
+        obra: { select: { titulo: true, slug: true } },
+      },
+      orderBy: { createdAt: "desc" },
+      take: 50,
+    });
+  } catch {
+    return (
+      <PageTransition>
+        <main className="pt-24 max-w-7xl mx-auto px-6 pb-24">
+          <div className="flex items-center gap-3 mb-8">
+            <MessageSquare className="w-6 h-6 text-coral" />
+            <div>
+              <h1 className="font-heading text-4xl text-foreground">Painel de Coment\u00e1rios</h1>
+              <p className="text-foreground/50 mt-1">Coment\u00e1rios da comunidade</p>
+            </div>
+          </div>
+          <p className="text-center text-sm text-foreground/30 py-12">Carregando...</p>
+        </main>
+      </PageTransition>
+    );
+  }
 
   return (
     <PageTransition>

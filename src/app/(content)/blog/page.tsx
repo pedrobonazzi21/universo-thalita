@@ -17,10 +17,26 @@ export const metadata: Metadata = {
 };
 
 export default async function BlogPage() {
-  const posts = await prisma.post.findMany({
-    orderBy: { dataPublicacao: "desc" },
-    include: { tags: { include: { tag: true } } },
-  });
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  let posts: any[] = [];
+  try {
+    posts = await prisma.post.findMany({
+      orderBy: { dataPublicacao: "desc" },
+      include: { tags: { include: { tag: true } } },
+    });
+  } catch {
+    return (
+      <PageTransition>
+        <main className="pt-24 max-w-3xl mx-auto px-6 pb-24">
+          <h1 className="font-heading text-4xl text-foreground mb-2">Blog</h1>
+          <p className="text-foreground/50 mb-10">Resenhas e conte\u00fados escritos pela equipe</p>
+          <p className="text-center text-sm text-foreground/30 py-12 bg-card rounded-[18px] border border-gray-light/50">
+            Carregando...
+          </p>
+        </main>
+      </PageTransition>
+    );
+  }
 
   return (
     <PageTransition>
@@ -48,7 +64,7 @@ export default async function BlogPage() {
                       {post.tags.length > 0 && (
                         <>
                           <span className="text-foreground/20">•</span>
-                          {post.tags.map((pt) => (
+                          {post.tags.map((pt: { tag: { id: string; nome: string } }) => (
                             <span key={pt.tag.id} className="px-2 py-0.5 rounded-full bg-coral/10 text-coral font-medium">
                               {pt.tag.nome}
                             </span>
